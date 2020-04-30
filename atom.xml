@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://okeeper.com/"/>
-  <updated>2020-04-30T03:57:26.604Z</updated>
+  <updated>2020-04-30T07:37:32.971Z</updated>
   <id>https://okeeper.com/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>系统架构师——软件开发方法</title>
+    <link href="https://okeeper.com/ruan-jian-kai-fa-fang-fa/"/>
+    <id>https://okeeper.com/ruan-jian-kai-fa-fang-fa/</id>
+    <published>2020-04-30T03:25:00.000Z</published>
+    <updated>2020-04-30T07:37:32.971Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;前言：软件开发方法是软件开发的方法学，旨在提供软件的质量，降低开发成本&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;1-软件生命周期&quot;&gt;&lt;a href=&quot;#1-软件生命周期&quot; class=&quot;headerlink&quot; title=&quot;1
+        
+      
+    
+    </summary>
+    
+      <category term="架构" scheme="https://okeeper.com/categories/%E6%9E%B6%E6%9E%84/"/>
+    
+    
+      <category term="架构" scheme="https://okeeper.com/tags/%E6%9E%B6%E6%9E%84/"/>
+    
+  </entry>
   
   <entry>
     <title>动态壁纸接口</title>
@@ -69,35 +98,6 @@
       <category term="Kafka" scheme="https://okeeper.com/tags/Kafka/"/>
     
       <category term="MQ" scheme="https://okeeper.com/tags/MQ/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>系统架构师——软件开发方法</title>
-    <link href="https://okeeper.com/ruan-jian-kai-fa-fang-fa/"/>
-    <id>https://okeeper.com/ruan-jian-kai-fa-fang-fa/</id>
-    <published>2019-07-13T03:25:00.000Z</published>
-    <updated>2020-04-30T07:18:41.892Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;blockquote&gt;
-&lt;p&gt;前言：软件开发方法是软件开发的方法学，旨在提供软件的质量，降低开发成本&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&quot;1-软件生命周期&quot;&gt;&lt;a href=&quot;#1-软件生命周期&quot; class=&quot;headerlink&quot; title=&quot;1
-        
-      
-    
-    </summary>
-    
-      <category term="架构" scheme="https://okeeper.com/categories/%E6%9E%B6%E6%9E%84/"/>
-    
-    
-      <category term="架构" scheme="https://okeeper.com/tags/%E6%9E%B6%E6%9E%84/"/>
     
   </entry>
   
