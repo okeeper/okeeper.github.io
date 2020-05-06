@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://okeeper.com/README.html</loc>
+    
+    <lastmod>2020-05-06T08:34:40.617Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://okeeper.com/blog-introduce/</loc>
     
     <lastmod>2020-05-06T08:33:45.924Z</lastmod>
@@ -30,14 +37,14 @@
   </url>
   
   <url>
-    <loc>https://okeeper.com/categories/index.html</loc>
+    <loc>https://okeeper.com/contact/index.html</loc>
     
     <lastmod>2020-04-30T03:57:26.606Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://okeeper.com/contact/index.html</loc>
+    <loc>https://okeeper.com/categories/index.html</loc>
     
     <lastmod>2020-04-30T03:57:26.606Z</lastmod>
     
