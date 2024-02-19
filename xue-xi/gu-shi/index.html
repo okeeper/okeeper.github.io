@@ -4,13 +4,11 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="张跃 zhangyue okeeper Java Alibaba">
+    <meta name="keywords" content="张跃 zhangyue okeeper Java Alibaba 软件工程 架构师 软件笔记 技术分享 观点 随笔">
     <meta name="baidu-site-verification" content="MWAMkewsPN">
     <meta name="google-site-verification" content>
     <meta name="360-site-verification" content>
-    <meta name="description" content="关于领导力来源：一方面是组织赋予的权利，更重要的一方面是你解决问题的能力。
-去年的一个周末，说有一批订单需要紧急取消，我询问了下简单的情况后就答应处理了，而我刚好在忙别的事情，我就让我组内同学去帮忙处理下，我打电话给他。
-“运营说有一批订单">
+    <meta name="description" content="神笔君|Okeeper">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +16,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>张跃的博客</title>
+    <title>神笔君|Okeeper</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -55,9 +53,9 @@
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    <img src="/favicon.png" class="logo-img" alt="LOGO">
                     
-                    <span class="logo-span">张跃的博客</span>
+                    <span class="logo-span">神笔君|Okeeper</span>
                 </a>
             </div>
             
@@ -130,12 +128,12 @@
 
     <div class="mobile-head bg-color">
         
-        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        <img src="/favicon.png" class="logo-img circle responsive-img">
         
-        <div class="logo-name">张跃的博客</div>
+        <div class="logo-name">神笔君|Okeeper</div>
         <div class="logo-desc">
             
-            张跃 | 软件工程 | Java老司机
+            张跃 | 软件工程 | 架构师 | 软件笔记 | 技术分享 | 观点 | 随笔
             
         </div>
     </div>
@@ -417,13 +415,13 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-10-16
+                    2024-02-19
                 </div>
 
                 <div class="post-author info-break-policy">
                     <i class="fa fa-user-o fa-fw"></i>作者:&nbsp;&nbsp;
                     
-                    张跃
+                    Okeeper
                     
                 </div>
 
@@ -431,14 +429,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.4k
+                    0
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    1 分
                 </div>
                 
                 
@@ -454,169 +452,16 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>关于领导力来源：一方面是组织赋予的权利，更重要的一方面是你解决问题的能力。</p>
-<p>去年的一个周末，说有一批订单需要紧急取消，我询问了下简单的情况后就答应处理了，而我刚好在忙别的事情，我就让我组内同学去帮忙处理下，我打电话给他。</p>
-<p>“运营说有一批订单需要紧急取消，我看了下大概5、60单，他们觉得有点麻烦吧，你帮忙处理下吧”</p>
-<p>“他们嫌麻烦我们开发就不麻烦吗，他们实在紧急，找几个运营同学一起页面操作早就搞完了”</p>
-<p>“他们已经找到我了，要不先帮他们搞一下吧”</p>
-<p>“不搞，要搞你自己搞”</p>
-<p>对话就这样不愉快的结束了，我心想我tm不是组长吗，怎么这点事情都叫不动。</p>
-<p>事后我了解到，我那个组员是由于之前就找过他处理几次类似的问题，这次又来找，已经形成了由于自己懒得处理对开发的依赖，所以坚决不搞。</p>
-<p>后来我了解到这个情况后，我说这次可以先帮你们搞，但以后提单手动处理关单形成SOP，超过100单以上，开发才会介入，同时建议产品提出批量取消功能支持，组员看到这个在群里回复了一个大拇指。</p>
-<p>这个事情让我意识到：第一时间站在员工角度去思考问题，去帮助他解决解决问题，才能让人更加信服，而不是发号施令。</p>
-<p>着重讲一下电商交易系统中沟通协作成本值微服务边界划分问题。</p>
-<p>例如我们看这么一个场景讨论，</p>
-<p>一个交易下单流程有  </p>
-<p>订单计价、扣减库存、扣减优惠券、扣减促销最后是生产一个订单。</p>
-<p>订单开发的同学说：我只提供一个生产订单的接口，其他和订单无关流程我不管的。</p>
-<p>交易入口层的开发同学说：生成一个订单对业务没有任何意义，应该将交易下单整个流程打包出一个接口才有业务含义。</p>
-<p>面对这两种意见，其实都有一定的道理。</p>
-<p>具体到这个场景来分析，但如果订单服务只提供生成订单的接口本身没有问题，但会导致微服务拆分过细，需要额外在来一个聚合服务进行服务编排，不利于后期维护，同时从领域驱动的划分来看，下单是属于交易域业务，订单是交易域的子域，放在一起并不违背设计原则，最终决定将整个交易下单流程打包成一个订单的服务的一个业务接口，而不是只提供一个生成订单的接口。</p>
-<p>类似这种服务边界划分问题，在整个重构开发设计过程中时很常见的，这无疑增加了我们微服务系统开发的沟通协作成本</p>
-<p>电视机前的观众朋友们，大家晚上好，我是新励成记者张跃，</p>
-<p>现在是北京时间2023年10月17号 晚上8点</p>
-<p>我现在位于深圳市民广场。</p>
-<p>大家请看我身后：</p>
-<p>嘈杂的谈笑声、音乐及街头艺人的表演声 充斥着整个广场。一些摊贩在街头摆摊，售卖各种商品，从手工艺品到美食，吸引了购物者的目光。</p>
-<p>据了解，这个广场是一个多元文化的聚集地，无论你是想休闲购物、还是溜达散步，在这里都能得到满足。</p>
-<p>在此呼吁广大市民朋友，没事多到广场去，感受生活新动力。</p>
-<p>新励成记者张跃，为大家带来现场报道。</p>
-<p>首先看服务拆分之后，开发必须得考虑各种异常场景，例如你要考虑接口重试、并发、分布式事物等，这些事我们单体应用中所不需要考虑的。</p>
-<p>再来数据查询相对单体应用也变得没那么容易，业务都按垂直领域划分在不同的数据库中，获取完整的业务数据要横跨多个服务才能完成。一般我们要在设计阶段将一些重要字段进行系统冗余，较复杂的场景考虑内存聚合。</p>
-<p>对于复杂搜索场景我们还要借助第三方olap数据库才能实现。</p>
-<p>业务通用，但要支持多样场景下单。例如我们不但要支持aku app下单，还要支持游戏场景的零元购下单，bnc的下单等。下单这个场景大体上相同，但是又有略微的差别，例如bnc的不能使用优惠券和促销，零元购场景没有分期等。如何进行代码实现同时要保证我们的扩展性和复用性，也是一个比较大的挑战。</p>
-<p>考虑到我们的调用方不太懂整个交易流程，将交易流程细节暴露给他们不太合适，整个交易过程的编排我们封装了一个标准接口，底层通过责任链方式将交易过程进行合理的编排，同时我们设置了不同功能的入参，确保可以支持我们各个场景的不同交易需求。</p>
-
+                
             </div>
             <hr />
 
-            
-            <style>
-    #reward {
-        margin: 40px 0;
-        text-align: center;
-    }
+            <!-- 公众号图片 -->
+            <img src="/gongzhonghao.png" width="100%"/>
 
-    #reward .reward-link {
-        font-size: 1.88rem;
-    }
-
-    #reward .btn-floating:hover {
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
-    }
-
-    #rewardModal {
-        width: 320px;
-        height: 350px;
-    }
-
-    #rewardModal .reward-title {
-        margin: 15px auto;
-        padding-bottom: 5px;
-    }
-
-    #rewardModal .modal-content {
-        padding: 10px;
-    }
-
-    #rewardModal .close {
-        position: absolute;
-        right: 15px;
-        top: 15px;
-        color: rgba(0, 0, 0, 0.5);
-        font-size: 1.3rem;
-        line-height: 20px;
-        cursor: pointer;
-    }
-
-    #rewardModal .close:hover {
-        color: #ef5350;
-        transform: scale(1.3);
-        -moz-transform:scale(1.3);
-        -webkit-transform:scale(1.3);
-        -o-transform:scale(1.3);
-    }
-
-    #rewardModal .reward-tabs {
-        margin: 0 auto;
-        width: 210px;
-    }
-
-    .reward-tabs .tabs {
-        height: 38px;
-        margin: 10px auto;
-        padding-left: 0;
-    }
-
-    .reward-content ul {
-        padding-left: 0 !important;
-    }
-
-    .reward-tabs .tabs .tab {
-        height: 38px;
-        line-height: 38px;
-    }
-
-    .reward-tabs .tab a {
-        color: #fff;
-        background-color: #ccc;
-    }
-
-    .reward-tabs .tab a:hover {
-        background-color: #ccc;
-        color: #fff;
-    }
-
-    .reward-tabs .wechat-tab .active {
-        color: #fff !important;
-        background-color: #22AB38 !important;
-    }
-
-    .reward-tabs .alipay-tab .active {
-        color: #fff !important;
-        background-color: #019FE8 !important;
-    }
-
-    .reward-tabs .reward-img {
-        width: 210px;
-        height: 210px;
-    }
-</style>
-
-<div id="reward">
-    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
-
-    <!-- Modal Structure -->
-    <div id="rewardModal" class="modal">
-        <div class="modal-content">
-            <a class="close modal-close"><i class="fa fa-close"></i></a>
-            <h4 class="reward-title">感谢你的认可！</h4>
-            <div class="reward-content">
-                <div class="reward-tabs">
-                    <ul class="tabs row">
-                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
-                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
-                    </ul>
-                    <div id="alipay">
-                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
-                    </div>
-                    <div id="wechat">
-                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-    $(function () {
-        $('.tabs').tabs();
-    });
-</script>
             
 
-            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<!--             <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
 
 <div id="article-share">
     
@@ -624,7 +469,7 @@
     
 </div>
 
-<script src="/libs/share/js/social-share.min.js"></script>
+<script src="/libs/share/js/social-share.min.js"></script> -->
 
             
 
@@ -663,277 +508,51 @@
     
 
     
-    <style>
-    .valine-card {
-        margin: 1.5rem auto;
-    }
-
-    .valine-card .card-content {
-        padding: 20px 20px 5px 20px;
-    }
-
-    #vcomments input[type=text],
-    #vcomments input[type=email],
-    #vcomments input[type=url],
-    #vcomments textarea {
-        box-sizing: border-box;
-    }
-
-    #vcomments p {
-        margin: 2px 2px 10px;
-        font-size: 1.05rem;
-        line-height: 1.78rem;
-    }
-
-    #vcomments blockquote p {
-        text-indent: 0.2rem;
-    }
-
-    #vcomments a {
-        padding: 0 2px;
-        color: #42b983;
-        font-weight: 500;
-        text-decoration: underline;
-    }
-
-    #vcomments img {
-        max-width: 100%;
-        height: auto;
-        cursor: pointer;
-    }
-
-    #vcomments ol li {
-        list-style-type: decimal;
-    }
-
-    #vcomments ol,
-    ul {
-        display: block;
-        padding-left: 2em;
-        word-spacing: 0.05rem;
-    }
-
-    #vcomments ul li,
-    ol li {
-        display: list-item;
-        line-height: 1.8rem;
-        font-size: 1rem;
-    }
-
-    #vcomments ul li {
-        list-style-type: disc;
-    }
-
-    #vcomments ul ul li {
-        list-style-type: circle;
-    }
-
-    #vcomments table, th, td {
-        padding: 12px 13px;
-        border: 1px solid #dfe2e5;
-    }
-
-    #vcomments table, th, td {
-        border: 0;
-    }
-
-    table tr:nth-child(2n), thead {
-        background-color: #fafafa;
-    }
-
-    #vcomments table th {
-        background-color: #f2f2f2;
-        min-width: 80px;
-    }
-
-    #vcomments table td {
-        min-width: 80px;
-    }
-
-    #vcomments h1 {
-        font-size: 1.85rem;
-        font-weight: bold;
-        line-height: 2.2rem;
-    }
-
-    #vcomments h2 {
-        font-size: 1.65rem;
-        font-weight: bold;
-        line-height: 1.9rem;
-    }
-
-    #vcomments h3 {
-        font-size: 1.45rem;
-        font-weight: bold;
-        line-height: 1.7rem;
-    }
-
-    #vcomments h4 {
-        font-size: 1.25rem;
-        font-weight: bold;
-        line-height: 1.5rem;
-    }
-
-    #vcomments h5 {
-        font-size: 1.1rem;
-        font-weight: bold;
-        line-height: 1.4rem;
-    }
-
-    #vcomments h6 {
-        font-size: 1rem;
-        line-height: 1.3rem;
-    }
-
-    #vcomments p {
-        font-size: 1rem;
-        line-height: 1.5rem;
-    }
-
-    #vcomments hr {
-        margin: 12px 0;
-        border: 0;
-        border-top: 1px solid #ccc;
-    }
-
-    #vcomments blockquote {
-        margin: 15px 0;
-        border-left: 5px solid #42b983;
-        padding: 1rem 0.8rem 0.3rem 0.8rem;
-        color: #666;
-        background-color: rgba(66, 185, 131, .1);
-    }
-
-    #vcomments pre {
-        font-family: monospace, monospace;
-        padding: 1.2em;
-        margin: .5em 0;
-        background: #272822;
-        overflow: auto;
-        border-radius: 0.3em;
-        tab-size: 4;
-    }
-
-    #vcomments code {
-        font-family: monospace, monospace;
-        padding: 1px 3px;
-        font-size: 0.92rem;
-        color: #e96900;
-        background-color: #f8f8f8;
-        border-radius: 2px;
-    }
-
-    #vcomments pre code {
-        font-family: monospace, monospace;
-        padding: 0;
-        color: #e8eaf6;
-        background-color: #272822;
-    }
-
-    #vcomments pre[class*="language-"] {
-        padding: 1.2em;
-        margin: .5em 0;
-    }
-
-    #vcomments code[class*="language-"],
-    pre[class*="language-"] {
-        color: #e8eaf6;
-    }
-
-    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
-        position: inherit;
-        margin-left: -1.3rem;
-        margin-right: 0.4rem;
-        margin-top: -1px;
-        vertical-align: middle;
-        left: unset;
-        visibility: visible;
-    }
-
-    #vcomments b,
-    strong {
-        font-weight: bold;
-    }
-
-    #vcomments dfn {
-        font-style: italic;
-    }
-
-    #vcomments small {
-        font-size: 85%;
-    }
-
-    #vcomments cite {
-        font-style: normal;
-    }
-
-    #vcomments mark {
-        background-color: #fcf8e3;
-        padding: .2em;
-    }
-
-    #vcomments table, th, td {
-        padding: 12px 13px;
-        border: 1px solid #dfe2e5;
-    }
-
-    table tr:nth-child(2n), thead {
-        background-color: #fafafa;
-    }
-
-    #vcomments table th {
-        background-color: #f2f2f2;
-        min-width: 80px;
-    }
-
-    #vcomments table td {
-        min-width: 80px;
-    }
-
-    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
-        position: inherit;
-        margin-left: -1.3rem;
-        margin-right: 0.4rem;
-        margin-top: -1px;
-        vertical-align: middle;
-        left: unset;
-        visibility: visible;
-    }
-</style>
-
-<div class="card valine-card" data-aos="fade-up">
-    <div id="vcomments" class="card-content"></div>
-</div>
-
-<script src="/libs/valine/av-min.js"></script>
-<script src="/libs/valine/Valine.min.js"></script>
-<!-- <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script> -->
-
-<script>
-    new Valine({
-        el: '#vcomments',
-        appId: 'GjiqQwhojXYm2W20KjDDlk19-9Nh9j0Va',
-        appKey: 'w8fOuluBKT5D5LiCnhlLRRpY',
-        notify: 'false' === 'true',
-        verify: 'false' === 'true',
-        visitor: 'false' === 'true',
-        avatar: 'wavatar',
-        pageSize: '10',
-        lang: 'zh-cn',
-        placeholder: '来都来了，不留点啥啊！'
-    });
-</script>
-
-    
 
     
 
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/xue-xi/gu-shi/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        
+                        <span class="card-title"></span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2024-02-19
+                            </span>
+                        <span class="publish-author">
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/macos-xi-tong-sheng-ji-hou-navicat-mi-ma-bao-cun-bu-liao/">
                     <div class="card-image">
@@ -951,9 +570,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2024-02-19
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2024-02-19
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -981,41 +600,6 @@
                         <span class="chip bg-color">软件</span>
                     </a>
                     
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/sequencediagram/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
-                        
-                        <span class="card-title"></span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            sequenceDiagram    participant User    participant Application    participant LlamaFile
-User-&gt;&gt;+Application: Reque
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-07-15
-                            </span>
-                        <span class="publish-author">
-                            
-                        </span>
-                    </div>
                 </div>
                 
             </div>
@@ -1127,10 +711,10 @@ User-&gt;&gt;+Application: Reque
     <footer class="page-footer bg-color">
     <div class="container row center-align">
         <div class="col s12 m8 l8 copy-right">
-            &copy; 2019 Okeeper. All Rights Reserved. &nbsp; 赣ICP备2023001719号
+            &copy; 2017-2024 Okeeper. All Rights Reserved. &nbsp; 粤ICP备2024178587号
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">60.7k</span>
+            <span class="white-color">59.2k</span>
             
 
             <br>

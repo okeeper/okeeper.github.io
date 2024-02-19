@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title></title>
+      <link href="/xue-xi/gu-shi/"/>
+      <url>/xue-xi/gu-shi/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>MacOS系统升级后Navicat密码保存不了，报&quot;AIled to save password error code -34018&quot;</title>
       <link href="/macos-xi-tong-sheng-ji-hou-navicat-mi-ma-bao-cun-bu-liao/"/>
       <url>/macos-xi-tong-sheng-ji-hou-navicat-mi-ma-bao-cun-bu-liao/</url>
@@ -33,39 +46,33 @@
     
     
     <entry>
-      <title></title>
-      <link href="/xue-xi/gu-shi/"/>
-      <url>/xue-xi/gu-shi/</url>
-      
-        <content type="html"><![CDATA[<p>关于领导力来源：一方面是组织赋予的权利，更重要的一方面是你解决问题的能力。</p><p>去年的一个周末，说有一批订单需要紧急取消，我询问了下简单的情况后就答应处理了，而我刚好在忙别的事情，我就让我组内同学去帮忙处理下，我打电话给他。</p><p>“运营说有一批订单需要紧急取消，我看了下大概5、60单，他们觉得有点麻烦吧，你帮忙处理下吧”</p><p>“他们嫌麻烦我们开发就不麻烦吗，他们实在紧急，找几个运营同学一起页面操作早就搞完了”</p><p>“他们已经找到我了，要不先帮他们搞一下吧”</p><p>“不搞，要搞你自己搞”</p><p>对话就这样不愉快的结束了，我心想我tm不是组长吗，怎么这点事情都叫不动。</p><p>事后我了解到，我那个组员是由于之前就找过他处理几次类似的问题，这次又来找，已经形成了由于自己懒得处理对开发的依赖，所以坚决不搞。</p><p>后来我了解到这个情况后，我说这次可以先帮你们搞，但以后提单手动处理关单形成SOP，超过100单以上，开发才会介入，同时建议产品提出批量取消功能支持，组员看到这个在群里回复了一个大拇指。</p><p>这个事情让我意识到：第一时间站在员工角度去思考问题，去帮助他解决解决问题，才能让人更加信服，而不是发号施令。</p><p>着重讲一下电商交易系统中沟通协作成本值微服务边界划分问题。</p><p>例如我们看这么一个场景讨论，</p><p>一个交易下单流程有  </p><p>订单计价、扣减库存、扣减优惠券、扣减促销最后是生产一个订单。</p><p>订单开发的同学说：我只提供一个生产订单的接口，其他和订单无关流程我不管的。</p><p>交易入口层的开发同学说：生成一个订单对业务没有任何意义，应该将交易下单整个流程打包出一个接口才有业务含义。</p><p>面对这两种意见，其实都有一定的道理。</p><p>具体到这个场景来分析，但如果订单服务只提供生成订单的接口本身没有问题，但会导致微服务拆分过细，需要额外在来一个聚合服务进行服务编排，不利于后期维护，同时从领域驱动的划分来看，下单是属于交易域业务，订单是交易域的子域，放在一起并不违背设计原则，最终决定将整个交易下单流程打包成一个订单的服务的一个业务接口，而不是只提供一个生成订单的接口。</p><p>类似这种服务边界划分问题，在整个重构开发设计过程中时很常见的，这无疑增加了我们微服务系统开发的沟通协作成本</p><p>电视机前的观众朋友们，大家晚上好，我是新励成记者张跃，</p><p>现在是北京时间2023年10月17号 晚上8点</p><p>我现在位于深圳市民广场。</p><p>大家请看我身后：</p><p>嘈杂的谈笑声、音乐及街头艺人的表演声 充斥着整个广场。一些摊贩在街头摆摊，售卖各种商品，从手工艺品到美食，吸引了购物者的目光。</p><p>据了解，这个广场是一个多元文化的聚集地，无论你是想休闲购物、还是溜达散步，在这里都能得到满足。</p><p>在此呼吁广大市民朋友，没事多到广场去，感受生活新动力。</p><p>新励成记者张跃，为大家带来现场报道。</p><p>首先看服务拆分之后，开发必须得考虑各种异常场景，例如你要考虑接口重试、并发、分布式事物等，这些事我们单体应用中所不需要考虑的。</p><p>再来数据查询相对单体应用也变得没那么容易，业务都按垂直领域划分在不同的数据库中，获取完整的业务数据要横跨多个服务才能完成。一般我们要在设计阶段将一些重要字段进行系统冗余，较复杂的场景考虑内存聚合。</p><p>对于复杂搜索场景我们还要借助第三方olap数据库才能实现。</p><p>业务通用，但要支持多样场景下单。例如我们不但要支持aku app下单，还要支持游戏场景的零元购下单，bnc的下单等。下单这个场景大体上相同，但是又有略微的差别，例如bnc的不能使用优惠券和促销，零元购场景没有分期等。如何进行代码实现同时要保证我们的扩展性和复用性，也是一个比较大的挑战。</p><p>考虑到我们的调用方不太懂整个交易流程，将交易流程细节暴露给他们不太合适，整个交易过程的编排我们封装了一个标准接口，底层通过责任链方式将交易过程进行合理的编排，同时我们设置了不同功能的入参，确保可以支持我们各个场景的不同交易需求。</p>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="/sequencediagram/"/>
-      <url>/sequencediagram/</url>
-      
-        <content type="html"><![CDATA[<p>sequenceDiagram<br>    participant User<br>    participant Application<br>    participant LlamaFile</p><pre><code>User-&gt;&gt;+Application: Request to get answer from llama fileApplication-&gt;&gt;+LlamaFile: Load llama fileLlamaFile-&gt;&gt;-Application: Llama file loaded successfullyApplication-&gt;&gt;+LlamaFile: Read llama file contentLlamaFile-&gt;&gt;-Application: Llama file content retrievedApplication-&gt;&gt;+LlamaFile: Parse llama file contentLlamaFile-&gt;&gt;-Application: Llama file content parsedApplication-&gt;&gt;Application: Process parsed contentApplication-&gt;&gt;+LlamaFile: Generate answerLlamaFile-&gt;&gt;-Application: Answer generatedApplication-&gt;&gt;-User: Return answerNote right of Application: Answer retrieved from Llama file</code></pre>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
+      <title>人工智能技术发展史</title>
       <link href="/ren-gong-zhi-neng/"/>
       <url>/ren-gong-zhi-neng/</url>
       
-        <content type="html"><![CDATA[<h1 id="人工智能"><a href="#人工智能" class="headerlink" title="人工智能"></a>人工智能</h1><h1 id="什么是人工智能"><a href="#什么是人工智能" class="headerlink" title="什么是人工智能"></a>什么是人工智能</h1><p>指由人制造出来的机器所表现出来的智能。<em>人工智能</em>可以定义为模仿人类与人类思维相关的认知功能的机器或计算机，如学习和解决问题</p><ul><li>专家系统：基于专家知识库+推理引擎。比如使用预定的一些规则和逻辑，模拟人类专家进行决策的过程</li><li>启发式问题解决：比如评估小范围的解决方案，并可能涉及一些猜测，以找到接近最佳的解决方案。</li><li>自然语言处理：在自然语言中实现人机之间的交流。比如聊天机器人。</li><li>计算机视觉：自动生成识别形状和功能的能力。比如人脸识别、图像识别、语音识别（本质还是基于数据化之后的语音图谱）</li></ul><h1 id="如何实现这些智能"><a href="#如何实现这些智能" class="headerlink" title="如何实现这些智能"></a>如何实现这些智能</h1><h2 id="手动编写规则和逻辑"><a href="#手动编写规则和逻辑" class="headerlink" title="手动编写规则和逻辑"></a>手动编写规则和逻辑</h2><p>手动编写各种规则，以响应特定的输出，类似IF/ELSE逻辑，更加复杂的就是一些数学函数规则。</p><p>比如情感问题专家系统，有一个预设好的问题和答案库，当用户输入某个问题时，返回对应问题的答案。</p><p>比如在早期的机器翻译，就是通过语法规则解析+关键词匹配来识别和理解用户的输入，并响应对应目标语言的语法规则和关键词生成翻译语言。</p><p>在比如我们公司的风控系统，根据输入特征结合预设规则返回风控结果等等。在一定程度上都能实现简单的类人类的一些智能。</p><h2 id="基于统计概率"><a href="#基于统计概率" class="headerlink" title="基于统计概率"></a>基于统计概率</h2><p>基于大量实际的例子进行概率统计预测，例如我们的手机输入法，个人常用的词组将会放在前面。</p><p>人们很快发现，对于实世界的复杂问题并不都可以通过预设规则很好地处理，</p><p>比如人脸识别、图像识别，一个人从早到晚、每天的情绪变化都会细微地影响你的人脸构成，而计算机又是极其“死脑筋”的，任何细微的变化都可能对同一个人识别失败，所以我们不可能通过预设所有情况很好地解决这类问题。</p><p>再比如自然语言处理，只通过预发解析和关键词匹配的出来的解释并不是一成不变的，语言中有很多歧义性(多义词)、容错性（错别字、顺序错误、语法错误）。这样下来我们实际使用的语言是灵活性极高的，并不能穷举完所有情况进行预设。例如下面这段话：</p><blockquote><p>他说：“她这个人真有意思(funy)。”她说：“他这个人怪有意思的(funy)。”于是人们以为他们有了意思(wish)，并让他向她意思意思（express）。他火了：“我根本没有那个意思(thought)！”她也生气了：“你们这么说是什么意思（Intention）？”事后有人说：“真有意思(funny)。”也有人说：“真没意思(nonsense)。”</p></blockquote><p>很难通过预设的一些语法和关键词进行很好的翻译对应的“意思”。当然自然语言处理发展已有半个世纪的发展。在机器学习之前的翻译翻译效果也一直不够理想。</p><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/44067982c1cd4f15adcc8c5cf2d99da5~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" alt="img"></p><h2 id="机器学习"><a href="#机器学习" class="headerlink" title="机器学习"></a>机器学习</h2><p>利用数据和算法让计算机自动学习模式、规律，并进行预测和分类。</p><p>就比如给一堆的数据：标注好的图片、标注好的语料。让计算机自动通过机器学习的过程不断总结规律直至预测和分类效果达到可接受的范围之内。从而得到能够预测和分类未知输入的能力。</p><p>过程类似这样。</p><p><img src="https://s2.51cto.com/images/blog/202108/04/06f02f62e5929f5de0f13f7a8ec8c214.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp" alt="img"></p><p>就是让机器通过数学建模找到f(x)函数，使得他可以拟合我们现实世界中的任意复杂场景。</p><p>例如这样的线性函数，找到个f(x)函数使得到各个点的实际误差最小。</p><p>例如这样的类一元二次函数的点分布，找到一个抛物线使得到各个点的误差最小。</p><p>我们人类可以根据数学经验和已知的一些规律找到对于函数类型，是一元一次方程、一元二次方程、或者是指数函数，正余弦等等。</p><p>但是对于计算机来讲他怎么知道该用什么类型的函数来拟合呢。如果数据分布呈现不了任何规律，又改如何找对对于的函数进行拟合呢。</p><p>比如如这样的，这样的，甚至这样的。</p><h2 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h2><p>这个东西也叫通用函数逼近器，数学家已经证明，两层的神经网络足以拟合任何复杂函数。</p><h2 id="神经网络的类型"><a href="#神经网络的类型" class="headerlink" title="神经网络的类型"></a>神经网络的类型</h2><p>CNN</p><p>RNN</p><p>DNN</p><h2 id="一个完整模型训练-“炼丹”-的过程"><a href="#一个完整模型训练-“炼丹”-的过程" class="headerlink" title="一个完整模型训练(“炼丹”)的过程"></a>一个完整模型训练(“炼丹”)的过程</h2><p>无监督学习</p><p>有监督学习</p><p>微调</p><p>参考文献：</p><p>小白也能听懂的人工智能原理：<a href="https://www.aliyundrive.com/s/hXdxXyuuzdW" target="_blank" rel="noopener">https://www.aliyundrive.com/s/hXdxXyuuzdW</a> 提取码p2z7</p><p> Transformer的基本原理：<a href="https://blog.51cto.com/u_16161414/6483603" target="_blank" rel="noopener">https://blog.51cto.com/u_16161414/6483603</a></p><p>神经网络的基本原理：<a href="https://blog.51cto.com/u_16161414/6479769" target="_blank" rel="noopener">https://blog.51cto.com/u_16161414/6479769</a></p><p>神经网络初探——神经网络如何工作：<a href="https://zhuanlan.zhihu.com/p/64532465" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/64532465</a></p><p>一文看懂四种基本的神经网络架构：<a href="https://www.jianshu.com/p/546dc40b52c8" target="_blank" rel="noopener">https://www.jianshu.com/p/546dc40b52c8</a></p><p>很好的大语言模型的入门：ChatGPT背后的语言模型简史：<a href="https://www.bmpi.dev/dev/deep-learning/nlp-language-models/" target="_blank" rel="noopener">https://www.bmpi.dev/dev/deep-learning/nlp-language-models/</a></p><p>图解Word2vec,是如何训练出来的：<a href="https://mp.weixin.qq.com/s/NMngfR7EWk-pa6c4_FY9Yw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/NMngfR7EWk-pa6c4_FY9Yw</a></p><p>如何通俗理解Word2Vec (23年修订版)</p><p><a href="https://blog.csdn.net/v_JULY_v/article/details/102708459" target="_blank" rel="noopener">https://blog.csdn.net/v_JULY_v/article/details/102708459</a></p><p> Transformer通俗笔记：从Word2Vec、Seq2Seq逐步理解到GPT、BERT：<a href="https://blog.csdn.net/v_JULY_v/article/details/127411638" target="_blank" rel="noopener">https://blog.csdn.net/v_JULY_v/article/details/127411638</a></p><p>图解GPT：<a href="https://github.com/datawhalechina/learn-nlp-with-transformers/blob/main/docs/%E7%AF%87%E7%AB%A02-Transformer%E7%9B%B8%E5%85%B3%E5%8E%9F%E7%90%86/2.4-%E5%9B%BE%E8%A7%A3GPT.md" target="_blank" rel="noopener">https://github.com/datawhalechina/learn-nlp-with-transformers/blob/main/docs/%E7%AF%87%E7%AB%A02-Transformer%E7%9B%B8%E5%85%B3%E5%8E%9F%E7%90%86/2.4-%E5%9B%BE%E8%A7%A3GPT.md</a></p><p>超大型人工智能：从GPT-&gt;GPT2-&gt;GPT3的发展历程+大规模预训练神经网络模型原理详解： <a href="https://zhuanlan.zhihu.com/p/591146772" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/591146772</a></p><p>提示词工程：<a href="https://www.51cto.com/article/749832.html" target="_blank" rel="noopener">https://www.51cto.com/article/749832.html</a></p>]]></content>
+        <content type="html"><![CDATA[<h1 id="人工智能"><a href="#人工智能" class="headerlink" title="人工智能"></a>人工智能</h1><h1 id="什么是人工智能"><a href="#什么是人工智能" class="headerlink" title="什么是人工智能"></a>什么是人工智能</h1><p>指由人制造出来的机器所表现出来的智能。<em>人工智能</em>可以定义为模仿人类与人类思维相关的认知功能的机器或计算机，如学习和解决问题</p><ul><li>专家系统：基于专家知识库+推理引擎。比如使用预定的一些规则和逻辑，模拟人类专家进行决策的过程</li><li>启发式问题解决：比如评估小范围的解决方案，并可能涉及一些猜测，以找到接近最佳的解决方案。</li><li>自然语言处理：在自然语言中实现人机之间的交流。比如聊天机器人。</li><li>计算机视觉：自动生成识别形状和功能的能力。比如人脸识别、图像识别、语音识别（本质还是基于数据化之后的语音图谱）</li></ul><h1 id="如何实现这些智能"><a href="#如何实现这些智能" class="headerlink" title="如何实现这些智能"></a>如何实现这些智能</h1><h2 id="手动编写规则和逻辑"><a href="#手动编写规则和逻辑" class="headerlink" title="手动编写规则和逻辑"></a>手动编写规则和逻辑</h2><p>手动编写各种规则，以响应特定的输出，类似IF/ELSE逻辑，更加复杂的就是一些数学函数规则。</p><p>比如情感问题专家系统，有一个预设好的问题和答案库，当用户输入某个问题时，返回对应问题的答案。</p><p>比如在早期的机器翻译，就是通过语法规则解析+关键词匹配来识别和理解用户的输入，并响应对应目标语言的语法规则和关键词生成翻译语言。</p><p>在比如我们公司的风控系统，根据输入特征结合预设规则返回风控结果等等。在一定程度上都能实现简单的类人类的一些智能。</p><h2 id="基于统计概率"><a href="#基于统计概率" class="headerlink" title="基于统计概率"></a>基于统计概率</h2><p>基于大量实际的例子进行概率统计预测，例如我们的手机输入法，个人常用的词组将会放在前面。</p><p>人们很快发现，对于实世界的复杂问题并不都可以通过预设规则很好地处理，</p><p>比如人脸识别、图像识别，一个人从早到晚、每天的情绪变化都会细微地影响你的人脸构成，而计算机又是极其“死脑筋”的，任何细微的变化都可能对同一个人识别失败，所以我们不可能通过预设所有情况很好地解决这类问题。</p><p>再比如自然语言处理，只通过预发解析和关键词匹配的出来的解释并不是一成不变的，语言中有很多歧义性(多义词)、容错性（错别字、顺序错误、语法错误）。这样下来我们实际使用的语言是灵活性极高的，并不能穷举完所有情况进行预设。例如下面这段话：</p><blockquote><p>他说：“她这个人真有意思(funy)。”她说：“他这个人怪有意思的(funy)。”于是人们以为他们有了意思(wish)，并让他向她意思意思（express）。他火了：“我根本没有那个意思(thought)！”她也生气了：“你们这么说是什么意思（Intention）？”事后有人说：“真有意思(funny)。”也有人说：“真没意思(nonsense)。”</p></blockquote><p>很难通过预设的一些语法和关键词进行很好的翻译对应的“意思”。当然自然语言处理发展已有半个世纪的发展。在机器学习之前的翻译翻译效果也一直不够理想。</p><p><img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/images/image-20240219163614202.png" alt="image-20240219163614202"></p><h2 id="机器学习"><a href="#机器学习" class="headerlink" title="机器学习"></a>机器学习</h2><p>利用数据和算法让计算机自动学习模式、规律，并进行预测和分类。</p><p>就比如给一堆的数据：标注好的图片、标注好的语料。让计算机自动通过机器学习的过程不断总结规律直至预测和分类效果达到可接受的范围之内。从而得到能够预测和分类未知输入的能力。</p><p>过程类似这样。</p><p><img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/images/image-20240219163634073.png" alt="image-20240219163634073"></p><p>就是让机器通过数学建模找到f(x)函数，使得他可以拟合我们现实世界中的任意复杂场景。</p><p>例如这样的线性函数，找到个f(x)函数使得到各个点的实际误差最小。</p><p>例如这样的类一元二次函数的点分布，找到一个抛物线使得到各个点的误差最小。</p><p>我们人类可以根据数学经验和已知的一些规律找到对于函数类型，是一元一次方程、一元二次方程、或者是指数函数，正余弦等等。</p><p>但是对于计算机来讲他怎么知道该用什么类型的函数来拟合呢。如果数据分布呈现不了任何规律，又改如何找对对于的函数进行拟合呢。</p><p>比如如这样的，这样的，甚至这样的。</p><h2 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h2><p>这个东西也叫通用函数逼近器，数学家已经证明，两层的神经网络足以拟合任何复杂函数。</p><h2 id="神经网络的类型"><a href="#神经网络的类型" class="headerlink" title="神经网络的类型"></a>神经网络的类型</h2><p>CNN</p><p>RNN</p><p>DNN</p><h2 id="一个完整模型训练-“炼丹”-的过程"><a href="#一个完整模型训练-“炼丹”-的过程" class="headerlink" title="一个完整模型训练(“炼丹”)的过程"></a>一个完整模型训练(“炼丹”)的过程</h2><p>无监督学习</p><p>有监督学习</p><p>微调</p><p>参考文献：</p><p>小白也能听懂的人工智能原理：<a href="https://www.aliyundrive.com/s/hXdxXyuuzdW" target="_blank" rel="noopener">https://www.aliyundrive.com/s/hXdxXyuuzdW</a> 提取码p2z7</p><p> Transformer的基本原理：<a href="https://blog.51cto.com/u_16161414/6483603" target="_blank" rel="noopener">https://blog.51cto.com/u_16161414/6483603</a></p><p>神经网络的基本原理：<a href="https://blog.51cto.com/u_16161414/6479769" target="_blank" rel="noopener">https://blog.51cto.com/u_16161414/6479769</a></p><p>神经网络初探——神经网络如何工作：<a href="https://zhuanlan.zhihu.com/p/64532465" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/64532465</a></p><p>一文看懂四种基本的神经网络架构：<a href="https://www.jianshu.com/p/546dc40b52c8" target="_blank" rel="noopener">https://www.jianshu.com/p/546dc40b52c8</a></p><p>很好的大语言模型的入门：ChatGPT背后的语言模型简史：<a href="https://www.bmpi.dev/dev/deep-learning/nlp-language-models/" target="_blank" rel="noopener">https://www.bmpi.dev/dev/deep-learning/nlp-language-models/</a></p><p>图解Word2vec,是如何训练出来的：<a href="https://mp.weixin.qq.com/s/NMngfR7EWk-pa6c4_FY9Yw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/NMngfR7EWk-pa6c4_FY9Yw</a></p><p>如何通俗理解Word2Vec (23年修订版)</p><p><a href="https://blog.csdn.net/v_JULY_v/article/details/102708459" target="_blank" rel="noopener">https://blog.csdn.net/v_JULY_v/article/details/102708459</a></p><p> Transformer通俗笔记：从Word2Vec、Seq2Seq逐步理解到GPT、BERT：<a href="https://blog.csdn.net/v_JULY_v/article/details/127411638" target="_blank" rel="noopener">https://blog.csdn.net/v_JULY_v/article/details/127411638</a></p><p>图解GPT：<a href="https://github.com/datawhalechina/learn-nlp-with-transformers/blob/main/docs/%E7%AF%87%E7%AB%A02-Transformer%E7%9B%B8%E5%85%B3%E5%8E%9F%E7%90%86/2.4-%E5%9B%BE%E8%A7%A3GPT.md" target="_blank" rel="noopener">https://github.com/datawhalechina/learn-nlp-with-transformers/blob/main/docs/%E7%AF%87%E7%AB%A02-Transformer%E7%9B%B8%E5%85%B3%E5%8E%9F%E7%90%86/2.4-%E5%9B%BE%E8%A7%A3GPT.md</a></p><p>超大型人工智能：从GPT-&gt;GPT2-&gt;GPT3的发展历程+大规模预训练神经网络模型原理详解： <a href="https://zhuanlan.zhihu.com/p/591146772" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/591146772</a></p><p>提示词工程：<a href="https://www.51cto.com/article/749832.html" target="_blank" rel="noopener">https://www.51cto.com/article/749832.html</a></p>]]></content>
       
       
+      <categories>
+          
+          <category> 人工智能 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> AI </tag>
+            
+            <tag> 人工智能 </tag>
+            
+            <tag> 大语言模型 </tag>
+            
+            <tag> LLM </tag>
+            
+            <tag> 神经网络 </tag>
+            
+        </tags>
       
     </entry>
     
@@ -326,31 +333,6 @@
     
     
     <entry>
-      <title>Java开发环境准备</title>
-      <link href="/ruan-jian-bi-ji/java-kai-fa-huan-jing-zhun-bei/"/>
-      <url>/ruan-jian-bi-ji/java-kai-fa-huan-jing-zhun-bei/</url>
-      
-        <content type="html"><![CDATA[<p>JDK下载地址：<br><a href="https://github.com/frekele/oracle-java/releases" target="_blank" rel="noopener">https://github.com/frekele/oracle-java/releases</a></p><p>idea激活：<br><a href="https://juejin.im/post/5df8a5a5e51d4557f0460990" target="_blank" rel="noopener">https://juejin.im/post/5df8a5a5e51d4557f0460990</a></p><p>maven环境变量配置：<br><a href="https://www.cnblogs.com/tanjiyuan/p/11010998.html" target="_blank" rel="noopener">https://www.cnblogs.com/tanjiyuan/p/11010998.html</a></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 软件笔记 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 软件笔记 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Redis批量删除命令</title>
       <link href="/ruan-jian-bi-ji/redis-pi-liang-shan-chu-ming-ling/"/>
       <url>/ruan-jian-bi-ji/redis-pi-liang-shan-chu-ming-ling/</url>
@@ -476,11 +458,11 @@
     
     
     <entry>
-      <title>idea 突然闪退，内存溢出</title>
-      <link href="/ruan-jian-bi-ji/idea-tu-ran-shan-tui-nei-cun-yi-chu/"/>
-      <url>/ruan-jian-bi-ji/idea-tu-ran-shan-tui-nei-cun-yi-chu/</url>
+      <title>Java开发环境准备</title>
+      <link href="/ruan-jian-bi-ji/java-kai-fa-huan-jing-zhun-bei/"/>
+      <url>/ruan-jian-bi-ji/java-kai-fa-huan-jing-zhun-bei/</url>
       
-        <content type="html"><![CDATA[<p>解决办法：到安装路径C:\Program Files (x86)\JetBrains\IntelliJ IDEA 15.0.4\bin<br>找到idea.exe.vmoptions配置修改Xmx 为合适大小1024/2048，然后启动此路径下的idea.exe</p><pre><code>-Xms128m-Xmx1024m-XX:MaxPermSize=350m-XX:ReservedCodeCacheSize=240m-XX:+UseConcMarkSweepGC-XX:SoftRefLRUPolicyMSPerMB=50-ea-Dsun.io.useCanonCaches=false-Djava.net.preferIPv4Stack=true-XX:+HeapDumpOnOutOfMemoryError-XX:-OmitStackTraceInFastThrow</code></pre><p>** 如果你的系统是64位的，则就需要修改idea64.exe.vmoptions这个配置，然后启动idea64.exe**</p>]]></content>
+        <content type="html"><![CDATA[<p>JDK下载地址：<br><a href="https://github.com/frekele/oracle-java/releases" target="_blank" rel="noopener">https://github.com/frekele/oracle-java/releases</a></p><p>idea激活：<br><a href="https://juejin.im/post/5df8a5a5e51d4557f0460990" target="_blank" rel="noopener">https://juejin.im/post/5df8a5a5e51d4557f0460990</a></p><p>maven环境变量配置：<br><a href="https://www.cnblogs.com/tanjiyuan/p/11010998.html" target="_blank" rel="noopener">https://www.cnblogs.com/tanjiyuan/p/11010998.html</a></p>]]></content>
       
       
       <categories>
@@ -526,11 +508,11 @@
     
     
     <entry>
-      <title>maven 包冲突 解决</title>
-      <link href="/ruan-jian-bi-ji/maven-bao-chong-tu-jie-jue/"/>
-      <url>/ruan-jian-bi-ji/maven-bao-chong-tu-jie-jue/</url>
+      <title>idea 突然闪退，内存溢出</title>
+      <link href="/ruan-jian-bi-ji/idea-tu-ran-shan-tui-nei-cun-yi-chu/"/>
+      <url>/ruan-jian-bi-ji/idea-tu-ran-shan-tui-nei-cun-yi-chu/</url>
       
-        <content type="html"><![CDATA[<pre><code>mvn dependency:tree -Dverbose -Dincludes=org.slf4j</code></pre>]]></content>
+        <content type="html"><![CDATA[<p>解决办法：到安装路径C:\Program Files (x86)\JetBrains\IntelliJ IDEA 15.0.4\bin<br>找到idea.exe.vmoptions配置修改Xmx 为合适大小1024/2048，然后启动此路径下的idea.exe</p><pre><code>-Xms128m-Xmx1024m-XX:MaxPermSize=350m-XX:ReservedCodeCacheSize=240m-XX:+UseConcMarkSweepGC-XX:SoftRefLRUPolicyMSPerMB=50-ea-Dsun.io.useCanonCaches=false-Djava.net.preferIPv4Stack=true-XX:+HeapDumpOnOutOfMemoryError-XX:-OmitStackTraceInFastThrow</code></pre><p>** 如果你的系统是64位的，则就需要修改idea64.exe.vmoptions这个配置，然后启动idea64.exe**</p>]]></content>
       
       
       <categories>
@@ -576,11 +558,11 @@
     
     
     <entry>
-      <title>使用Maven命令指定上传打包到私库</title>
-      <link href="/ruan-jian-bi-ji/shi-yong-maven-ming-ling-zhi-ding-shang-chuan-da-bao-dao-si-ku/"/>
-      <url>/ruan-jian-bi-ji/shi-yong-maven-ming-ling-zhi-ding-shang-chuan-da-bao-dao-si-ku/</url>
+      <title>maven 包冲突 解决</title>
+      <link href="/ruan-jian-bi-ji/maven-bao-chong-tu-jie-jue/"/>
+      <url>/ruan-jian-bi-ji/maven-bao-chong-tu-jie-jue/</url>
       
-        <content type="html"><![CDATA[<p>我们一般在pom.xml中加入<code>distributionManagement</code></p><pre><code>&lt;distributionManagement&gt;    &lt;repository&gt;      &lt;id&gt;internal.repo&lt;/id&gt;      &lt;name&gt;MyCo Internal Repository&lt;/name&gt;      &lt;url&gt;Host to Company Repository&lt;/url&gt;    &lt;/repository&gt;  &lt;/distributionManagement&gt;</code></pre><p>来指定setting.xml中的server私库地址，然后通过<code>mvn clean install deploy</code>打包上传 </p><hr><p>但是为了子类不必要的应用，我们可以用<code>-DaltDeploymentRepository</code>来指定打包到私服的参数</p><pre><code>mvn deploy -DaltDeploymentRepository=releases::default::http://198.11.174.75:8081/nexus/content/repositories/releases/</code></pre><p>上传本地jar到私库</p><pre><code>mvn deploy:deploy-file -DgroupId=com.xy.Oracle -DartifactId=ojdbc14 -Dversion=10.2.0.4.0 -Dpackaging=jar -Dfile=E:\ojdbc14.jar -Durl=http://localhost:9090/nexus-2.2-01/content/repositories/thirdparty/ -DrepositoryId=thirdparty#上传小米push 到私有仓库mvn deploy:deploy-file -DgroupId=com.xiaomi -DartifactId=MiPush_SDK_Server -Dversion=2.2.18 -Dpackaging=jar -Dfile=lib/MiPush_SDK_Server_2_2_18.jar -Durl=http://198.11.174.75:8081/nexus/content/groups/public/</code></pre><p>单独构建上传模块 pingjuan-web，同时会构建上传 pingjuan-web</p><pre><code>mvn clean install deploy -pl trade-center-api -ammvn clean install deploy -DaltDeploymentRepository=releases::default::http://198.11.174.75:8081/nexus/content/repositories/releases/ -pl trade-center-api -am</code></pre>]]></content>
+        <content type="html"><![CDATA[<pre><code>mvn dependency:tree -Dverbose -Dincludes=org.slf4j</code></pre>]]></content>
       
       
       <categories>
@@ -601,11 +583,11 @@
     
     
     <entry>
-      <title>磁盘空间满处理</title>
-      <link href="/ruan-jian-bi-ji/ci-pan-kong-jian-man-chu-li/"/>
-      <url>/ruan-jian-bi-ji/ci-pan-kong-jian-man-chu-li/</url>
+      <title>使用Maven命令指定上传打包到私库</title>
+      <link href="/ruan-jian-bi-ji/shi-yong-maven-ming-ling-zhi-ding-shang-chuan-da-bao-dao-si-ku/"/>
+      <url>/ruan-jian-bi-ji/shi-yong-maven-ming-ling-zhi-ding-shang-chuan-da-bao-dao-si-ku/</url>
       
-        <content type="html"><![CDATA[<h1 id="查看当前目录磁盘使用情况"><a href="#查看当前目录磁盘使用情况" class="headerlink" title="查看当前目录磁盘使用情况"></a>查看当前目录磁盘使用情况</h1><pre><code>df -lh</code></pre><h1 id="统计当前目录下的目录及文件磁盘使用从大到小排序"><a href="#统计当前目录下的目录及文件磁盘使用从大到小排序" class="headerlink" title="统计当前目录下的目录及文件磁盘使用从大到小排序"></a>统计当前目录下的目录及文件磁盘使用从大到小排序</h1><pre><code>du -h --max-depth=1</code></pre>]]></content>
+        <content type="html"><![CDATA[<p>我们一般在pom.xml中加入<code>distributionManagement</code></p><pre><code>&lt;distributionManagement&gt;    &lt;repository&gt;      &lt;id&gt;internal.repo&lt;/id&gt;      &lt;name&gt;MyCo Internal Repository&lt;/name&gt;      &lt;url&gt;Host to Company Repository&lt;/url&gt;    &lt;/repository&gt;  &lt;/distributionManagement&gt;</code></pre><p>来指定setting.xml中的server私库地址，然后通过<code>mvn clean install deploy</code>打包上传 </p><hr><p>但是为了子类不必要的应用，我们可以用<code>-DaltDeploymentRepository</code>来指定打包到私服的参数</p><pre><code>mvn deploy -DaltDeploymentRepository=releases::default::http://198.11.174.75:8081/nexus/content/repositories/releases/</code></pre><p>上传本地jar到私库</p><pre><code>mvn deploy:deploy-file -DgroupId=com.xy.Oracle -DartifactId=ojdbc14 -Dversion=10.2.0.4.0 -Dpackaging=jar -Dfile=E:\ojdbc14.jar -Durl=http://localhost:9090/nexus-2.2-01/content/repositories/thirdparty/ -DrepositoryId=thirdparty#上传小米push 到私有仓库mvn deploy:deploy-file -DgroupId=com.xiaomi -DartifactId=MiPush_SDK_Server -Dversion=2.2.18 -Dpackaging=jar -Dfile=lib/MiPush_SDK_Server_2_2_18.jar -Durl=http://198.11.174.75:8081/nexus/content/groups/public/</code></pre><p>单独构建上传模块 pingjuan-web，同时会构建上传 pingjuan-web</p><pre><code>mvn clean install deploy -pl trade-center-api -ammvn clean install deploy -DaltDeploymentRepository=releases::default::http://198.11.174.75:8081/nexus/content/repositories/releases/ -pl trade-center-api -am</code></pre>]]></content>
       
       
       <categories>
@@ -651,31 +633,6 @@
     
     
     <entry>
-      <title>科学上网神器,熊猫VPN,狗屁，踩坑了！！！现已跑路，不要用</title>
-      <link href="/ruan-jian-bi-ji/ke-xue-shang-wang-shen-qi-xiong-mao-vpn-qin-ce-hen-shu-fu/"/>
-      <url>/ruan-jian-bi-ji/ke-xue-shang-wang-shen-qi-xiong-mao-vpn-qin-ce-hen-shu-fu/</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-      
-      <categories>
-          
-          <category> 软件笔记 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 软件笔记 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>护眼神器Dark Reader</title>
       <link href="/ruan-jian-bi-ji/hu-yan-shen-qi-dark-reader/"/>
       <url>/ruan-jian-bi-ji/hu-yan-shen-qi-dark-reader/</url>
@@ -701,11 +658,61 @@
     
     
     <entry>
+      <title>磁盘空间满处理</title>
+      <link href="/ruan-jian-bi-ji/ci-pan-kong-jian-man-chu-li/"/>
+      <url>/ruan-jian-bi-ji/ci-pan-kong-jian-man-chu-li/</url>
+      
+        <content type="html"><![CDATA[<h1 id="查看当前目录磁盘使用情况"><a href="#查看当前目录磁盘使用情况" class="headerlink" title="查看当前目录磁盘使用情况"></a>查看当前目录磁盘使用情况</h1><pre><code>df -lh</code></pre><h1 id="统计当前目录下的目录及文件磁盘使用从大到小排序"><a href="#统计当前目录下的目录及文件磁盘使用从大到小排序" class="headerlink" title="统计当前目录下的目录及文件磁盘使用从大到小排序"></a>统计当前目录下的目录及文件磁盘使用从大到小排序</h1><pre><code>du -h --max-depth=1</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 软件笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 软件笔记 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>自行搭建v2ray科学上网工具，支持mac、ios、windows</title>
       <link href="/ruan-jian-bi-ji/zi-xing-da-jian-v2ray-ke-xue-shang-wang-gong-ju-zhi-chi-mac-ios-windows/"/>
       <url>/ruan-jian-bi-ji/zi-xing-da-jian-v2ray-ke-xue-shang-wang-gong-ju-zhi-chi-mac-ios-windows/</url>
       
         <content type="html"><![CDATA[<h1 id="服务器搭建"><a href="#服务器搭建" class="headerlink" title="服务器搭建"></a>服务器搭建</h1><ol><li><p>购买海外VPS/ECS, 我这里用的是vultr，它家可以随时换IP、换服务器位置，无须另外收费，比较适合新手</p></li><li><p>安装v2ray服务端，有一键安装脚本，傻瓜式安装，安装时如果用的是shadowrocket客户端方式连接，安装时询问时这一步选择是即可</p><p><img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/images/v2ray%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%856.png" alt="img"></p></li></ol><p>详细步骤参考网上文章进行一键安装：</p><p><a href="https://xiaoheicn.top/v2ray%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC-233boy%E5%A4%A7%E7%A5%9E%E7%89%88%E6%9C%AC-%E5%8D%95%E7%94%A8%E6%88%B7/" target="_blank" rel="noopener">https://xiaoheicn.top/v2ray%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC-233boy%E5%A4%A7%E7%A5%9E%E7%89%88%E6%9C%AC-%E5%8D%95%E7%94%A8%E6%88%B7/</a></p><h1 id="客户端下载"><a href="#客户端下载" class="headerlink" title="客户端下载"></a>客户端下载</h1><p>因政策原因，国内apple id无法下载ssr的客户端。为了在你的iphone/ipad上下载可用的ss客户端，你需要一个境外apple id登录app store，然后再下载需要的软件。境外apple id请参考：<a href="https://v2xtls.org/境外apple-id信息汇总/" target="_blank" rel="noopener">境外apple id信息汇总</a>，切换apple id下载软件请参考：<a href="https://v2xtls.org/切换apple-id下载其它国家和地区的应用/" target="_blank" rel="noopener">切换apple id下载其它国家和地区的应用</a>。</p><p>app store中， <strong>免费</strong>的ssr ios客户端有：</p><ul><li>Mume（图标是一朵梅花，有红梅/黑梅两个版本，黑梅免费且内置免费节点）</li><li>Potatso Lite</li><li>NetShuttle(网际飞梭)</li><li>FastSocks</li><li>Sockswitch（没有中文界面）</li><li>shadowrock</li></ul><p><strong>免费ssr ios客户端个人推荐使用Mume和Potatso lite</strong>，简洁好用。</p><p><strong>付费</strong>的SSr ios客户端有：</p><ul><li>Shadowrocket（俗称小火箭，注意不是shadowrocket VPN）</li><li>pepi</li><li>Potasto 2</li><li>surge pro</li></ul><p><strong>付费的ssr ios客户端个人推荐Shadowrocket和pepi</strong>，两个应用都支持包括SS/SSR/V2Ray在内的等多种协议，功能强大且好用。</p><p>注意：有些shadowsocksr客户端已经下架，但app store中存在同名的应用，请注意区分，例如Waterdrop、MUME。</p><p>注意：上述列出的仅是客户端，安装后需要配置服务端信息才能科学上网。获取服务端信息请参考：<a href="https://v2xtls.org/获取科学上网服务端信息/" target="_blank" rel="noopener">获取科学上网服务端信息</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 软件笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 软件笔记 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>科学上网神器,熊猫VPN,狗屁，踩坑了！！！现已跑路，不要用</title>
+      <link href="/ruan-jian-bi-ji/ke-xue-shang-wang-shen-qi-xiong-mao-vpn-qin-ce-hen-shu-fu/"/>
+      <url>/ruan-jian-bi-ji/ke-xue-shang-wang-shen-qi-xiong-mao-vpn-qin-ce-hen-shu-fu/</url>
+      
+        <content type="html"><![CDATA[]]></content>
       
       
       <categories>
@@ -955,35 +962,6 @@
     
     
     <entry>
-      <title>HTTP及HTTPS的理解</title>
-      <link href="/xue-xi/http-ji-https-de-li-jie/"/>
-      <url>/xue-xi/http-ji-https-de-li-jie/</url>
-      
-        <content type="html"><![CDATA[<h1 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h1><p>HTTP全称叫超文本传输协议(HyperText Transfer Protocol),是用于WWW(万网)服务器与浏览器客户端的一种通讯协议</p><h2 id="TCP-IP"><a href="#TCP-IP" class="headerlink" title="TCP/IP"></a>TCP/IP</h2><p>关于计算机通讯，需要了解的一些背景知识，TCP/IP.<br>我们经常说TCP/IP，为什么要一起说，因为这两者有着密切的关系，其实它包含两个协议：</p><ul><li>TCP: TCP 负责将数据包在数据传送之前将它们分割为 IP 包，然后在它们到达的时候将它们重组</li><li>IP：负责将TCP分隔的IP包发送传输到指定ip的机器上，IP包之间的传输不保证顺序性，在TCP重组时才还原数据顺序</li></ul><p>所以说TCP/IP是传输协议的上下层关系。</p><h2 id="关于HTTP"><a href="#关于HTTP" class="headerlink" title="关于HTTP"></a>关于HTTP</h2><p>而HTTP则是在TCP/IP基础上的进一步封装的协议，属于应用层协议.网络传输的协议关系图如下：<br><img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/images/getImage-20220825184529465.png" alt></p><p>网络传输的协议，两边刚好是相反的:<br><img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/images/getImage-20220825184529221.png" alt></p><h2 id="HTTP原理"><a href="#HTTP原理" class="headerlink" title="HTTP原理"></a>HTTP原理</h2><p>HTTP请求主要分为以下几个步奏：</p><ol><li>域名解析，查找对应DNS服务器域名解析找到对应的IP</li><li>封装TCP/IP通讯数据包，建立连接（3三次握手协议），HTTP是比TCP更高层次的应用层协议，根据规则，只有低层协议建立之后才能，才能进行更层协议的连接</li><li>封装HTTP请求数据包，请求头信息，请求参数等。</li><li>等待服务器响应，服务器接到请求后，给予相应的响应信息，其格式为一个状态行，包括信息的协议版本号、一个成功或错误的代码</li><li>一般情况下，一旦Web服务器向浏览器发送了请求数据，它就要关闭TCP连接，然后如果浏览器或者服务器在其头信息加入了这行代码<br> Connection:keep-alive<br>TCP连接在发送后将仍然保持打开状态，于是，浏览器可以继续通过相同的连接发送请求，这就是长连接的原理</li></ol><p>关于HTTP的超时时间，<code>connectTimeout</code>、<code>requestConnectTimeout</code>、<code>readTimeout</code>、<code>socketTimeout</code></p><ul><li><code>connectTimeout</code> 是指上面的第2步，建立TCP/IP连接的超时时间</li><li><code>requestConnectTimeout</code> 是指上面第3步，发送请求头发送http请求的超时时间</li><li><code>readTimeout</code> 是指从发送http请求开始等待响应内容的总超时时间,指上面步骤的第4步</li><li><code>socketTimeout</code> 响应内容有可能是分成几个socket数据包传输的，而这个socketTimeout的意思就是每个socket传输的超时时间</li></ul><p>例如下图：<br>readTimeout设为6s,socketTimeout设为4秒，发送http报文之后响应<br>时间超时为6s,响应内容abc分三次socket传输,每次间隔超时时间为4s，所以总共花费6s是不会抛出<code>socket timeout</code><br><img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/images/getImage-20220825184529343.png" alt></p><h2 id="JAVA中使用http"><a href="#JAVA中使用http" class="headerlink" title="JAVA中使用http"></a>JAVA中使用http</h2><p>Java 访问http通过</p><h1 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h1><p>HTTPS简单的说就是，http的安全版</p><h2 id="HTTPS基本原理"><a href="#HTTPS基本原理" class="headerlink" title="HTTPS基本原理"></a>HTTPS基本原理</h2><p><img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/images/getImage-20220825184528912.png" alt></p><p>过程大致如下：</p><ol><li>SSL客户端通过TCP和服务器建立连接之后（443端口），并且在一般的tcp连接协商（握手）过程中请求证书。<br>即客户端发出一个消息给服务器，这个消息里面包含了自己可实现的算法列表和其它一些需要的消息，SSL的服务器端会回应一个数据包，这里面确定了这次通信所需要的算法，然后服务器向客户端返回证书。（证书里面包含了服务器信息：域名。申请证书的公司，公共秘钥）。                 </li><li>Client在收到服务器返回的证书后，判断签发这个证书的公共签发机构，并使用这个机构的公共秘钥确认签名是否有效，客户端还会确保证书中列出的域名就是它正在连接的域名。</li><li>如果确认证书有效，那么生成对称秘钥并使用服务器的公共秘钥进行加密。然后发送给服务器，服务器使用它的私钥对它进行解密，这样两台计算机可以开始进行对称加密进行通信。</li></ol><p>参考文章：<br>HTTPS介绍：<a href="https://imququ.com/post/how-to-decrypt-https.html" target="_blank" rel="noopener">https://imququ.com/post/how-to-decrypt-https.html</a><br><a href="http://blog.csdn.net/hguisu/article/details/8680808" target="_blank" rel="noopener">http://blog.csdn.net/hguisu/article/details/8680808</a></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 学习 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 学习 </tag>
-            
-            <tag> HTTP </tag>
-            
-            <tag> HTTPS </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>关于Unicode  UTF-8 、UTF-16字符集编码的理解</title>
       <link href="/xue-xi/guan-yu-unicode-utf-8-utf-16-zi-fu-ji-bian-ma-de-li-jie/"/>
       <url>/xue-xi/guan-yu-unicode-utf-8-utf-16-zi-fu-ji-bian-ma-de-li-jie/</url>
@@ -1005,6 +983,35 @@
             <tag> Unicode </tag>
             
             <tag> 字符集 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>HTTP及HTTPS的理解</title>
+      <link href="/xue-xi/http-ji-https-de-li-jie/"/>
+      <url>/xue-xi/http-ji-https-de-li-jie/</url>
+      
+        <content type="html"><![CDATA[<h1 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h1><p>HTTP全称叫超文本传输协议(HyperText Transfer Protocol),是用于WWW(万网)服务器与浏览器客户端的一种通讯协议</p><h2 id="TCP-IP"><a href="#TCP-IP" class="headerlink" title="TCP/IP"></a>TCP/IP</h2><p>关于计算机通讯，需要了解的一些背景知识，TCP/IP.<br>我们经常说TCP/IP，为什么要一起说，因为这两者有着密切的关系，其实它包含两个协议：</p><ul><li>TCP: TCP 负责将数据包在数据传送之前将它们分割为 IP 包，然后在它们到达的时候将它们重组</li><li>IP：负责将TCP分隔的IP包发送传输到指定ip的机器上，IP包之间的传输不保证顺序性，在TCP重组时才还原数据顺序</li></ul><p>所以说TCP/IP是传输协议的上下层关系。</p><h2 id="关于HTTP"><a href="#关于HTTP" class="headerlink" title="关于HTTP"></a>关于HTTP</h2><p>而HTTP则是在TCP/IP基础上的进一步封装的协议，属于应用层协议.网络传输的协议关系图如下：<br><img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/images/getImage-20220825184529465.png" alt></p><p>网络传输的协议，两边刚好是相反的:<br><img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/images/getImage-20220825184529221.png" alt></p><h2 id="HTTP原理"><a href="#HTTP原理" class="headerlink" title="HTTP原理"></a>HTTP原理</h2><p>HTTP请求主要分为以下几个步奏：</p><ol><li>域名解析，查找对应DNS服务器域名解析找到对应的IP</li><li>封装TCP/IP通讯数据包，建立连接（3三次握手协议），HTTP是比TCP更高层次的应用层协议，根据规则，只有低层协议建立之后才能，才能进行更层协议的连接</li><li>封装HTTP请求数据包，请求头信息，请求参数等。</li><li>等待服务器响应，服务器接到请求后，给予相应的响应信息，其格式为一个状态行，包括信息的协议版本号、一个成功或错误的代码</li><li>一般情况下，一旦Web服务器向浏览器发送了请求数据，它就要关闭TCP连接，然后如果浏览器或者服务器在其头信息加入了这行代码<br> Connection:keep-alive<br>TCP连接在发送后将仍然保持打开状态，于是，浏览器可以继续通过相同的连接发送请求，这就是长连接的原理</li></ol><p>关于HTTP的超时时间，<code>connectTimeout</code>、<code>requestConnectTimeout</code>、<code>readTimeout</code>、<code>socketTimeout</code></p><ul><li><code>connectTimeout</code> 是指上面的第2步，建立TCP/IP连接的超时时间</li><li><code>requestConnectTimeout</code> 是指上面第3步，发送请求头发送http请求的超时时间</li><li><code>readTimeout</code> 是指从发送http请求开始等待响应内容的总超时时间,指上面步骤的第4步</li><li><code>socketTimeout</code> 响应内容有可能是分成几个socket数据包传输的，而这个socketTimeout的意思就是每个socket传输的超时时间</li></ul><p>例如下图：<br>readTimeout设为6s,socketTimeout设为4秒，发送http报文之后响应<br>时间超时为6s,响应内容abc分三次socket传输,每次间隔超时时间为4s，所以总共花费6s是不会抛出<code>socket timeout</code><br><img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/images/getImage-20220825184529343.png" alt></p><h2 id="JAVA中使用http"><a href="#JAVA中使用http" class="headerlink" title="JAVA中使用http"></a>JAVA中使用http</h2><p>Java 访问http通过</p><h1 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h1><p>HTTPS简单的说就是，http的安全版</p><h2 id="HTTPS基本原理"><a href="#HTTPS基本原理" class="headerlink" title="HTTPS基本原理"></a>HTTPS基本原理</h2><p><img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/images/getImage-20220825184528912.png" alt></p><p>过程大致如下：</p><ol><li>SSL客户端通过TCP和服务器建立连接之后（443端口），并且在一般的tcp连接协商（握手）过程中请求证书。<br>即客户端发出一个消息给服务器，这个消息里面包含了自己可实现的算法列表和其它一些需要的消息，SSL的服务器端会回应一个数据包，这里面确定了这次通信所需要的算法，然后服务器向客户端返回证书。（证书里面包含了服务器信息：域名。申请证书的公司，公共秘钥）。                 </li><li>Client在收到服务器返回的证书后，判断签发这个证书的公共签发机构，并使用这个机构的公共秘钥确认签名是否有效，客户端还会确保证书中列出的域名就是它正在连接的域名。</li><li>如果确认证书有效，那么生成对称秘钥并使用服务器的公共秘钥进行加密。然后发送给服务器，服务器使用它的私钥对它进行解密，这样两台计算机可以开始进行对称加密进行通信。</li></ol><p>参考文章：<br>HTTPS介绍：<a href="https://imququ.com/post/how-to-decrypt-https.html" target="_blank" rel="noopener">https://imququ.com/post/how-to-decrypt-https.html</a><br><a href="http://blog.csdn.net/hguisu/article/details/8680808" target="_blank" rel="noopener">http://blog.csdn.net/hguisu/article/details/8680808</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 学习 </tag>
+            
+            <tag> HTTP </tag>
+            
+            <tag> HTTPS </tag>
             
         </tags>
       
