@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://okeeper.com/"/>
-  <updated>2024-02-19T07:55:16.166Z</updated>
+  <updated>2024-02-20T02:47:16.620Z</updated>
   <id>https://okeeper.com/</id>
   
   <author>
@@ -18,10 +18,10 @@
   
   <entry>
     <title>MacOS系统升级后Navicat密码保存不了，报&quot;AIled to save password error code -34018&quot;</title>
-    <link href="https://okeeper.com/macos-xi-tong-sheng-ji-hou-navicat-mi-ma-bao-cun-bu-liao/"/>
-    <id>https://okeeper.com/macos-xi-tong-sheng-ji-hou-navicat-mi-ma-bao-cun-bu-liao/</id>
+    <link href="https://okeeper.com/ruan-jian-bi-ji/macos-xi-tong-sheng-ji-hou-navicat-mi-ma-bao-cun-bu-liao/"/>
+    <id>https://okeeper.com/ruan-jian-bi-ji/macos-xi-tong-sheng-ji-hou-navicat-mi-ma-bao-cun-bu-liao/</id>
     <published>2024-02-19T07:25:00.000Z</published>
-    <updated>2024-02-19T07:55:16.166Z</updated>
+    <updated>2024-02-20T02:47:16.620Z</updated>
     
     <summary type="html">
     
@@ -36,23 +36,23 @@
     
     </summary>
     
-      <category term="Navicat" scheme="https://okeeper.com/categories/Navicat/"/>
+      <category term="软件笔记" scheme="https://okeeper.com/categories/%E8%BD%AF%E4%BB%B6%E7%AC%94%E8%AE%B0/"/>
     
+    
+      <category term="软件笔记" scheme="https://okeeper.com/tags/%E8%BD%AF%E4%BB%B6%E7%AC%94%E8%AE%B0/"/>
     
       <category term="Navicat" scheme="https://okeeper.com/tags/Navicat/"/>
     
       <category term="MacOS" scheme="https://okeeper.com/tags/MacOS/"/>
     
-      <category term="软件" scheme="https://okeeper.com/tags/%E8%BD%AF%E4%BB%B6/"/>
-    
   </entry>
   
   <entry>
     <title>人工智能技术发展史</title>
-    <link href="https://okeeper.com/ren-gong-zhi-neng/"/>
-    <id>https://okeeper.com/ren-gong-zhi-neng/</id>
+    <link href="https://okeeper.com/ren-gong-zhi-neng/ren-gong-zhi-neng/"/>
+    <id>https://okeeper.com/ren-gong-zhi-neng/ren-gong-zhi-neng/</id>
     <published>2023-07-30T03:00:00.000Z</published>
-    <updated>2024-02-19T08:43:44.016Z</updated>
+    <updated>2024-02-20T02:47:38.600Z</updated>
     
     <summary type="html">
     
@@ -69,9 +69,9 @@
       <category term="人工智能" scheme="https://okeeper.com/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
     
     
-      <category term="人工智能" scheme="https://okeeper.com/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
-    
       <category term="AI" scheme="https://okeeper.com/tags/AI/"/>
+    
+      <category term="人工智能" scheme="https://okeeper.com/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
     
       <category term="大语言模型" scheme="https://okeeper.com/tags/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/"/>
     
@@ -83,10 +83,10 @@
   
   <entry>
     <title>通用大语言模型介绍、本地部署及微调</title>
-    <link href="https://okeeper.com/llma-ben-di-da-jian-bi-ji/"/>
-    <id>https://okeeper.com/llma-ben-di-da-jian-bi-ji/</id>
+    <link href="https://okeeper.com/ren-gong-zhi-neng/llma-ben-di-da-jian-bi-ji/"/>
+    <id>https://okeeper.com/ren-gong-zhi-neng/llma-ben-di-da-jian-bi-ji/</id>
     <published>2023-04-24T03:25:00.000Z</published>
-    <updated>2023-04-24T08:29:40.850Z</updated>
+    <updated>2024-02-20T02:47:42.998Z</updated>
     
     <summary type="html">
     
@@ -103,7 +103,7 @@ cat
     
     </summary>
     
-      <category term="RocketMQ" scheme="https://okeeper.com/categories/RocketMQ/"/>
+      <category term="人工智能" scheme="https://okeeper.com/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
     
     
       <category term="AI" scheme="https://okeeper.com/tags/AI/"/>
@@ -171,7 +171,7 @@ cat
     <link href="https://okeeper.com/hou-duan-jia-gou/java-xue-xi-da-gang/"/>
     <id>https://okeeper.com/hou-duan-jia-gou/java-xue-xi-da-gang/</id>
     <published>2022-08-26T07:54:13.000Z</published>
-    <updated>2023-02-13T14:37:02.531Z</updated>
+    <updated>2024-02-20T02:34:22.935Z</updated>
     
     <summary type="html">
     
@@ -247,63 +247,6 @@ cat
   </entry>
   
   <entry>
-    <title>Centos 下Redis 安装以及集群搭建</title>
-    <link href="https://okeeper.com/ruan-jian-bi-ji/centos-xia-redis-an-zhuang-yi-ji-ji-qun-da-jian/"/>
-    <id>https://okeeper.com/ruan-jian-bi-ji/centos-xia-redis-an-zhuang-yi-ji-ji-qun-da-jian/</id>
-    <published>2022-08-26T07:54:13.000Z</published>
-    <updated>2023-02-13T14:27:18.957Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;1.下载redis安装包&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;cd /root/software
-wget http://download.redis.io/releases/redis-3.2.4.tar.gz
-tar -zxvf
-        
-      
-    
-    </summary>
-    
-      <category term="软件笔记" scheme="https://okeeper.com/categories/%E8%BD%AF%E4%BB%B6%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="软件笔记" scheme="https://okeeper.com/tags/%E8%BD%AF%E4%BB%B6%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java 8常用转换</title>
-    <link href="https://okeeper.com/ruan-jian-bi-ji/java-8-chang-yong-zhuan-huan/"/>
-    <id>https://okeeper.com/ruan-jian-bi-ji/java-8-chang-yong-zhuan-huan/</id>
-    <published>2022-08-26T07:54:13.000Z</published>
-    <updated>2023-02-13T14:53:01.290Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;1-List转Map&quot;&gt;&lt;a href=&quot;#1-List转Map&quot; class=&quot;headerlink&quot; title=&quot;1. List转Map&quot;&gt;&lt;/a&gt;1. List转Map&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;/**
- * List -&amp;gt; Map
- *
-        
-      
-    
-    </summary>
-    
-      <category term="软件笔记" scheme="https://okeeper.com/categories/%E8%BD%AF%E4%BB%B6%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="软件笔记" scheme="https://okeeper.com/tags/%E8%BD%AF%E4%BB%B6%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Idea maven 插件安装</title>
     <link href="https://okeeper.com/ruan-jian-bi-ji/idea-maven-cha-jian-an-zhuang/"/>
     <id>https://okeeper.com/ruan-jian-bi-ji/idea-maven-cha-jian-an-zhuang/</id>
@@ -330,11 +273,11 @@ tar -zxvf
   </entry>
   
   <entry>
-    <title>软件开发方法</title>
-    <link href="https://okeeper.com/ruan-kao/ruan-jian-kai-fa-fang-fa/"/>
-    <id>https://okeeper.com/ruan-kao/ruan-jian-kai-fa-fang-fa/</id>
+    <title>Centos 下Redis 安装以及集群搭建</title>
+    <link href="https://okeeper.com/ruan-jian-bi-ji/centos-xia-redis-an-zhuang-yi-ji-ji-qun-da-jian/"/>
+    <id>https://okeeper.com/ruan-jian-bi-ji/centos-xia-redis-an-zhuang-yi-ji-ji-qun-da-jian/</id>
     <published>2022-08-26T07:54:13.000Z</published>
-    <updated>2023-02-13T14:52:59.988Z</updated>
+    <updated>2023-02-13T14:27:18.957Z</updated>
     
     <summary type="html">
     
@@ -342,19 +285,19 @@ tar -zxvf
       
         
         
-          &lt;blockquote&gt;
-&lt;p&gt;前言：软件开发方法是软件开发的方法学，旨在提供软件的质量，降低开发成本&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&quot;1-软件生命周期&quot;&gt;&lt;a href=&quot;#1-软件生命周期&quot; class=&quot;headerlink&quot; title=&quot;1
+          &lt;p&gt;1.下载redis安装包&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;cd /root/software
+wget http://download.redis.io/releases/redis-3.2.4.tar.gz
+tar -zxvf
         
       
     
     </summary>
     
-      <category term="软考" scheme="https://okeeper.com/categories/%E8%BD%AF%E8%80%83/"/>
+      <category term="软件笔记" scheme="https://okeeper.com/categories/%E8%BD%AF%E4%BB%B6%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="软考" scheme="https://okeeper.com/tags/%E8%BD%AF%E8%80%83/"/>
+      <category term="软件笔记" scheme="https://okeeper.com/tags/%E8%BD%AF%E4%BB%B6%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
@@ -441,6 +384,61 @@ tar -zxvf
   </entry>
   
   <entry>
+    <title>软件开发方法</title>
+    <link href="https://okeeper.com/ruan-kao/ruan-jian-kai-fa-fang-fa/"/>
+    <id>https://okeeper.com/ruan-kao/ruan-jian-kai-fa-fang-fa/</id>
+    <published>2022-08-26T07:54:13.000Z</published>
+    <updated>2023-02-13T14:52:59.988Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;前言：软件开发方法是软件开发的方法学，旨在提供软件的质量，降低开发成本&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;1-软件生命周期&quot;&gt;&lt;a href=&quot;#1-软件生命周期&quot; class=&quot;headerlink&quot; title=&quot;1
+        
+      
+    
+    </summary>
+    
+      <category term="软考" scheme="https://okeeper.com/categories/%E8%BD%AF%E8%80%83/"/>
+    
+    
+      <category term="软考" scheme="https://okeeper.com/tags/%E8%BD%AF%E8%80%83/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Selenium</title>
+    <link href="https://okeeper.com/ruan-jian-bi-ji/selenium/"/>
+    <id>https://okeeper.com/ruan-jian-bi-ji/selenium/</id>
+    <published>2022-08-26T07:54:13.000Z</published>
+    <updated>2022-08-26T11:58:13.580Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Selenium安装环境搭建&quot;&gt;&lt;a href=&quot;#Selenium安装环境搭建&quot; class=&quot;headerlink&quot; title=&quot;Selenium安装环境搭建&quot;&gt;&lt;/a&gt;Selenium安装环境搭建&lt;/h1&gt;&lt;p&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="软件笔记" scheme="https://okeeper.com/categories/%E8%BD%AF%E4%BB%B6%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="软件笔记" scheme="https://okeeper.com/tags/%E8%BD%AF%E4%BB%B6%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
     <title>docker ES安装</title>
     <link href="https://okeeper.com/ruan-jian-bi-ji/docker-es-an-zhuang/"/>
     <id>https://okeeper.com/ruan-jian-bi-ji/docker-es-an-zhuang/</id>
@@ -494,32 +492,6 @@ tar -zxvf
   </entry>
   
   <entry>
-    <title>Selenium</title>
-    <link href="https://okeeper.com/ruan-jian-bi-ji/selenium/"/>
-    <id>https://okeeper.com/ruan-jian-bi-ji/selenium/</id>
-    <published>2022-08-26T07:54:13.000Z</published>
-    <updated>2022-08-26T11:58:13.580Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;Selenium安装环境搭建&quot;&gt;&lt;a href=&quot;#Selenium安装环境搭建&quot; class=&quot;headerlink&quot; title=&quot;Selenium安装环境搭建&quot;&gt;&lt;/a&gt;Selenium安装环境搭建&lt;/h1&gt;&lt;p&gt;&lt;a
-        
-      
-    
-    </summary>
-    
-      <category term="软件笔记" scheme="https://okeeper.com/categories/%E8%BD%AF%E4%BB%B6%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="软件笔记" scheme="https://okeeper.com/tags/%E8%BD%AF%E4%BB%B6%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
     <title>git重命名的坑</title>
     <link href="https://okeeper.com/ruan-jian-bi-ji/git-chong-ming-ming-de-keng/"/>
     <id>https://okeeper.com/ruan-jian-bi-ji/git-chong-ming-ming-de-keng/</id>
@@ -546,11 +518,11 @@ tar -zxvf
   </entry>
   
   <entry>
-    <title>idea 突然闪退，内存溢出</title>
-    <link href="https://okeeper.com/ruan-jian-bi-ji/idea-tu-ran-shan-tui-nei-cun-yi-chu/"/>
-    <id>https://okeeper.com/ruan-jian-bi-ji/idea-tu-ran-shan-tui-nei-cun-yi-chu/</id>
+    <title>iterm2 rz sz 安装</title>
+    <link href="https://okeeper.com/ruan-jian-bi-ji/iterm2-rz-sz-an-zhuang/"/>
+    <id>https://okeeper.com/ruan-jian-bi-ji/iterm2-rz-sz-an-zhuang/</id>
     <published>2022-08-26T07:54:13.000Z</published>
-    <updated>2022-08-26T11:58:13.579Z</updated>
+    <updated>2022-08-26T11:58:13.571Z</updated>
     
     <summary type="html">
     
@@ -558,7 +530,33 @@ tar -zxvf
       
         
         
-          &lt;p&gt;解决办法：到安装路径C:\Program Files (x86)\JetBrains\IntelliJ IDEA 15.0.4\bin&lt;br&gt;找到idea.exe.vmoptions配置修改Xmx
+          &lt;p&gt;一、本地rz sz安装&lt;br&gt;&lt;a href=&quot;https://github.com/aikuyun/iterm2-zmodem&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="软件笔记" scheme="https://okeeper.com/categories/%E8%BD%AF%E4%BB%B6%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="软件笔记" scheme="https://okeeper.com/tags/%E8%BD%AF%E4%BB%B6%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>maven 包冲突 解决</title>
+    <link href="https://okeeper.com/ruan-jian-bi-ji/maven-bao-chong-tu-jie-jue/"/>
+    <id>https://okeeper.com/ruan-jian-bi-ji/maven-bao-chong-tu-jie-jue/</id>
+    <published>2022-08-26T07:54:13.000Z</published>
+    <updated>2023-02-02T07:41:35.288Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;pre&gt;&lt;code&gt;mvn dependency:tree -Dverbose
         
       
     

@@ -4,18 +4,12 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="通用大语言模型介绍、本地部署及微调, 张跃 zhangyue okeeper Java Alibaba 软件工程 架构师 软件笔记 技术分享 观点 随笔">
+    <meta name="keywords" content="MacOS系统升级后Navicat密码保存不了，报&#34;AIled to save password error code -34018&#34;, 张跃 zhangyue okeeper Java Alibaba 软件工程 架构师 软件笔记 技术分享 观点 随笔">
     <meta name="baidu-site-verification" content="MWAMkewsPN">
     <meta name="google-site-verification" content>
     <meta name="360-site-verification" content>
-    <meta name="description" content="wget 后台下载wget -b url
-
-# 查看wget log
-cat wget-log
-tail -f wget-log
-
-# wget指定文件名称
-wget url -o filenamesftp文件上传sftp root@8.1">
+    <meta name="description" content="MacOS系统升级后Navicat 15或16版本会出现无法保存数据库密码问题，报”AIled to save password error code -34018”,每次重启都要重新编辑连接输入数据库密码，超级崩溃。
+尝试解决网上试了很多">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -23,7 +17,7 @@ wget url -o filenamesftp文件上传sftp root@8.1">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>通用大语言模型介绍、本地部署及微调 | 神笔君|Okeeper</title>
+    <title>MacOS系统升级后Navicat密码保存不了，报&#34;AIled to save password error code -34018&#34; | 神笔君|Okeeper</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -294,13 +288,13 @@ wget url -o filenamesftp文件上传sftp root@8.1">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/27.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        通用大语言模型介绍、本地部署及微调
+                        MacOS系统升级后Navicat密码保存不了，报&#34;AIled to save password error code -34018&#34;
                     </div>
                 </div>
             </div>
@@ -411,16 +405,16 @@ wget url -o filenamesftp文件上传sftp root@8.1">
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/AI/" target="_blank">
-                            <span class="chip bg-color">AI</span>
+                        <a href="/tags/软件笔记/" target="_blank">
+                            <span class="chip bg-color">软件笔记</span>
                         </a>
                         
-                        <a href="/tags/LLama/" target="_blank">
-                            <span class="chip bg-color">LLama</span>
+                        <a href="/tags/Navicat/" target="_blank">
+                            <span class="chip bg-color">Navicat</span>
                         </a>
                         
-                        <a href="/tags/ChatGLM/" target="_blank">
-                            <span class="chip bg-color">ChatGLM</span>
+                        <a href="/tags/MacOS/" target="_blank">
+                            <span class="chip bg-color">MacOS</span>
                         </a>
                         
                     </div>
@@ -431,8 +425,8 @@ wget url -o filenamesftp文件上传sftp root@8.1">
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/RocketMQ/" class="post-category" target="_blank">
-                            RocketMQ
+                        <a href="/categories/软件笔记/" class="post-category" target="_blank">
+                            软件笔记
                         </a>
                         
                     </div>
@@ -443,7 +437,7 @@ wget url -o filenamesftp文件上传sftp root@8.1">
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-04-24
+                    2024-02-19
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -457,14 +451,14 @@ wget url -o filenamesftp文件上传sftp root@8.1">
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.1k
+                    230
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    1 分
                 </div>
                 
                 
@@ -480,106 +474,15 @@ wget url -o filenamesftp文件上传sftp root@8.1">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="wget-后台下载"><a href="#wget-后台下载" class="headerlink" title="wget 后台下载"></a>wget 后台下载</h2><pre><code>wget -b url
-
-# 查看wget log
-cat wget-log
-tail -f wget-log
-
-# wget指定文件名称
-wget url -o filename</code></pre><h2 id="sftp文件上传"><a href="#sftp文件上传" class="headerlink" title="sftp文件上传"></a>sftp文件上传</h2><pre><code>sftp root@8.134.128.130 &lt;&lt;EOF
-put ./source/openai-demo*.jar /opt/openai-demo/
-bye
-EOF
-
-#查看本地的文件列表
-lls
-lcd 
-
-ls
-cd</code></pre><h2 id="查看文件摘要"><a href="#查看文件摘要" class="headerlink" title="查看文件摘要"></a>查看文件摘要</h2><pre><code>sha256sum example.txt</code></pre><h2 id="Git-lfs使用"><a href="#Git-lfs使用" class="headerlink" title="Git lfs使用"></a>Git lfs使用</h2><pre><code>安装 homebrew
-brew install git-lfs
-git lfs install
-
-下载安装 windows installer
-运行 windows installer
-git lfs install
-
-
-sudo yum install git-lfs
-sudo apt-get install git-lfs
-
-# 切换到lfs
-git lfs install
-
-# 列出git lfs管理的大文件
-git lfs list-files</code></pre><h2 id="Conda使用"><a href="#Conda使用" class="headerlink" title="Conda使用"></a>Conda使用</h2><pre><code>conda create -n env_name
-conda activate env_name
-conda info --envs
-
-# 安装软件
-conda install xxx
-</code></pre><h2 id="查看显卡运行情况命令"><a href="#查看显卡运行情况命令" class="headerlink" title="查看显卡运行情况命令"></a>查看显卡运行情况命令</h2><pre><code>watch -n 0.5 nvidia-smi</code></pre><h2 id="安装环境依赖"><a href="#安装环境依赖" class="headerlink" title="安装环境依赖"></a>安装环境依赖</h2><pre><code>pip install -r requirement.txt</code></pre><h2 id="Clash服务器端代理："><a href="#Clash服务器端代理：" class="headerlink" title="Clash服务器端代理："></a>Clash服务器端代理：</h2><p>使用Xflash作为梯子</p>
-<p><a href="https://i.jakeyu.top/2021/11/27/centos-%E4%BD%BF%E7%94%A8-Clash-%E6%A2%AF%E5%AD%90/" target="_blank" rel="noopener">https://i.jakeyu.top/2021/11/27/centos-%E4%BD%BF%E7%94%A8-Clash-%E6%A2%AF%E5%AD%90/</a></p>
-<p><a href="https://www.jianshu.com/p/1702a352797d" target="_blank" rel="noopener">https://www.jianshu.com/p/1702a352797d</a></p>
-<pre><code>nohup ~/clash &gt; /dev/null 2&gt;&amp;1 &amp;
-nohup ~/clash &gt; ~/clash_out.log &amp;
-
-
-vim /etc/profile
-source /etc/profile
-
-export ALL_PROXY=socks5://127.0.0.1:7891
-export http_proxy=http://127.0.0.1:7890
-export https_proxy=http://127.0.0.1:7890
-
-#测试
-curl www.google.com</code></pre><h2 id="报错集锦"><a href="#报错集锦" class="headerlink" title="报错集锦"></a>报错集锦</h2><h2 id="大语言模型大爆发"><a href="#大语言模型大爆发" class="headerlink" title="大语言模型大爆发"></a>大语言模型大爆发</h2><p>开源大语言模型(LLM)汇总： <a href="http://www.dtmao.cc/NodeJs/75351.html" target="_blank" rel="noopener">http://www.dtmao.cc/NodeJs/75351.html</a></p>
-<p> 开源ChatGPT替代模型项目整理： <a href="https://zhuanlan.zhihu.com/p/618790279" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/618790279</a></p>
-<p><img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/images/1deb2c972163d97bf177aa20222ac42a.png" alt="img"></p>
-<h2 id="LLMA（大语言模型，Large-Language-Model-LLM）"><a href="#LLMA（大语言模型，Large-Language-Model-LLM）" class="headerlink" title="LLMA（大语言模型，Large Language Model, LLM）"></a>LLMA（大语言模型，Large Language Model, LLM）</h2><p>大语言模型llma-13b:<a href="https://huggingface.co/decapoda-research/llama-13b-hf/tree/main" target="_blank" rel="noopener">https://huggingface.co/decapoda-research/llama-13b-hf/tree/main</a></p>
-<p>LMFlow大语言模型微调：<a href="https://github.com/OptimalScale/LMFlow/blob/main/readme/README_zh-hans.md" target="_blank" rel="noopener">https://github.com/OptimalScale/LMFlow/blob/main/readme/README_zh-hans.md</a></p>
-<p>LLMA-Alpaca中文版：<a href="https://github.com/ymcui/Chinese-LLaMA-Alpaca" target="_blank" rel="noopener">https://github.com/ymcui/Chinese-LLaMA-Alpaca</a></p>
-<p>LLMA-Alpaca中文版与原始llma模型合并：<a href="https://github.com/ymcui/Chinese-LLaMA-Alpaca/wiki/%E6%A8%A1%E5%9E%8B%E5%90%88%E5%B9%B6%E4%B8%8E%E8%BD%AC%E6%8D%A2" target="_blank" rel="noopener">https://github.com/ymcui/Chinese-LLaMA-Alpaca/wiki/%E6%A8%A1%E5%9E%8B%E5%90%88%E5%B9%B6%E4%B8%8E%E8%BD%AC%E6%8D%A2</a></p>
-<p>LLMA-Alpaca中文版模型训练过程：<a href="https://github.com/ymcui/Chinese-LLaMA-Alpaca/wiki/%E8%AE%AD%E7%BB%83%E7%BB%86%E8%8A%82" target="_blank" rel="noopener">https://github.com/ymcui/Chinese-LLaMA-Alpaca/wiki/%E8%AE%AD%E7%BB%83%E7%BB%86%E8%8A%82</a></p>
-<p>大语言模型的下载和安装：<a href="https://ivonblog.com/posts/dalai-llama-installation/" target="_blank" rel="noopener">https://ivonblog.com/posts/dalai-llama-installation/</a></p>
-<h2 id="ChatGLM"><a href="#ChatGLM" class="headerlink" title="ChatGLM"></a>ChatGLM</h2><p><a href="https://github.com/THUDM/ChatGLM-6B" target="_blank" rel="noopener">https://github.com/THUDM/ChatGLM-6B</a></p>
-<p>官方chatglm微调：<a href="https://github.com/THUDM/ChatGLM-6B/blob/main/ptuning/README.md" target="_blank" rel="noopener">https://github.com/THUDM/ChatGLM-6B/blob/main/ptuning/README.md</a></p>
-<p>第三方微调：<a href="https://github.com/ssbuild/chatglm_finetuning" target="_blank" rel="noopener">https://github.com/ssbuild/chatglm_finetuning</a></p>
-<p>PTuning与LoRA微调方式：<a href="https://github.com/liucongg/ChatGLM-Finetuning" target="_blank" rel="noopener">https://github.com/liucongg/ChatGLM-Finetuning</a></p>
-<p>制作数据集方案：<a href="https://github.com/hikariming/alpaca_chinese_dataset/blob/main/%E5%BE%AE%E8%B0%83%E4%BD%BF%E7%94%A8%E8%87%AA%E5%B7%B1%E6%95%B0%E6%8D%AE%E9%9B%86%E6%88%90%E5%8A%9F%E6%96%B9%E6%A1%88.ipynb" target="_blank" rel="noopener">https://github.com/hikariming/alpaca_chinese_dataset/blob/main/%E5%BE%AE%E8%B0%83%E4%BD%BF%E7%94%A8%E8%87%AA%E5%B7%B1%E6%95%B0%E6%8D%AE%E9%9B%86%E6%88%90%E5%8A%9F%E6%96%B9%E6%A1%88.ipynb</a></p>
-<p>用Blog和聊天记录微调自己的ChatGLM模型：<a href="https://github.com/wdkwdkwdk/CLONE_DK" target="_blank" rel="noopener">https://github.com/wdkwdkwdk/CLONE_DK</a></p>
-<p>使用langchat进行训练：<a href="https://www.heywhale.com/mw/project/643977aa446c45f4592a1e59" target="_blank" rel="noopener">https://www.heywhale.com/mw/project/643977aa446c45f4592a1e59</a></p>
-<p>港科大开源的训练微调脚手架：<a href="https://github.com/OptimalScale/LMFlow" target="_blank" rel="noopener">https://github.com/OptimalScale/LMFlow</a></p>
-<h2 id="微调"><a href="#微调" class="headerlink" title="微调"></a>微调</h2><p>ChatGPT等大模型高效调参大法——PEFT：<a href="https://zhuanlan.zhihu.com/p/613863520" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/613863520</a></p>
-<p>（1）对于动则百亿级别的参数,如何更高效,低资源的微调大模型呢</p>
-<p>（2）当样本量很小的时候，如何微调大模型能得到较好的效果呢</p>
-<ul>
-<li>LORA ：<a href="https://link.zhihu.com/?target=https%3A//arxiv.org/pdf/2106.09685.pdf" target="_blank" rel="noopener">LORA</a> 算法是在 每层 transfomer block 旁边引入一个并行低秩的支路，支路的输入是transfomer block 的输入，</li>
-<li>PREFIX_TUNING </li>
-<li>P_TUNING/P_TUNING 2</li>
-<li>PROMPT_TUNING</li>
-</ul>
-<h2 id="基于ChatGLM的P-Tuning2微调"><a href="#基于ChatGLM的P-Tuning2微调" class="headerlink" title="基于ChatGLM的P-Tuning2微调"></a>基于ChatGLM的P-Tuning2微调</h2><p>官方chatglm微调：<a href="https://github.com/THUDM/ChatGLM-6B/blob/main/ptuning/README.md" target="_blank" rel="noopener">https://github.com/THUDM/ChatGLM-6B/blob/main/ptuning/README.md</a></p>
-<h3 id="基于ChatGLM的Lora微调"><a href="#基于ChatGLM的Lora微调" class="headerlink" title="基于ChatGLM的Lora微调"></a>基于ChatGLM的Lora微调</h3><p><img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/images/image-20230423203743669.png" alt="image-20230423203743669"></p>
-<p><img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/images/image-20230423205550920.png" alt="image-20230423205550920"></p>
-<h2 id="Langchain"><a href="#Langchain" class="headerlink" title="Langchain"></a>Langchain</h2><p>人工智能应用搭建的脚手架，提供了诸如在特定文档上进行问答、聊天机器人、智能代理等各类应用场景的快速搭建</p>
-<p><a href="https://github.com/hwchase17/langchain" target="_blank" rel="noopener">https://github.com/hwchase17/langchain</a></p>
-<p><a href="https://github.com/arc53/docsgpt" target="_blank" rel="noopener">https://github.com/arc53/docsgpt</a></p>
-<p><a href="https://github.com/liaokongVFX/LangChain-Chinese-Getting-Started-Guide" target="_blank" rel="noopener">https://github.com/liaokongVFX/LangChain-Chinese-Getting-Started-Guide</a></p>
-<p>实现基于上下文的QA机器人：</p>
-<p><a href="https://python.langchain.com/en/latest/modules/chains/index_examples/vector_db_qa.html" target="_blank" rel="noopener">https://python.langchain.com/en/latest/modules/chains/index_examples/vector_db_qa.html</a></p>
-<p><a href="https://python.langchain.com/en/latest/use_cases/question_answering.html" target="_blank" rel="noopener">https://python.langchain.com/en/latest/use_cases/question_answering.html</a></p>
-<h1 id="人工智能领域软件汇总"><a href="#人工智能领域软件汇总" class="headerlink" title="人工智能领域软件汇总"></a>人工智能领域软件汇总</h1><ul>
-<li>transflow 神经网络框架</li>
-<li>PyTorch 新兴神经网络框架</li>
-<li>transformer  huggingface出品，类似于人工智能的运行框架和平台, 底层进一步对PyTorch/Transflow等进行封装,是人工智能模型标准定义</li>
-<li>huggingface：<a href="https://huggingface.co/" target="_blank" rel="noopener">https://huggingface.co/</a>  是一个AI领域的GITHUB，上面管理的市训练好的模型(Model)、数据集（Dataset）、社区(Space)</li>
-<li>Conda python环境隔离管理软件，因为各个python应用所需的依赖版本有时各有不同，为了防止冲突，可以通过conda进行依赖环境隔离</li>
-<li>Cuda Nvidia的指令集，供给应用层使用GPU计算能力，也就是给ai的训练和推演提供算力支持</li>
-<li>Git lfs 大文件git管理指令集，用于从：<a href="https://huggingface.co/" target="_blank" rel="noopener">https://huggingface.co/</a> clone下载模型文件</li>
-<li>Langchain 人工智能应用搭建的脚手架，提供了诸如在特定文档上进行问答、聊天机器人、智能代理等各类应用场景的快速搭建</li>
-</ul>
+                <p>MacOS系统升级后Navicat 15或16版本会出现无法保存数据库密码问题，报”AIled to save password error code -34018”,每次重启都要重新编辑连接输入数据库密码，超级崩溃。</p>
+<h1 id="尝试解决"><a href="#尝试解决" class="headerlink" title="尝试解决"></a>尝试解决</h1><p>网上试了很多方法尝试解决，有什么删除Keychains的，有什么下载补充类库的，都无法解决。</p>
+<p>例如这个：<a href="https://blog.csdn.net/max_zhanglei/article/details/114032161" target="_blank" rel="noopener">https://blog.csdn.net/max_zhanglei/article/details/114032161</a></p>
+<p>原因是说：macOS Big Sur及更高版本的macOs系统都会有这个问题，按博主解决方法未能成功。</p>
+<h1 id="最终解决"><a href="#最终解决" class="headerlink" title="最终解决"></a>最终解决</h1><p>最后放弃使用新版Navicat, 老版本也很香，完全不影响工作日常使用。</p>
+<p>这里下载链接，直接下载即可，无需激活。</p>
+<p><a href="https://xclient.info/s/navicat-premium.html#versions" target="_blank" rel="noopener">https://xclient.info/s/navicat-premium.html#versions</a></p>
+<p><img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/images/image-20240219155022864.png" alt="image-20240219155022864"></p>
+<p>我用<strong>12.1.27</strong> 版本安装使用成功，网传<strong>15.0.20.1</strong> 也可以，这个没试过大家可以自行尝试下看看。</p>
 
             </div>
             <hr />
@@ -621,7 +524,7 @@ curl www.google.com</code></pre><h2 id="报错集锦"><a href="#报错集锦" cl
         repo: 'okeeper.github.io',
         owner: 'okeeper',
         admin: "okeeper",
-        id: 'llma-ben-di-da-jian-bi-ji/',
+        id: 'ruan-jian-bi-ji/macos-xi-tong-sheng-ji-hou-navicat-mi-ma-bao-cun-bu-liao/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -642,15 +545,74 @@ curl www.google.com</code></pre><h2 id="报错集锦"><a href="#报错集锦" cl
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/ren-gong-zhi-neng/">
+                <a href="/ruan-jian-bi-ji/macos-xi-tong-sheng-ji-hou-navicat-mi-ma-bao-cun-bu-liao/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="人工智能技术发展史">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="MacOS系统升级后Navicat密码保存不了，报"AIled to save password error code -34018"">
+                        
+                        <span class="card-title">MacOS系统升级后Navicat密码保存不了，报"AIled to save password error code -34018"</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            macOS升级高版本系统后Navicat 15或16版本会出现无法保存数据库密码问题，报"AIled to save password error code -34018",每次重启都要重新编辑连接输入数据库密码，超级崩溃
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2024-02-19
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/软件笔记/" class="post-category" target="_blank">
+                                    软件笔记
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/软件笔记/" target="_blank">
+                        <span class="chip bg-color">软件笔记</span>
+                    </a>
+                    
+                    <a href="/tags/Navicat/" target="_blank">
+                        <span class="chip bg-color">Navicat</span>
+                    </a>
+                    
+                    <a href="/tags/MacOS/" target="_blank">
+                        <span class="chip bg-color">MacOS</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/ren-gong-zhi-neng/ren-gong-zhi-neng/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="人工智能技术发展史">
                         
                         <span class="card-title">人工智能技术发展史</span>
                     </div>
@@ -662,9 +624,9 @@ curl www.google.com</code></pre><h2 id="报错集锦"><a href="#报错集锦" cl
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2023-07-30
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-07-30
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -680,12 +642,12 @@ curl www.google.com</code></pre><h2 id="报错集锦"><a href="#报错集锦" cl
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/人工智能/" target="_blank">
-                        <span class="chip bg-color">人工智能</span>
-                    </a>
-                    
                     <a href="/tags/AI/" target="_blank">
                         <span class="chip bg-color">AI</span>
+                    </a>
+                    
+                    <a href="/tags/人工智能/" target="_blank">
+                        <span class="chip bg-color">人工智能</span>
                     </a>
                     
                     <a href="/tags/大语言模型/" target="_blank">
@@ -698,55 +660,6 @@ curl www.google.com</code></pre><h2 id="报错集锦"><a href="#报错集锦" cl
                     
                     <a href="/tags/神经网络/" target="_blank">
                         <span class="chip bg-color">神经网络</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/ruan-jian-bi-ji/mac-hao-yong-de-markdown-bian-ji-qi/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="Mac好用的Markdown编辑器">
-                        
-                        <span class="card-title">Mac好用的Markdown编辑器</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            Typora
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-02-02
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/软件笔记/" class="post-category" target="_blank">
-                                    软件笔记
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/软件笔记/" target="_blank">
-                        <span class="chip bg-color">软件笔记</span>
                     </a>
                     
                 </div>
@@ -863,7 +776,7 @@ curl www.google.com</code></pre><h2 id="报错集锦"><a href="#报错集锦" cl
             &copy; 2017-2024 Okeeper. All Rights Reserved. &nbsp; 粤ICP备2024178587号
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">59.2k</span>
+            <span class="white-color">50.2k</span>
             
 
             <br>
