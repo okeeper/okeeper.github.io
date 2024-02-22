@@ -555,23 +555,20 @@ eval &quot;local keys = redis.call('keys', ARGV[1]) for i=1,#keys,5000 do redis.
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/ruan-jian-bi-ji/java-kai-fa-huan-jing-zhun-bei/">
+                <a href="/ruan-jian-bi-ji/java-bean-de-getter-setter-zi-dong-bian-yi-sheng-cheng-gong-ju-lombok/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Java开发环境准备">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Java bean的Getter Setter 自动编译生成工具Lombok">
                         
-                        <span class="card-title">Java开发环境准备</span>
+                        <span class="card-title">Java bean的Getter Setter 自动编译生成工具Lombok</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            JDK下载地址：
-https://github.com/frekele/oracle-java/releases
-idea激活：
-https://juejin.im/post/5df8a5a5e51d4557f0460990
-maven环境
+                             背景
+我们在开发过程中，通常都会定义大量的JavaBean，然后通过IDE去生成其属性的构造器、getter、setter、equals、hashcode、toString方法，当要对某个属性进行改变时，比如命名、类型等，都需要重新去生成
                         
                     </div>
                     <div class="publish-info">
@@ -608,23 +605,25 @@ maven环境
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/ruan-jian-bi-ji/selenium/">
+                <a href="/ruan-jian-bi-ji/java-8-chang-yong-zhuan-huan/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Selenium">
+                        <img src="http://api.btstu.cn/sjbz/?lx=meizi" class="responsive-img" alt="Java 8常用转换">
                         
-                        <span class="card-title">Selenium</span>
+                        <span class="card-title">Java 8常用转换</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                             Selenium安装环境搭建
-https://www.zybuluo.com/mwumli/note/222253
- 遇到问题
-报-13权限问题时
-sudo npm install --unsafe-perm -g polymer-cli
+                             1. List转Map
+/**
+ * List -&gt; Map
+ * 需要注意的是：
+ * toMap 如果集合对象有重复的key，会报错Duplicate key ....
+ *  apple1,apple12的id都为1。
+ * 
                         
                     </div>
                     <div class="publish-info">

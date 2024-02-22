@@ -305,35 +305,6 @@
   </entry>
   
   <entry>
-    <title>软件开发方法</title>
-    <link href="https://okeeper.com/ruan-kao/ruan-jian-kai-fa-fang-fa/"/>
-    <id>https://okeeper.com/ruan-kao/ruan-jian-kai-fa-fang-fa/</id>
-    <published>2022-08-26T07:54:13.000Z</published>
-    <updated>2023-02-13T14:52:59.988Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;blockquote&gt;
-&lt;p&gt;前言：软件开发方法是软件开发的方法学，旨在提供软件的质量，降低开发成本&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&quot;1-软件生命周期&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#1-软件生命周期&quot;&gt;&lt;/a&gt;
-        
-      
-    
-    </summary>
-    
-      <category term="软考" scheme="https://okeeper.com/categories/%E8%BD%AF%E8%80%83/"/>
-    
-    
-      <category term="软考" scheme="https://okeeper.com/tags/%E8%BD%AF%E8%80%83/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Idea maven 插件安装</title>
     <link href="https://okeeper.com/ruan-jian-bi-ji/idea-maven-cha-jian-an-zhuang/"/>
     <id>https://okeeper.com/ruan-jian-bi-ji/idea-maven-cha-jian-an-zhuang/</id>
@@ -418,61 +389,6 @@ tar
   </entry>
   
   <entry>
-    <title>Java 8常用转换</title>
-    <link href="https://okeeper.com/ruan-jian-bi-ji/java-8-chang-yong-zhuan-huan/"/>
-    <id>https://okeeper.com/ruan-jian-bi-ji/java-8-chang-yong-zhuan-huan/</id>
-    <published>2022-08-26T07:54:13.000Z</published>
-    <updated>2023-02-13T14:53:01.290Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;1-list转map&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#1-list转map&quot;&gt;&lt;/a&gt; 1. List转Map&lt;/h1&gt;
-&lt;pre class=&quot;highlight&quot;&gt;&lt;code class&gt;/**
- * List
-        
-      
-    
-    </summary>
-    
-      <category term="软件笔记" scheme="https://okeeper.com/categories/%E8%BD%AF%E4%BB%B6%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="软件笔记" scheme="https://okeeper.com/tags/%E8%BD%AF%E4%BB%B6%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java开发环境准备</title>
-    <link href="https://okeeper.com/ruan-jian-bi-ji/java-kai-fa-huan-jing-zhun-bei/"/>
-    <id>https://okeeper.com/ruan-jian-bi-ji/java-kai-fa-huan-jing-zhun-bei/</id>
-    <published>2022-08-26T07:54:13.000Z</published>
-    <updated>2022-08-26T11:58:13.563Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;JDK下载地址：&lt;br&gt;
-&lt;a href=&quot;https://github.com/frekele/oracle-java/releases&quot; target=&quot;_blank&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="软件笔记" scheme="https://okeeper.com/categories/%E8%BD%AF%E4%BB%B6%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="软件笔记" scheme="https://okeeper.com/tags/%E8%BD%AF%E4%BB%B6%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Redis批量删除命令</title>
     <link href="https://okeeper.com/ruan-jian-bi-ji/redis-pi-liang-shan-chu-ming-ling/"/>
     <id>https://okeeper.com/ruan-jian-bi-ji/redis-pi-liang-shan-chu-ming-ling/</id>
@@ -490,6 +406,34 @@ tar
 &lt;/blockquote&gt;
 &lt;p&gt;批量删除多个key&lt;/p&gt;
 &lt;pre class=&quot;highlight&quot;&gt;&lt;code class&gt;del key1
+        
+      
+    
+    </summary>
+    
+      <category term="软件笔记" scheme="https://okeeper.com/categories/%E8%BD%AF%E4%BB%B6%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="软件笔记" scheme="https://okeeper.com/tags/%E8%BD%AF%E4%BB%B6%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java 8常用转换</title>
+    <link href="https://okeeper.com/ruan-jian-bi-ji/java-8-chang-yong-zhuan-huan/"/>
+    <id>https://okeeper.com/ruan-jian-bi-ji/java-8-chang-yong-zhuan-huan/</id>
+    <published>2022-08-26T07:54:13.000Z</published>
+    <updated>2023-02-13T14:53:01.290Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;1-list转map&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#1-list转map&quot;&gt;&lt;/a&gt; 1. List转Map&lt;/h1&gt;
+&lt;pre class=&quot;highlight&quot;&gt;&lt;code class&gt;/**
+ * List
         
       
     
@@ -530,6 +474,34 @@ tar
   </entry>
   
   <entry>
+    <title>docker命令笔记</title>
+    <link href="https://okeeper.com/ruan-jian-bi-ji/docker-ming-ling-bi-ji/"/>
+    <id>https://okeeper.com/ruan-jian-bi-ji/docker-ming-ling-bi-ji/</id>
+    <published>2022-08-26T07:54:13.000Z</published>
+    <updated>2022-09-14T03:41:42.309Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;制作自己的镜像&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#制作自己的镜像&quot;&gt;&lt;/a&gt; 制作自己的镜像&lt;/h1&gt;
+&lt;p&gt;从互联网拉取镜像&lt;/p&gt;
+&lt;pre class=&quot;highlight&quot;&gt;&lt;code class&gt;docker
+        
+      
+    
+    </summary>
+    
+      <category term="软件笔记" scheme="https://okeeper.com/categories/%E8%BD%AF%E4%BB%B6%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="软件笔记" scheme="https://okeeper.com/tags/%E8%BD%AF%E4%BB%B6%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
     <title>docker ES安装</title>
     <link href="https://okeeper.com/ruan-jian-bi-ji/docker-es-an-zhuang/"/>
     <id>https://okeeper.com/ruan-jian-bi-ji/docker-es-an-zhuang/</id>
@@ -557,11 +529,11 @@ tar
   </entry>
   
   <entry>
-    <title>docker命令笔记</title>
-    <link href="https://okeeper.com/ruan-jian-bi-ji/docker-ming-ling-bi-ji/"/>
-    <id>https://okeeper.com/ruan-jian-bi-ji/docker-ming-ling-bi-ji/</id>
+    <title>Java开发环境准备</title>
+    <link href="https://okeeper.com/ruan-jian-bi-ji/java-kai-fa-huan-jing-zhun-bei/"/>
+    <id>https://okeeper.com/ruan-jian-bi-ji/java-kai-fa-huan-jing-zhun-bei/</id>
     <published>2022-08-26T07:54:13.000Z</published>
-    <updated>2022-09-14T03:41:42.309Z</updated>
+    <updated>2022-08-26T11:58:13.563Z</updated>
     
     <summary type="html">
     
@@ -569,9 +541,34 @@ tar
       
         
         
-          &lt;h1 id=&quot;制作自己的镜像&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#制作自己的镜像&quot;&gt;&lt;/a&gt; 制作自己的镜像&lt;/h1&gt;
-&lt;p&gt;从互联网拉取镜像&lt;/p&gt;
-&lt;pre class=&quot;highlight&quot;&gt;&lt;code class&gt;docker
+          &lt;p&gt;JDK下载地址：&lt;br&gt;
+&lt;a href=&quot;https://github.com/frekele/oracle-java/releases&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="软件笔记" scheme="https://okeeper.com/categories/%E8%BD%AF%E4%BB%B6%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="软件笔记" scheme="https://okeeper.com/tags/%E8%BD%AF%E4%BB%B6%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>git重命名的坑</title>
+    <link href="https://okeeper.com/ruan-jian-bi-ji/git-chong-ming-ming-de-keng/"/>
+    <id>https://okeeper.com/ruan-jian-bi-ji/git-chong-ming-ming-de-keng/</id>
+    <published>2022-08-26T07:54:13.000Z</published>
+    <updated>2022-08-26T11:58:13.576Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;如果使用git命令进行仅涉及大小写的重命名,git
         
       
     

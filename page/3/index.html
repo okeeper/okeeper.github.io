@@ -276,7 +276,7 @@
 </header>
 
     
-<div class="bg-cover pd-header about-cover" style="background-image: url('http://api.btstu.cn/sjbz/?lx=meizi');">
+<div class="bg-cover pd-header about-cover first-bg-cover" style="background-image: url('http://api.btstu.cn/sjbz/?lx=meizi');">
     <div class="container">
     <div class="row">
     <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
@@ -307,7 +307,7 @@
     // 每天切换 banner 图.  Switch banner image every day.
     //(new Date().getDate() % 28)
     //parseInt(Math.random() * 28)
-    //$('.bg-cover').css('background-image', 'url(/medias/banner/' + parseInt(Math.random() * 28)+ '.jpg)');
+    $('.first-bg-cover').css('background-image', 'url(/medias/banner/' + parseInt(Math.random() * 28)+ '.jpg)');
 </script>
 
 
@@ -323,73 +323,22 @@
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/ruan-jian-bi-ji/shi-yong-maven-ming-ling-zhi-ding-shang-chuan-da-bao-dao-si-ku/" target="_blank">
+                    <a href="/ruan-jian-bi-ji/hu-yan-shen-qi-dark-reader/" target="_blank">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="使用Maven命令指定上传打包到私库">
+                            <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="护眼神器Dark Reader">
                             
-                            <span class="card-title">使用Maven命令指定上传打包到私库</span>
+                            <span class="card-title">护眼神器Dark Reader</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                            我们一般在pom.xml中加入distributionManagement
-&lt;distributionManagement&gt;
-    &lt;repository&gt;
-      &lt;id&gt;internal.rep
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2022-08-26
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/软件笔记/" class="post-category" target="_blank">
-                                    软件笔记
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
+                            在google应用市场中搜索Dark Reader，可以在网页中进行反色护眼
 
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/软件笔记/" target="_blank">
-                            <span class="chip bg-color">软件笔记</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/ruan-jian-bi-ji/shi-yong-jmeter-jin-xing-dubbo-jie-kou-ya-ce/" target="_blank">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="使用Jmeter进行Dubbo接口压测">
-                            
-                            <span class="card-title">使用Jmeter进行Dubbo接口压测</span>
-                        </div>
-                    </a>
 
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                             软件准备
- 一、下载Jmeter3.1
-下载地址：https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-3.1.zip
-其他版本：https://archive.apa
                             
                         </div>
                         <div class="publish-info">
@@ -473,20 +422,20 @@
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/ruan-jian-bi-ji/hu-yan-shen-qi-dark-reader/" target="_blank">
+                    <a href="/ruan-jian-bi-ji/maven-bao-chong-tu-jie-jue/" target="_blank">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="护眼神器Dark Reader">
+                            <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="maven 包冲突 解决">
                             
-                            <span class="card-title">护眼神器Dark Reader</span>
+                            <span class="card-title">maven 包冲突 解决</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                            在google应用市场中搜索Dark Reader，可以在网页中进行反色护眼
+                            mvn dependency:tree -Dverbose -Dincludes=org.slf4j
 
 
                             
@@ -575,6 +524,59 @@ du -h --max-depth=1
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
+                    <a href="/ruan-jian-bi-ji/zi-xing-da-jian-v2ray-ke-xue-shang-wang-gong-ju-zhi-chi-mac-ios-windows/" target="_blank">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="自行搭建v2ray科学上网工具，支持mac、ios、windows">
+                            
+                            <span class="card-title">自行搭建v2ray科学上网工具，支持mac、ios、windows</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                             服务器搭建
+
+
+购买海外VPS/ECS, 我这里用的是vultr，它家可以随时换IP、换服务器位置，无须另外收费，比较适合新手
+
+
+安装v2ray服务端，有一键安装脚本，傻瓜式安装，安装时如果用的是shadowrocket客户端方式连接，
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2022-08-26
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/软件笔记/" class="post-category" target="_blank">
+                                    软件笔记
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/软件笔记/" target="_blank">
+                            <span class="chip bg-color">软件笔记</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
                     <a href="/ruan-jian-bi-ji/kao-pu-de-maven-cang-ku-di-zhi/" target="_blank">
                         <div class="card-image">
                             
@@ -627,26 +629,26 @@ du -h --max-depth=1
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/ruan-jian-bi-ji/zi-xing-da-jian-v2ray-ke-xue-shang-wang-gong-ju-zhi-chi-mac-ios-windows/" target="_blank">
+                    <a href="/ruan-kao/ruan-jian-kai-fa-fang-fa/" target="_blank">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="自行搭建v2ray科学上网工具，支持mac、ios、windows">
+                            <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="软件开发方法">
                             
-                            <span class="card-title">自行搭建v2ray科学上网工具，支持mac、ios、windows</span>
+                            <span class="card-title">软件开发方法</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                             服务器搭建
+                            
+前言：软件开发方法是软件开发的方法学，旨在提供软件的质量，降低开发成本
 
+ 1 软件生命周期
 
-购买海外VPS/ECS, 我这里用的是vultr，它家可以随时换IP、换服务器位置，无须另外收费，比较适合新手
-
-
-安装v2ray服务端，有一键安装脚本，傻瓜式安装，安装时如果用的是shadowrocket客户端方式连接，
+可行性研究和规划：通过可行性分析确认原件的必要性，价值点，初步确认软件的目标、范围、风险和开发成本等内容。
+需求分析：需求分析是开发过程的重要
                             
                         </div>
                         <div class="publish-info">
@@ -657,8 +659,8 @@ du -h --max-depth=1
                                 
                                 <i class="fa fa-bookmark fa-fw icon-category"></i>
                                 
-                                <a href="/categories/软件笔记/" class="post-category" target="_blank">
-                                    软件笔记
+                                <a href="/categories/软考/" class="post-category" target="_blank">
+                                    软考
                                 </a>
                                 
                                 
@@ -669,8 +671,8 @@ du -h --max-depth=1
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/软件笔记/" target="_blank">
-                            <span class="chip bg-color">软件笔记</span>
+                        <a href="/tags/软考/" target="_blank">
+                            <span class="chip bg-color">软考</span>
                         </a>
                         
                     </div>
