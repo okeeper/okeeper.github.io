@@ -224,6 +224,35 @@
   </entry>
   
   <entry>
+    <title>软件开发方法</title>
+    <link href="https://okeeper.com/ruan-kao/ruan-jian-kai-fa-fang-fa/"/>
+    <id>https://okeeper.com/ruan-kao/ruan-jian-kai-fa-fang-fa/</id>
+    <published>2022-08-26T07:54:13.000Z</published>
+    <updated>2023-02-13T14:52:59.988Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;前言：软件开发方法是软件开发的方法学，旨在提供软件的质量，降低开发成本&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;1-软件生命周期&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#1-软件生命周期&quot;&gt;&lt;/a&gt;
+        
+      
+    
+    </summary>
+    
+      <category term="软考" scheme="https://okeeper.com/categories/%E8%BD%AF%E8%80%83/"/>
+    
+    
+      <category term="软考" scheme="https://okeeper.com/tags/%E8%BD%AF%E8%80%83/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Java学习大纲</title>
     <link href="https://okeeper.com/hou-duan-jia-gou/java-xue-xi-da-gang/"/>
     <id>https://okeeper.com/hou-duan-jia-gou/java-xue-xi-da-gang/</id>
@@ -277,34 +306,6 @@
   </entry>
   
   <entry>
-    <title>限流相关</title>
-    <link href="https://okeeper.com/hou-duan-jia-gou/xian-liu-xiang-guan/"/>
-    <id>https://okeeper.com/hou-duan-jia-gou/xian-liu-xiang-guan/</id>
-    <published>2022-08-26T07:54:13.000Z</published>
-    <updated>2022-08-26T11:58:13.553Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;前言&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#前言&quot;&gt;&lt;/a&gt; 前言&lt;/h1&gt;
-&lt;p&gt;在大流量场景，秒杀、抢购场景，一般会对网站做一些流量控制，牺牲一部分流量而保护系统而不至于系统直接down机。&lt;/p&gt;
-&lt;h1
-        
-      
-    
-    </summary>
-    
-      <category term="后端&amp;架构" scheme="https://okeeper.com/categories/%E5%90%8E%E7%AB%AF-%E6%9E%B6%E6%9E%84/"/>
-    
-    
-      <category term="后端&amp;架构" scheme="https://okeeper.com/tags/%E5%90%8E%E7%AB%AF-%E6%9E%B6%E6%9E%84/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Idea maven 插件安装</title>
     <link href="https://okeeper.com/ruan-jian-bi-ji/idea-maven-cha-jian-an-zhuang/"/>
     <id>https://okeeper.com/ruan-jian-bi-ji/idea-maven-cha-jian-an-zhuang/</id>
@@ -330,6 +331,34 @@
     
     
       <category term="软件笔记" scheme="https://okeeper.com/tags/%E8%BD%AF%E4%BB%B6%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>限流相关</title>
+    <link href="https://okeeper.com/hou-duan-jia-gou/xian-liu-xiang-guan/"/>
+    <id>https://okeeper.com/hou-duan-jia-gou/xian-liu-xiang-guan/</id>
+    <published>2022-08-26T07:54:13.000Z</published>
+    <updated>2022-08-26T11:58:13.553Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;前言&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#前言&quot;&gt;&lt;/a&gt; 前言&lt;/h1&gt;
+&lt;p&gt;在大流量场景，秒杀、抢购场景，一般会对网站做一些流量控制，牺牲一部分流量而保护系统而不至于系统直接down机。&lt;/p&gt;
+&lt;h1
+        
+      
+    
+    </summary>
+    
+      <category term="后端&amp;架构" scheme="https://okeeper.com/categories/%E5%90%8E%E7%AB%AF-%E6%9E%B6%E6%9E%84/"/>
+    
+    
+      <category term="后端&amp;架构" scheme="https://okeeper.com/tags/%E5%90%8E%E7%AB%AF-%E6%9E%B6%E6%9E%84/"/>
     
   </entry>
   
@@ -376,6 +405,33 @@ tar
         
         
           &lt;h2 id=&quot;背景&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#背景&quot;&gt;&lt;/a&gt;
+        
+      
+    
+    </summary>
+    
+      <category term="软件笔记" scheme="https://okeeper.com/categories/%E8%BD%AF%E4%BB%B6%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="软件笔记" scheme="https://okeeper.com/tags/%E8%BD%AF%E4%BB%B6%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java开发环境准备</title>
+    <link href="https://okeeper.com/ruan-jian-bi-ji/java-kai-fa-huan-jing-zhun-bei/"/>
+    <id>https://okeeper.com/ruan-jian-bi-ji/java-kai-fa-huan-jing-zhun-bei/</id>
+    <published>2022-08-26T07:54:13.000Z</published>
+    <updated>2022-08-26T11:58:13.563Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;JDK下载地址：&lt;br&gt;
+&lt;a href=&quot;https://github.com/frekele/oracle-java/releases&quot; target=&quot;_blank&quot;
         
       
     
@@ -502,11 +558,11 @@ tar
   </entry>
   
   <entry>
-    <title>docker ES安装</title>
-    <link href="https://okeeper.com/ruan-jian-bi-ji/docker-es-an-zhuang/"/>
-    <id>https://okeeper.com/ruan-jian-bi-ji/docker-es-an-zhuang/</id>
+    <title>使用Jmeter进行Dubbo接口压测</title>
+    <link href="https://okeeper.com/ruan-jian-bi-ji/shi-yong-jmeter-jin-xing-dubbo-jie-kou-ya-ce/"/>
+    <id>https://okeeper.com/ruan-jian-bi-ji/shi-yong-jmeter-jin-xing-dubbo-jie-kou-ya-ce/</id>
     <published>2022-08-26T07:54:13.000Z</published>
-    <updated>2023-02-13T14:27:57.408Z</updated>
+    <updated>2023-02-13T14:25:17.780Z</updated>
     
     <summary type="html">
     
@@ -514,61 +570,8 @@ tar
       
         
         
-          &lt;p&gt;参考docker安装Elasticsearch官方文档&lt;br&gt;
-&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html&quot; target=&quot;_blank&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="软件笔记" scheme="https://okeeper.com/categories/%E8%BD%AF%E4%BB%B6%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="软件笔记" scheme="https://okeeper.com/tags/%E8%BD%AF%E4%BB%B6%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java开发环境准备</title>
-    <link href="https://okeeper.com/ruan-jian-bi-ji/java-kai-fa-huan-jing-zhun-bei/"/>
-    <id>https://okeeper.com/ruan-jian-bi-ji/java-kai-fa-huan-jing-zhun-bei/</id>
-    <published>2022-08-26T07:54:13.000Z</published>
-    <updated>2022-08-26T11:58:13.563Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;JDK下载地址：&lt;br&gt;
-&lt;a href=&quot;https://github.com/frekele/oracle-java/releases&quot; target=&quot;_blank&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="软件笔记" scheme="https://okeeper.com/categories/%E8%BD%AF%E4%BB%B6%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="软件笔记" scheme="https://okeeper.com/tags/%E8%BD%AF%E4%BB%B6%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>git重命名的坑</title>
-    <link href="https://okeeper.com/ruan-jian-bi-ji/git-chong-ming-ming-de-keng/"/>
-    <id>https://okeeper.com/ruan-jian-bi-ji/git-chong-ming-ming-de-keng/</id>
-    <published>2022-08-26T07:54:13.000Z</published>
-    <updated>2022-08-26T11:58:13.576Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;如果使用git命令进行仅涉及大小写的重命名,git
+          &lt;h1 id=&quot;软件准备&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#软件准备&quot;&gt;&lt;/a&gt; 软件准备&lt;/h1&gt;
+&lt;h2 id=&quot;一-下载jmeter31&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot;
         
       
     

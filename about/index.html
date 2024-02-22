@@ -282,7 +282,7 @@
     }
 </style>
 
-<div class="bg-cover pd-header about-cover first-bg-cover" style="background-image: url('http://api.btstu.cn/sjbz/?lx=meizi');">
+<div class="bg-cover pd-header about-cover">
     <div class="container">
     <div class="row">
     <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
@@ -313,7 +313,7 @@
     // 每天切换 banner 图.  Switch banner image every day.
     //(new Date().getDate() % 28)
     //parseInt(Math.random() * 28)
-    $('.first-bg-cover').css('background-image', 'url(/medias/banner/' + parseInt(Math.random() * 28)+ '.jpg)');
+    //$('.about-cover').css('background-image', 'url(/medias/banner/' + parseInt(Math.random() * 28)+ '.jpg)');
 </script>
 
 <main class="content">
@@ -551,7 +551,7 @@
                 type: 'pie',
                 radius: '50%',
                 color: ['#6772e5', '#ff9e0f', '#fa755a', '#3ecf8e', '#82d3f4', '#ab47bc', '#525f7f', '#f51c47', '#26A69A'],
-                data: [{"name":"分享","value":2},{"name":"人工智能","value":3},{"name":"后端&架构","value":3},{"name":"区块链","value":2},{"name":"学习","value":4},{"name":"操作系统原理","value":4},{"name":"RocketMQ","value":1},{"name":"软件笔记","value":23},{"name":"软考","value":2}],
+                data: [{"name":"分享","value":2},{"name":"学习","value":4},{"name":"区块链","value":2},{"name":"操作系统原理","value":4},{"name":"RocketMQ","value":1},{"name":"软考","value":2},{"name":"后端&架构","value":3},{"name":"软件笔记","value":23},{"name":"人工智能","value":3}],
                 itemStyle: {
                     emphasis: {
                         shadowBlur: 10,
@@ -575,7 +575,7 @@
         xAxis: [
             {
                 type: 'category',
-                data: ["软件笔记","学习","操作系统原理","后端&架构","人工智能","区块链","AI","软考","分享","Blog"]
+                data: ["软件笔记","学习","操作系统原理","后端&架构","区块链","软考","人工智能","AI","分享","Blog"]
             }
         ],
         yAxis: [
@@ -751,30 +751,6 @@
             
             
             
-            <a href="/tags/人工智能/" target="_blank">
-                <span class="chip center-align waves-effect waves-light chip-default">人工智能</span>
-            </a>
-            
-            
-            
-            <a href="/tags/向量数据库/" target="_blank">
-                <span class="chip center-align waves-effect waves-light chip-default">向量数据库</span>
-            </a>
-            
-            
-            
-            <a href="/tags/后端-架构/" target="_blank">
-                <span class="chip center-align waves-effect waves-light chip-default">后端&架构</span>
-            </a>
-            
-            
-            
-            <a href="/tags/区块链/" target="_blank">
-                <span class="chip center-align waves-effect waves-light chip-default">区块链</span>
-            </a>
-            
-            
-            
             <a href="/tags/HTTP/" target="_blank">
                 <span class="chip center-align waves-effect waves-light chip-default">HTTP</span>
             </a>
@@ -793,26 +769,20 @@
             
             
             
-            <a href="/tags/操作系统原理/" target="_blank">
-                <span class="chip center-align waves-effect waves-light chip-default">操作系统原理</span>
-            </a>
-            
-            
-            
-            <a href="/tags/Unicode/" target="_blank">
-                <span class="chip center-align waves-effect waves-light chip-default">Unicode</span>
-            </a>
-            
-            
-            
-            <a href="/tags/字符集/" target="_blank">
-                <span class="chip center-align waves-effect waves-light chip-default">字符集</span>
-            </a>
-            
-            
-            
             <a href="/tags/Dubbo/" target="_blank">
                 <span class="chip center-align waves-effect waves-light chip-default">Dubbo</span>
+            </a>
+            
+            
+            
+            <a href="/tags/区块链/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">区块链</span>
+            </a>
+            
+            
+            
+            <a href="/tags/操作系统原理/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">操作系统原理</span>
             </a>
             
             
@@ -835,50 +805,38 @@
             
             
             
+            <a href="/tags/Unicode/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">Unicode</span>
+            </a>
+            
+            
+            
+            <a href="/tags/字符集/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">字符集</span>
+            </a>
+            
+            
+            
             <a href="/tags/Disruptor/" target="_blank">
                 <span class="chip center-align waves-effect waves-light chip-default">Disruptor</span>
             </a>
             
             
             
-            <a href="/tags/AI/" target="_blank">
-                <span class="chip center-align waves-effect waves-light chip-default">AI</span>
+            <a href="/tags/软考/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">软考</span>
             </a>
             
             
             
-            <a href="/tags/LLama/" target="_blank">
-                <span class="chip center-align waves-effect waves-light chip-default">LLama</span>
-            </a>
-            
-            
-            
-            <a href="/tags/ChatGLM/" target="_blank">
-                <span class="chip center-align waves-effect waves-light chip-default">ChatGLM</span>
+            <a href="/tags/后端-架构/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">后端&架构</span>
             </a>
             
             
             
             <a href="/tags/软件笔记/" target="_blank">
                 <span class="chip center-align waves-effect waves-light chip-default">软件笔记</span>
-            </a>
-            
-            
-            
-            <a href="/tags/大语言模型/" target="_blank">
-                <span class="chip center-align waves-effect waves-light chip-default">大语言模型</span>
-            </a>
-            
-            
-            
-            <a href="/tags/LLM/" target="_blank">
-                <span class="chip center-align waves-effect waves-light chip-default">LLM</span>
-            </a>
-            
-            
-            
-            <a href="/tags/神经网络/" target="_blank">
-                <span class="chip center-align waves-effect waves-light chip-default">神经网络</span>
             </a>
             
             
@@ -901,8 +859,50 @@
             
             
             
-            <a href="/tags/软考/" target="_blank">
-                <span class="chip center-align waves-effect waves-light chip-default">软考</span>
+            <a href="/tags/人工智能/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">人工智能</span>
+            </a>
+            
+            
+            
+            <a href="/tags/向量数据库/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">向量数据库</span>
+            </a>
+            
+            
+            
+            <a href="/tags/AI/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">AI</span>
+            </a>
+            
+            
+            
+            <a href="/tags/大语言模型/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">大语言模型</span>
+            </a>
+            
+            
+            
+            <a href="/tags/LLM/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">LLM</span>
+            </a>
+            
+            
+            
+            <a href="/tags/神经网络/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">神经网络</span>
+            </a>
+            
+            
+            
+            <a href="/tags/LLama/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">LLama</span>
+            </a>
+            
+            
+            
+            <a href="/tags/ChatGLM/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">ChatGLM</span>
             </a>
             
             
