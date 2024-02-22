@@ -275,7 +275,7 @@
 
 </header>
 
-    <div class="bg-cover pd-header about-cover">
+    <div class="bg-cover pd-header about-cover" style="background-image: url('http://api.btstu.cn/sjbz/?lx=meizi');">
     <div class="container">
     <div class="row">
     <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
@@ -303,10 +303,10 @@
 </div>
 
 <script>
-// 每天切换 banner 图.  Switch banner image every day.
-//(new Date().getDate() % 28)
-//parseInt(Math.random() * 28)
-$('.bg-cover').css('background-image', 'url(/medias/banner/' + parseInt(Math.random() * 28)+ '.jpg)');
+    // 每天切换 banner 图.  Switch banner image every day.
+    //(new Date().getDate() % 28)
+    //parseInt(Math.random() * 28)
+    //$('.bg-cover').css('background-image', 'url(/medias/banner/' + parseInt(Math.random() * 28)+ '.jpg)');
 </script>
 
 <main class="content">
@@ -322,10 +322,19 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + parseInt(Math.ran
             <div class="tag-chips">
                 
                 
+                <a href="/tags/分享/" title="分享: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="分享" style="background-color: #F9EBEA;">分享
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
                 <a href="/tags/Blog/" title="Blog: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="Blog" style="background-color: #F9EBEA;">Blog
+                            data-tagname="Blog" style="background-color: #F5EEF8;">Blog
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -334,7 +343,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + parseInt(Math.ran
                 <a href="/tags/typora-vue-theme/" title="typora-vue-theme: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="typora-vue-theme" style="background-color: #F5EEF8;">typora-vue-theme
+                            data-tagname="typora-vue-theme" style="background-color: #D5F5E3;">typora-vue-theme
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -343,34 +352,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + parseInt(Math.ran
                 <a href="/tags/hexo/" title="hexo: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="hexo" style="background-color: #D5F5E3;">hexo
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/分享/" title="分享: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="分享" style="background-color: #E8F8F5;">分享
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/人工智能/" title="人工智能: 2">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="人工智能" style="background-color: #FEF9E7;">人工智能
-                        <span class="tag-length">2</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/向量数据库/" title="向量数据库: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="向量数据库" style="background-color: #F8F9F9;">向量数据库
+                            data-tagname="hexo" style="background-color: #E8F8F5;">hexo
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -379,7 +361,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + parseInt(Math.ran
                 <a href="/tags/后端-架构/" title="后端&架构: 3">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="后端&架构" style="background-color: #82E0AA;">后端&架构
+                            data-tagname="后端&架构" style="background-color: #FEF9E7;">后端&架构
                         <span class="tag-length">3</span>
                     </span>
                 </a>
@@ -388,26 +370,26 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + parseInt(Math.ran
                 <a href="/tags/区块链/" title="区块链: 2">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="区块链" style="background-color: #D7BDE2;">区块链
+                            data-tagname="区块链" style="background-color: #F8F9F9;">区块链
                         <span class="tag-length">2</span>
                     </span>
                 </a>
                 
                 
-                <a href="/tags/Dubbo/" title="Dubbo: 1">
+                <a href="/tags/人工智能/" title="人工智能: 2">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="Dubbo" style="background-color: #A3E4D7;">Dubbo
-                        <span class="tag-length">1</span>
+                            data-tagname="人工智能" style="background-color: #82E0AA;">人工智能
+                        <span class="tag-length">2</span>
                     </span>
                 </a>
                 
                 
-                <a href="/tags/学习/" title="学习: 4">
+                <a href="/tags/向量数据库/" title="向量数据库: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="学习" style="background-color: #85C1E9;">学习
-                        <span class="tag-length">4</span>
+                            data-tagname="向量数据库" style="background-color: #D7BDE2;">向量数据库
+                        <span class="tag-length">1</span>
                     </span>
                 </a>
                 
@@ -415,7 +397,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + parseInt(Math.ran
                 <a href="/tags/HTTP/" title="HTTP: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="HTTP" style="background-color: #F8C471;">HTTP
+                            data-tagname="HTTP" style="background-color: #A3E4D7;">HTTP
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -424,7 +406,25 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + parseInt(Math.ran
                 <a href="/tags/HTTPS/" title="HTTPS: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="HTTPS" style="background-color: #F9E79F;">HTTPS
+                            data-tagname="HTTPS" style="background-color: #85C1E9;">HTTPS
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/学习/" title="学习: 4">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="学习" style="background-color: #F8C471;">学习
+                        <span class="tag-length">4</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/Dubbo/" title="Dubbo: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="Dubbo" style="background-color: #F9E79F;">Dubbo
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -457,11 +457,11 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + parseInt(Math.ran
                 </a>
                 
                 
-                <a href="/tags/Disruptor/" title="Disruptor: 1">
+                <a href="/tags/软件笔记/" title="软件笔记: 23">
                     <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="Disruptor" style="background-color: #D5F5E3;">Disruptor
-                        <span class="tag-length">1</span>
+                             chip-active "
+                            data-tagname="软件笔记" style="background-color: #A3E4D7;">软件笔记
+                        <span class="tag-length">23</span>
                     </span>
                 </a>
                 
@@ -493,11 +493,11 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + parseInt(Math.ran
                 </a>
                 
                 
-                <a href="/tags/软件笔记/" title="软件笔记: 23">
+                <a href="/tags/Disruptor/" title="Disruptor: 1">
                     <span class="chip center-align waves-effect waves-light
-                             chip-active "
-                            data-tagname="软件笔记" style="background-color: #A3E4D7;">软件笔记
-                        <span class="tag-length">23</span>
+                             chip-default "
+                            data-tagname="Disruptor" style="background-color: #D5F5E3;">Disruptor
+                        <span class="tag-length">1</span>
                     </span>
                 </a>
                 
@@ -565,6 +565,15 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + parseInt(Math.ran
                 </a>
                 
                 
+                <a href="/tags/操作系统原理/" title="操作系统原理: 4">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="操作系统原理" style="background-color: #85C1E9;">操作系统原理
+                        <span class="tag-length">4</span>
+                    </span>
+                </a>
+                
+                
                 <a href="/tags/Navicat/" title="Navicat: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
@@ -579,15 +588,6 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + parseInt(Math.ran
                              chip-default "
                             data-tagname="MacOS" style="background-color: #F8C471;">MacOS
                         <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/操作系统原理/" title="操作系统原理: 4">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="操作系统原理" style="background-color: #85C1E9;">操作系统原理
-                        <span class="tag-length">4</span>
                     </span>
                 </a>
                 
@@ -608,7 +608,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + parseInt(Math.ran
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="Hexo主题添加数学公式渲染支持">
+                            <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="Hexo主题添加数学公式渲染支持">
                             
                             <span class="card-title">Hexo主题添加数学公式渲染支持</span>
                         </div>
@@ -640,7 +640,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + parseInt(Math.ran
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="MacOS系统升级后Navicat密码保存不了，报"AIled to save password error code -34018"">
+                            <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="MacOS系统升级后Navicat密码保存不了，报"AIled to save password error code -34018"">
                             
                             <span class="card-title">MacOS系统升级后Navicat密码保存不了，报"AIled to save password error code -34018"</span>
                         </div>
@@ -672,7 +672,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + parseInt(Math.ran
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="Mac好用的Markdown编辑器">
+                            <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Mac好用的Markdown编辑器">
                             
                             <span class="card-title">Mac好用的Markdown编辑器</span>
                         </div>
@@ -700,43 +700,11 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + parseInt(Math.ran
             
             <div class="article tag-post col s12 m6 l4" data-tags="软件笔记" data-aos="fade-up">
                 <div class="card">
-                    <a href="/ruan-jian-bi-ji/redis-pi-liang-shan-chu-ming-ling/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="Redis批量删除命令">
-                            
-                            <span class="card-title">Redis批量删除命令</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2022-08-26
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/软件笔记/" class="post-category" target="_blank">
-                                软件笔记
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            
-            <div class="article tag-post col s12 m6 l4" data-tags="软件笔记" data-aos="fade-up">
-                <div class="card">
                     <a href="/ruan-jian-bi-ji/docker-ming-ling-bi-ji/">
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="docker命令笔记">
+                            <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="docker命令笔记">
                             
                             <span class="card-title">docker命令笔记</span>
                         </div>
@@ -768,7 +736,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + parseInt(Math.ran
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="docker ES安装">
+                            <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="docker ES安装">
                             
                             <span class="card-title">docker ES安装</span>
                         </div>
@@ -800,9 +768,41 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + parseInt(Math.ran
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="Selenium">
+                            <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Selenium">
                             
                             <span class="card-title">Selenium</span>
+                        </div>
+                    </a>
+                    <div class="card-content article-content">
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2022-08-26
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/软件笔记/" class="post-category" target="_blank">
+                                软件笔记
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div class="article tag-post col s12 m6 l4" data-tags="软件笔记" data-aos="fade-up">
+                <div class="card">
+                    <a href="/ruan-jian-bi-ji/redis-pi-liang-shan-chu-ming-ling/">
+                        <div class="card-image tag-image">
+                            
+                            
+                            <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="Redis批量删除命令">
+                            
+                            <span class="card-title">Redis批量删除命令</span>
                         </div>
                     </a>
                     <div class="card-content article-content">
@@ -832,41 +832,9 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + parseInt(Math.ran
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="Java开发环境准备">
+                            <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Java开发环境准备">
                             
                             <span class="card-title">Java开发环境准备</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2022-08-26
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/软件笔记/" class="post-category" target="_blank">
-                                软件笔记
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            
-            <div class="article tag-post col s12 m6 l4" data-tags="软件笔记" data-aos="fade-up">
-                <div class="card">
-                    <a href="/ruan-jian-bi-ji/java-bean-de-getter-setter-zi-dong-bian-yi-sheng-cheng-gong-ju-lombok/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="Java bean的Getter Setter 自动编译生成工具Lombok">
-                            
-                            <span class="card-title">Java bean的Getter Setter 自动编译生成工具Lombok</span>
                         </div>
                     </a>
                     <div class="card-content article-content">
@@ -896,7 +864,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + parseInt(Math.ran
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Java 8常用转换">
+                            <img src="http://api.btstu.cn/sjbz/?lx=meizi" class="responsive-img" alt="Java 8常用转换">
                             
                             <span class="card-title">Java 8常用转换</span>
                         </div>
@@ -924,13 +892,13 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + parseInt(Math.ran
             
             <div class="article tag-post col s12 m6 l4" data-tags="软件笔记" data-aos="fade-up">
                 <div class="card">
-                    <a href="/ruan-jian-bi-ji/idea-maven-cha-jian-an-zhuang/">
+                    <a href="/ruan-jian-bi-ji/java-bean-de-getter-setter-zi-dong-bian-yi-sheng-cheng-gong-ju-lombok/">
                         <div class="card-image tag-image">
                             
                             
-                            <img src="http://api.btstu.cn/sjbz/?lx=meizi" class="responsive-img" alt="Idea maven 插件安装">
+                            <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Java bean的Getter Setter 自动编译生成工具Lombok">
                             
-                            <span class="card-title">Idea maven 插件安装</span>
+                            <span class="card-title">Java bean的Getter Setter 自动编译生成工具Lombok</span>
                         </div>
                     </a>
                     <div class="card-content article-content">
@@ -960,9 +928,41 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + parseInt(Math.ran
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="Centos 下Redis 安装以及集群搭建">
+                            <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Centos 下Redis 安装以及集群搭建">
                             
                             <span class="card-title">Centos 下Redis 安装以及集群搭建</span>
+                        </div>
+                    </a>
+                    <div class="card-content article-content">
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2022-08-26
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/软件笔记/" class="post-category" target="_blank">
+                                软件笔记
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div class="article tag-post col s12 m6 l4" data-tags="软件笔记" data-aos="fade-up">
+                <div class="card">
+                    <a href="/ruan-jian-bi-ji/idea-maven-cha-jian-an-zhuang/">
+                        <div class="card-image tag-image">
+                            
+                            
+                            <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Idea maven 插件安装">
+                            
+                            <span class="card-title">Idea maven 插件安装</span>
                         </div>
                     </a>
                     <div class="card-content article-content">
