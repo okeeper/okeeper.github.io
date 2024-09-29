@@ -1,0 +1,1014 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Redis为什么快, 张跃 zhangyue okeeper Java Alibaba 软件工程 架构师 软件笔记 技术分享 观点 随笔">
+    <meta name="baidu-site-verification" content="MWAMkewsPN">
+    <meta name="google-site-verification" content>
+    <meta name="360-site-verification" content>
+    <meta name="description" content=" Redis介绍
+关系型数据库（如MySQL）的I/O瓶颈通常是由于数据存储和检索操作的频繁性以及磁盘读写速度限制所致。随着互联网应用和数据量的爆炸式增长，传统的关系型数据库在某些场景下可能无法满足高并发和低延迟的需求，特别是在读取密集型或">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Redis为什么快 | 神笔君|Okeeper</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <!--数学公式-->
+    <link rel="stylesheet" href="https://lib.baomitu.com/KaTeX/latest/katex.min.css">
+
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?46e79e71af0709a5b9106bf20cecc493";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+<link rel="stylesheet" href="/css/prism-okaidia.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><script src="/js/prism.js"></script>
+<script src="/js/prism-line-numbers.min.js"></script></head>
+
+<body>
+
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/favicon.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">神笔君|Okeeper</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    <li class="hide-on-med-and-down">
+        <a href="http://model-bridge.okeeper.com" target="_blank" class="waves-effect waves-light">
+            <i class="fa fa-book"></i>
+            <span>ModelBridge/魔桥</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/contact" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>留言板</span>
+        </a>
+    </li>
+    
+
+
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/favicon.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">神笔君|Okeeper</div>
+        <div class="logo-desc">
+            
+            张跃 | 软件工程 | 架构师 | 软件笔记 | 技术分享 | 观点 | 随笔
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/contact" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                留言板
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/okeeper" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/okeeper" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/24.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        Redis为什么快
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                        <a href="/tags/架构/" target="_blank">
+                            <span class="chip bg-color">架构</span>
+                        </a>
+                        
+                        <a href="/tags/Redis/" target="_blank">
+                            <span class="chip bg-color">Redis</span>
+                        </a>
+                        
+                        <a href="/tags/DB/" target="_blank">
+                            <span class="chip bg-color">DB</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                        <a href="/categories/后端/" class="post-category" target="_blank">
+                            后端
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2024-05-21
+                </div>
+
+                <div class="post-author info-break-policy">
+                    <i class="fa fa-user-o fa-fw"></i>作者:&nbsp;&nbsp;
+                    
+                    Okeeper
+                    
+                </div>
+
+                
+                
+                <div class="info-break-policy">
+                    <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    2.3k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    8 分
+                </div>
+                
+                
+
+                
+                <div id="busuanzi_container_page_pv" class="info-break-policy">
+                    <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                    <span id="busuanzi_value_page_pv"></span>
+                </div>
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="redis介绍"><a class="markdownIt-Anchor" href="#redis介绍"></a> Redis介绍</h1>
+<p>关系型数据库（如MySQL）的I/O瓶颈通常是由于数据存储和检索操作的频繁性以及磁盘读写速度限制所致。随着互联网应用和数据量的爆炸式增长，传统的关系型数据库在某些场景下可能无法满足高并发和低延迟的需求，特别是在读取密集型或者数据量非常大的情况下。在这种情况下，开发人员开始寻找更高效的解决方案。</p>
+<p>Redis产生的背景正是基于这样的需求。Redis是一个基于内存的数据存储系统，具有高性能、低延迟和高并发的特点。相比于传统的关系型数据库，Redis通过将数据存储在内存中，极大地提高了数据的读取和写入速度。在Redis中，数据通常存储在内存中，并通过快速的键值对存储和检索来实现。</p>
+<p>Redis的产生背景可以追溯到互联网应用需要处理大量实时数据、缓存和会话管理等需求。随着这些需求的不断增长，传统的关系型数据库在性能方面逐渐暴露出瓶颈。于是，人们开始寻求一种更适合这些需求的解决方案，Redis就是其中之一。</p>
+<p>Redis的出现不仅解决了传统关系型数据库的I/O瓶颈问题，还为开发人员提供了更多的工具和机会来构建高性能、可扩展的应用程序。通过将数据存储在内存中，并提供丰富的数据结构和功能，Redis成为了许多互联网公司构建实时应用、缓存系统和消息队列等方面的首选解决方案之一。</p>
+<p>根据DB-Engines的K-V数据库排名，Redis一直是最受欢迎的键值存储数据库。</p>
+<p><a href="https://db-engines.com/en/ranking/key-value+store" target="_blank" rel="noopener">DB-Engines Ranking - popularity ranking of key-value stores</a></p>
+<p><img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/images/1716263591173.png" alt></p>
+<p>Redis做为一个KV内存NoSQL数据的优点如下：</p>
+<ul>
+<li>
+<p>高性能：Redis是一个基于内存的数据库，这意味着它可以提供非常快速的数据读写操作。由于数据存储在内存中，Redis能够实现非常低延迟的访问，适用于需要快速响应的应用场景，如实时数据处理、缓存等。</p>
+</li>
+<li>
+<p>丰富的数据结构支持：Redis支持丰富的数据结构，包括字符串、哈希、列表、集合、有序集合等。这使得开发人员可以更灵活地处理数据，不仅可以简单地存储键值对，还可以实现复杂的数据操作和数据结构。</p>
+</li>
+<li>
+<p>持久化支持：尽管Redis是一个内存数据库，但它也提供了持久化的支持，可以将数据定期写入磁盘，以防止数据丢失。这种持久化支持可以在数据库重启时恢复数据，确保数据的安全性和持久性。</p>
+</li>
+<li>
+<p>高可用性和可扩展性：Redis支持主从复制和分片等机制，可以实现数据的高可用性和可扩展性。通过配置主从复制和分片，可以实现数据的备份和负载均衡，提高系统的稳定性和可靠性。</p>
+</li>
+<li>
+<p>丰富的生态系统和社区支持：Redis拥有一个活跃的开源社区和丰富的生态系统，有大量的第三方工具和库可供使用。这些工具和库可以帮助开发人员更轻松地集成Redis到他们的应用中，并提供更多的功能和特性。</p>
+</li>
+</ul>
+<h1 id="redis为什么快"><a class="markdownIt-Anchor" href="#redis为什么快"></a> Redis为什么快</h1>
+<p>我们对Redis的印象就是快，高性能，理论能达到10wqps。这得益于它的线程模型和基于内存的高速读写</p>
+<p>Redis的单线程模型具体工作方式如下：</p>
+<ol>
+<li>
+<p><strong>Redis它属于内存数据库</strong>，数据的读写都在内存中进行，减少了对磁盘IO的依赖</p>
+</li>
+<li>
+<p><strong>多路复用技术的非阻塞IO</strong>：Redis使用同步非阻塞I/O操作来处理客户端请求。可以通过单个线程借助系统内核的epoll实现IO多路复用，用极少的线程资源处理大量的并发请求，增加了CPU的利用率。同时在Redis6.0之后当主线程epoll监听到多个可读写的IO事件时，利用多线程并行处理IO读写事件，加快了IO处理的并行度</p>
+</li>
+<li>
+<p><strong>数据处理事件单线程处理</strong>：在任何给定的时间点，Redis只有一个线程在执行。这个线程负责处理所有的客户端达到的请求挨个进行处理，避免了多线程间的同步和锁竞争。</p>
+</li>
+</ol>
+<p>虽然Redis采用了单线程模型，但它仍然能够实现高性能和高并发。这是因为Redis的主要瓶颈通常是在CPU或者网络带宽上，而不是在线程调度或者同步开销上。此外，Redis通过使用多路复用技术（如epoll、kqueue等）来同时处理大量的客户端连接，从而提高了系统的吞吐量和并发性能。</p>
+<p>所以总结两点，redis为什么快：</p>
+<ul>
+<li>
+<p>基于内存单线程，内存快速存取无锁竞争，摆脱了磁盘IO瓶颈</p>
+</li>
+<li>
+<p>使用IO多路复用，提升了处理客户端请求并发能力，摆脱了网络IO的瓶颈</p>
+</li>
+</ul>
+<h1 id="如何理解io多路复用"><a class="markdownIt-Anchor" href="#如何理解io多路复用"></a> 如何理解IO多路复用</h1>
+<p>简单理解就是一个服务端线程可以同时接受处理来自多个不同网络链路的网络IO请求。</p>
+<p>其中多路复用我们分开理解</p>
+<ul>
+<li>多路：多个客户端连接</li>
+<li>复用：使用单进程就能够实现同时处理多个客户端的连接 ​</li>
+</ul>
+<p>它的基本原理就是不再由应用程序自己监视连接，而是由内核替应用程序监视文件描述符。客户端在操作的时候，会产生具有不同事件类型的 socket。</p>
+<p>I/O多路复用经过一下这几个阶段发展</p>
+<p><img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/images/20190225204240.png" alt></p>
+<h2 id="阻塞式ioblocking-io"><a class="markdownIt-Anchor" href="#阻塞式ioblocking-io"></a> 阻塞式IO(Blocking IO)</h2>
+<p>这里的阻塞是指注册用户进程，从用户进程发起IO读取请求到真正读到数据过程中完全阻塞，用户线程做不了任何事情，CPU资源利用率极低。</p>
+<h2 id="非阻塞是io"><a class="markdownIt-Anchor" href="#非阻塞是io"></a> 非阻塞是IO</h2>
+<p>这个过程就是用户线程向内核发起网络IO请求，如果当前有就绪可用的IO就开始读取数据并返回，如果没有就绪链路就返回异常，用户线程继续轮询，知道返回可读数据。那么这个过程用户线程全程没有闲着，不停地在询问系统内核是否有可用IO,虽然是非阻塞的，但也效率低下，都在做一些大量重复且没有太多价值的事情。</p>
+<h2 id="io多路复用"><a class="markdownIt-Anchor" href="#io多路复用"></a> I/O多路复用</h2>
+<p>以上两种如果在高并发场景下，如果一个线程只能处理一个网络IO请求，必然考开启多个线程进行，这样避免不了上下文切换的开销，而随着系统内核技术的发展，IO多路复用技术出现，只需要一个用户线程即可处理多个网络IO请求，极大的提高了并发处理的性能。</p>
+<h2 id="信号量驱动的io模型"><a class="markdownIt-Anchor" href="#信号量驱动的io模型"></a> 信号量驱动的IO模型</h2>
+<p>应用进程先调用系统的sigacation,建立SIGIO信号，接着等待系统内核主动通知是否有准备就绪的可读IO，接下来交给用户进程进行数据读取</p>
+<h2 id="异步io"><a class="markdownIt-Anchor" href="#异步io"></a> 异步IO</h2>
+<p>异步IO是指从等待IO时间准备就绪到IO数据独居都已经在系统内核执行完成，整个过程无需用户进程参与，也不需要读取IO数据，直接用即可，真正的一部IO只有window实现了，linux目前大多只实现了IO多路复用(基于select/poll/epoll)</p>
+<h1 id="操作系统内核selectpollepoll的区别"><a class="markdownIt-Anchor" href="#操作系统内核selectpollepoll的区别"></a> 操作系统内核select/poll/epoll的区别</h1>
+<p>这三个都是IO多路复用操作系统底层的实现，都是同步非阻塞是的IO模型，这是三个不同的发展阶段</p>
+<h2 id="最开始的select"><a class="markdownIt-Anchor" href="#最开始的select"></a> 最开始的select</h2>
+<p><img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/images/1716285479387.png" alt></p>
+<p>如上图所示，用户进程需要记录所有需要遍历的套接字集合，传给操作系统内核帮我们挨个轮询是否有准备就绪的IO，且linux最大上限是1024连接描述符</p>
+<h2 id="poll"><a class="markdownIt-Anchor" href="#poll"></a> poll</h2>
+<p>本质上原理和select一样，算是select改进版本，但底层还是有系统内核进行轮询实现，主要改进是在文件描述符上限远大于1024</p>
+<h2 id="epoll"><a class="markdownIt-Anchor" href="#epoll"></a> epoll</h2>
+<p>这是目前主流的linux多路复用底层实现，它相较于select/poll。操作系统内核不在使用主动轮询的方式来确定是否有可用的IO socket,而是基于网络IO事件的主动通知机制，准备就绪的IO事件会被操作系统内核缓存起来(红黑树结构)，等待用户进程调用epoll_wait时返回。返回之后任然需要用户进程进行主动读取IO数据<br>
+<img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/images/1716286989659.png" alt></p>
+
+            </div>
+            <hr />
+
+            <!-- 公众号图片 -->
+            <img src="/gongzhonghao.png" width="100%"/>
+
+            
+
+<!--             <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script> -->
+
+            
+
+
+        </div>
+    </div>
+
+    
+    <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: 'ac537cb9fe0e733330eb',
+        clientSecret: 'b3c9fa63fd196e83158a79b40dfe97529bd09de0',
+        repo: 'okeeper.github.io',
+        owner: 'okeeper',
+        admin: "okeeper",
+        id: 'hou-duan-jia-gou/redis-wei-shi-me-kuai/',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/hou-duan-jia-gou/flink-ji-zhu-yuan-li/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Flink技术架构及原理">
+                        
+                        <span class="card-title">Flink技术架构及原理</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                             Flink简介
+Flink是一个用于分布式流处理和批处理的大数据处理框架。它由Apache基金会维护，旨在提供高吞吐量、低延迟的数据处理能力，并且支持复杂的事件处理和状态管理。它的重点能力就是同时支持批处理和流处理的有状态计算
+
+Flin
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2024-05-27
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/后端-架构/" class="post-category" target="_blank">
+                                    后端&架构
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/后端-架构/" target="_blank">
+                        <span class="chip bg-color">后端&amp;架构</span>
+                    </a>
+                    
+                    <a href="/tags/Flink/" target="_blank">
+                        <span class="chip bg-color">Flink</span>
+                    </a>
+                    
+                    <a href="/tags/大数据/" target="_blank">
+                        <span class="chip bg-color">大数据</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/hou-duan-jia-gou/hu-lian-wang-da-han-de-fen-bu-shi-id-jie-jue-fang-an/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="互联网大厂中分布式ID解决方案">
+                        
+                        <span class="card-title">互联网大厂中分布式ID解决方案</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            在高并发、高可用场景中，为了满足后续数据库水平扩容，如由于日益增长的数据需要分库分表时，通过数据库默认的ID生成策略显然有诸多问题，例如他只能满足在单个数据库实例中唯一，不能全局唯一，其次如果所有的insert依赖数据库的自增也会有一定的性能问题。这就引出了我们今天的主角：分布式ID生成
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2024-05-17
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/后端/" class="post-category" target="_blank">
+                                    后端
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/架构/" target="_blank">
+                        <span class="chip bg-color">架构</span>
+                    </a>
+                    
+                    <a href="/tags/分布式ID/" target="_blank">
+                        <span class="chip bg-color">分布式ID</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            &copy; 2017-2024 Okeeper. All Rights Reserved. &nbsp; 粤ICP备2024178587号
+            
+            &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+            <span class="white-color">80.9k</span>
+            
+
+            <br>
+            <span id="sitetime"></span>
+
+            
+            
+            <br>
+            
+            <span id="busuanzi_container_site_pv" style='display:none'>
+                <i class="fa fa-heart-o"></i>
+                本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv" style='display:none'>
+                人次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+            </span>
+            
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/okeeper" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:zhangyue0808@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+    <a href="https://user.qzone.qq.com/610998697" class="tooltipped" target="_blank" data-tooltip="访问我的QQ空间" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+    <a href="https://weibo.com/okeeper" class="tooltipped" target="_blank" data-tooltip="关注我的微博" data-position="top" data-delay="50">
+        <i class="fa fa-weibo"></i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<script language=javascript>
+    function siteTime() {
+        window.setTimeout("siteTime()", 1000);
+        var seconds = 1000;
+        var minutes = seconds * 60;
+        var hours = minutes * 60;
+        var days = hours * 24;
+        var years = days * 365;
+        var today = new Date();
+        var todayYear = today.getFullYear();
+        var todayMonth = today.getMonth() + 1;
+        var todayDate = today.getDate();
+        var todayHour = today.getHours();
+        var todayMinute = today.getMinutes();
+        var todaySecond = today.getSeconds();
+        /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+        year - 作为date对象的年份，为4位年份值
+        month - 0-11之间的整数，做为date对象的月份
+        day - 1-31之间的整数，做为date对象的天数
+        hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+        minutes - 0-59之间的整数，做为date对象的分钟数
+        seconds - 0-59之间的整数，做为date对象的秒数
+        microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+        var t1 = Date.UTC(2018, 01, 01, 00, 00, 00); //北京时间2018-2-13 00:00:00
+        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+        var diff = t2 - t1;
+        var diffYears = Math.floor(diff / years);
+        var diffDays = Math.floor((diff / days) - diffYears * 365);
+        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
+        document.getElementById("sitetime").innerHTML = "本站已运行 " + diffYears + " 年 " + diffDays + " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+    }/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+    siteTime();
+</script>
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9PRXGJ8X9Z"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'G-9PRXGJ8X9Z');
+</script>
+
+
+
+    
+
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+    <!-- 雪花特效 -->
+    
+
+</body>
+
+</html>
