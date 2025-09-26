@@ -1,0 +1,994 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Meta开源320亿参数代码世界模型CWM：它真的“懂”代码怎么跑, 张跃 zhangyue okeeper Java Alibaba 软件工程 架构师 软件笔记 技术分享 观点 随笔">
+    <meta name="baidu-site-verification" content="MWAMkewsPN">
+    <meta name="google-site-verification" content>
+    <meta name="360-site-verification" content>
+    <meta name="description" content="Meta FAIR团队刚刚扔出一颗重磅炸弹——Code World Model（CWM），一个320亿参数、支持131k上下文的密集型语言模型，专为代码生成和推理而生。更关键的是，它不是又一个“会写代码的LLM”，而是首个系统性引入“世界模">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Meta开源320亿参数代码世界模型CWM：它真的“懂”代码怎么跑 | 神笔君|Okeeper</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <!--数学公式-->
+    <link rel="stylesheet" href="https://lib.baomitu.com/KaTeX/latest/katex.min.css">
+
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?46e79e71af0709a5b9106bf20cecc493";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+<link rel="stylesheet" href="/css/prism-okaidia.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><script src="/js/prism.js"></script>
+<script src="/js/prism-line-numbers.min.js"></script></head>
+
+<body>
+
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/favicon.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">神笔君|Okeeper</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    <li class="hide-on-med-and-down">
+        <a href="http://model-bridge.okeeper.com" target="_blank" class="waves-effect waves-light">
+            <i class="fa fa-book"></i>
+            <span>ModelBridge/魔桥</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/contact" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>留言板</span>
+        </a>
+    </li>
+    
+
+
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/favicon.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">神笔君|Okeeper</div>
+        <div class="logo-desc">
+            
+            张跃 | 软件工程 | 架构师 | 软件笔记 | 技术分享 | 观点 | 随笔
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/contact" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                留言板
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/okeeper" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/okeeper" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        Meta开源320亿参数代码世界模型CWM：它真的“懂”代码怎么跑
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                        <a href="/tags/人工智能/" target="_blank">
+                            <span class="chip bg-color">人工智能</span>
+                        </a>
+                        
+                        <a href="/tags/AI/" target="_blank">
+                            <span class="chip bg-color">AI</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                        <a href="/categories/人工智能/" class="post-category" target="_blank">
+                            人工智能
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2025-09-26
+                </div>
+
+                <div class="post-author info-break-policy">
+                    <i class="fa fa-user-o fa-fw"></i>作者:&nbsp;&nbsp;
+                    
+                    okeeper
+                    
+                </div>
+
+                
+                
+                <div class="info-break-policy">
+                    <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    1.5k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    5 分
+                </div>
+                
+                
+
+                
+                <div id="busuanzi_container_page_pv" class="info-break-policy">
+                    <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                    <span id="busuanzi_value_page_pv"></span>
+                </div>
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>Meta FAIR团队刚刚扔出一颗重磅炸弹——<strong>Code World Model（CWM）</strong>，一个320亿参数、支持131k上下文的密集型语言模型，专为代码生成和推理而生。更关键的是，它不是又一个“会写代码的LLM”，而是<strong>首个系统性引入“世界模型”概念的代码大模型</strong>。</p>
+<p>简单说：CWM不仅能写代码，还能“脑内模拟”这段代码跑起来时变量怎么变、函数怎么调、哪里会崩——就像程序员用pdb单步调试那样。</p>
+<p>这事儿有多重要？看数据就知道：在权威代码评测SWE-bench Verified上，CWM拿下<strong>65.8分</strong>，碾压所有开源同规模模型，直逼GPT-4水平。</p>
+<p><img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/blog-images/202509/09558274145b5b9c09da1eff8c769bf7.png" alt="模型性能对比图"></p>
+<p>连Yann LeCun本人都亲自转发了项目发布消息，还顺手回怼了一个质疑者：“这是编码，不是ASI（人工通用智能）。”<br>
+<img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/blog-images/202509/ad2cdc8839e19c428b031a55914908cf.png" alt="LeCun回应质疑"></p>
+<h2 id="为什么现有代码模型写得对但跑不通"><a class="markdownIt-Anchor" href="#为什么现有代码模型写得对但跑不通"></a> 为什么现有代码模型“写得对但跑不通”？</h2>
+<p>当前主流代码大模型（比如CodeLlama、DeepSeek-Coder）本质上还是“文本预测器”。它们把代码当成一串字符序列，靠统计规律猜下一个token是什么。结果就是：生成的代码语法正确、结构漂亮，但一跑就错——变量未定义、边界条件漏判、副作用没考虑。</p>
+<p>问题出在哪？<strong>它们不懂“执行”</strong>。</p>
+<p>CWM团队一针见血：如果模型连“变量x在第5行被赋值为3”这种动态状态变化都不知道，怎么可能写出可靠代码？</p>
+<p>于是，他们干了件狠事：<strong>让模型直接学习“代码执行轨迹”</strong>。</p>
+<p>比如下面这个统计&quot;strawberry&quot;中’r’个数的函数，CWM不仅能生成代码，还能一步步追踪执行状态：</p>
+<ul>
+<li>初始：<code>count = 0</code></li>
+<li>第一次循环：<code>char = 's'</code> → <code>count</code>不变</li>
+<li>第二次循环：<code>char = 't'</code> → <code>count</code>不变</li>
+<li>……</li>
+<li>第六次循环：<code>char = 'r'</code> → <code>count = 1</code></li>
+<li>……</li>
+<li>最终返回 <code>count = 3</code></li>
+</ul>
+<p><img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/blog-images/202509/6fcfca2578bfe7d32634816c946b1c1e.png" alt="代码执行追踪"></p>
+<p>这种能力让CWM实现了三大突破：</p>
+<h3 id="1-代码执行模拟提前预判哪里会崩"><a class="markdownIt-Anchor" href="#1-代码执行模拟提前预判哪里会崩"></a> 1. 代码执行模拟：提前预判哪里会崩</h3>
+<p>CWM能在生成代码的同时，模拟执行路径，预判空指针、越界访问、死循环等常见错误。相当于内置了一个“神经调试器”。</p>
+<h3 id="2-自我修复写错自动改改完自动测"><a class="markdownIt-Anchor" href="#2-自我修复写错自动改改完自动测"></a> 2. 自我修复：写错自动改，改完自动测</h3>
+<p>它能自动生成测试用例，发现失败后尝试多种修复策略——写→测→改→再测，形成完整开发闭环。</p>
+<h3 id="3-推理规划复杂问题拆解成可执行步骤"><a class="markdownIt-Anchor" href="#3-推理规划复杂问题拆解成可执行步骤"></a> 3. 推理规划：复杂问题拆解成可执行步骤</h3>
+<p>面对编程竞赛题或数学问题，CWM会先规划函数结构、变量设计，再结合执行预测逐步生成验证，展现出类人的多步推理能力。</p>
+<h2 id="技术底牌32b参数-三阶段训练"><a class="markdownIt-Anchor" href="#技术底牌32b参数-三阶段训练"></a> 技术底牌：32B参数 + 三阶段训练</h2>
+<p>CWM不是凭空冒出来的。它的架构和训练流程都经过精心设计。</p>
+<p><strong>模型参数</strong>：32B密集模型，64层Transformer，使用SwiGLU激活函数，支持131k上下文——足够塞进整个中型项目的代码库。</p>
+<p><img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/blog-images/202509/6299372ff03905bdf77b59c9318ea993.png" alt="CWM参数表"></p>
+<p><strong>训练分三步走</strong>：</p>
+<ol>
+<li><strong>预训练</strong>：8T tokens通用语料（30%为代码），上下文8k，打好基础。</li>
+<li><strong>中期训练（关键！）</strong>：5T tokens的“世界建模”数据，包括：
+<ul>
+<li>数千万Python函数的执行轨迹（变量状态变化记录）</li>
+<li>300万条智能体在Docker中真实修复Bug的交互日志</li>
+<li>执行过程的自然语言描述（便于泛化）</li>
+</ul>
+</li>
+<li><strong>后训练</strong>：100B tokens监督微调 + 172B tokens多任务强化学习，覆盖SWE-bench、编程竞赛、数学题等真实任务。</li>
+</ol>
+<p><img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/blog-images/202509/e81dad8c3357b80d6d954cd82b8c1765.png" alt="三阶段训练流程"></p>
+<p>特别值得注意的是强化学习阶段——Meta用了异步RL架构，多个“Worker”并行生成代码并执行反馈，Trainer实时更新模型，效率拉满。</p>
+<p><img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/blog-images/202509/9d014800a5ceb7d3b869e91f98656bfc.png" alt="CWM-RL训练图"></p>
+<h2 id="性能实测不只是理论漂亮"><a class="markdownIt-Anchor" href="#性能实测不只是理论漂亮"></a> 性能实测：不只是理论漂亮</h2>
+<p>CWM在多个硬核评测中表现亮眼：</p>
+<ul>
+<li><strong>SWE-bench Verified</strong>：65.8%（开源模型第一）</li>
+<li><strong>LiveCodeBench v5</strong>：68.6%（高复杂度任务）</li>
+<li><strong>Math-500</strong>：96.6%</li>
+<li><strong>Terminal-Bench</strong>：26.3%（超过Gemini 2.5 Pro）</li>
+</ul>
+<p>从模型规模与性能的关系看，CWM（紫色点）明显优于同体量模型，甚至逼近更大参数的闭源模型。</p>
+<p><img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/blog-images/202509/6b84c971e0394a7f7a8c805508d2b2ef.png" alt="模型规模性能图"></p>
+<p>不过也得说清楚：<strong>目前CWM只支持Python</strong>。C++、Java等语言的世界建模还没做，符号执行、内存安全分析这些更复杂的场景也还没覆盖。</p>
+<h2 id="开源诚意足但别指望拿来当聊天机器人"><a class="markdownIt-Anchor" href="#开源诚意足但别指望拿来当聊天机器人"></a> 开源诚意足，但别指望拿来当聊天机器人</h2>
+<p>Meta这次开源相当大方：模型权重、训练代码、各阶段checkpoint全部放出，连训练细节都写得明明白白。</p>
+<p>但有两个重要限制：</p>
+<ol>
+<li><strong>CWM没做RLHF，不适合对话</strong>——你别指望拿它当Copilot聊天。</li>
+<li><strong>仅限非商业研究使用</strong>——想商用？先找Meta谈授权。</li>
+</ol>
+<p>项目核心成员Gabriel Synnaeve在推文中难掩兴奋：“为CodeGen团队骄傲！博士生和资深工程师一起拼，Meta领导层全力支持。”<br>
+<img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/blog-images/202509/d0c101c64f0657e936f86735d5f71f54.png" alt="团队致谢推文"></p>
+<h2 id="世界模型是代码ai的下一个拐点吗"><a class="markdownIt-Anchor" href="#世界模型是代码ai的下一个拐点吗"></a> 世界模型，是代码AI的下一个拐点吗？</h2>
+<p>CWM的出现，其实是在回答一个根本问题：<strong>大模型要怎样才能真正理解代码？</strong></p>
+<p>过去我们靠堆数据、扩参数，让模型“见过”足够多的代码模式。但CWM走的是另一条路：<strong>教模型理解代码的“物理规律”——执行时的状态变迁</strong>。</p>
+<p>这有点像从“背菜谱”升级到“懂火候”。你背一万道菜谱，不如亲手炒过一百次知道油温几成、什么时候该翻锅。</p>
+<p>当然，现在说CWM能取代程序员还太早。但它确实证明了一件事：<strong>让AI理解“世界如何运作”，比让它记住“世界长什么样”更重要</strong>。</p>
+<p>Meta没开源二维码、没搞扫码入群、没推付费课程——就安安静静扔出一个技术突破，然后问了句：“如果大模型能理解世界，它能成为更好的程序员吗？”</p>
+<p>我觉得，这个问题，值得每个写代码的人想想。</p>
+
+            </div>
+            <hr />
+
+            <!-- 公众号图片 -->
+            
+                <img src="/gongzhonghao2.png" width="100%"/>
+            
+
+            
+
+<!--             <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script> -->
+
+            
+
+
+        </div>
+    </div>
+
+    
+    <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: 'ac537cb9fe0e733330eb',
+        clientSecret: 'b3c9fa63fd196e83158a79b40dfe97529bd09de0',
+        repo: 'okeeper.github.io',
+        owner: 'okeeper',
+        admin: "okeeper",
+        id: 'ren-gong-zhi-neng/meta-kai-yuan-320-yi-can-shu-dai-ma-shi-jie-mo-xing-cwm-ta-zhen-de-dong-dai-ma-zen-me-pao-3/',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/ren-gong-zhi-neng/meta-kai-yuan-320-yi-can-shu-dai-ma-shi-jie-mo-xing-cwm-ta-zhen-de-dong-dai-ma-zen-me-pao-3/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="Meta开源320亿参数代码世界模型CWM：它真的“懂”代码怎么跑">
+                        
+                        <span class="card-title">Meta开源320亿参数代码世界模型CWM：它真的“懂”代码怎么跑</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Meta FAIR团队刚刚扔出一颗重磅炸弹——Code World Model（CWM），一个320亿参数、支持131k上下文的密集型语言模型，专为代码生成和推理而生。更关键的是，它不是又一个“会写代码的LLM”，而是首个系统性引入“世界模
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2025-09-26
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/人工智能/" class="post-category" target="_blank">
+                                    人工智能
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/人工智能/" target="_blank">
+                        <span class="chip bg-color">人工智能</span>
+                    </a>
+                    
+                    <a href="/tags/AI/" target="_blank">
+                        <span class="chip bg-color">AI</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/ren-gong-zhi-neng/cong-shi-yan-shi-dao-sheng-chan-xian-a-li-yun-qi-da-hui-qi-kuan-da-mo-xing-ru-he-gai-xie-ai-ge-ju-3/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="从实验室到生产线：阿里云栖大会七款大模型如何改写AI格局？">
+                        
+                        <span class="card-title">从实验室到生产线：阿里云栖大会七款大模型如何改写AI格局？</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            刚结束的2025云栖大会，阿里云把压箱底的AI技术全亮出来了。不是简单更新几个模型参数，而是直接甩出覆盖全尺寸、全模态的大模型家族，从基础架构到应用落地来了个&quot;全栈升级&quot;。说实话，看完现场发布数据，连国外AI圈都坐不住了
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2025-09-24
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/人工智能/" class="post-category" target="_blank">
+                                    人工智能
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/人工智能/" target="_blank">
+                        <span class="chip bg-color">人工智能</span>
+                    </a>
+                    
+                    <a href="/tags/AI/" target="_blank">
+                        <span class="chip bg-color">AI</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            &copy; 2017-2024 Okeeper. All Rights Reserved. &nbsp; 粤ICP备2024178587号
+            
+            &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+            <span class="white-color">180.6k</span>
+            
+
+            <br>
+            <span id="sitetime"></span>
+
+            
+            
+            <br>
+            
+            <span id="busuanzi_container_site_pv" style='display:none'>
+                <i class="fa fa-heart-o"></i>
+                本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv" style='display:none'>
+                人次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+            </span>
+            
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/okeeper" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:zhangyue0808@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+    <a href="https://user.qzone.qq.com/610998697" class="tooltipped" target="_blank" data-tooltip="访问我的QQ空间" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+    <a href="https://weibo.com/okeeper" class="tooltipped" target="_blank" data-tooltip="关注我的微博" data-position="top" data-delay="50">
+        <i class="fa fa-weibo"></i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<script language=javascript>
+    function siteTime() {
+        window.setTimeout("siteTime()", 1000);
+        var seconds = 1000;
+        var minutes = seconds * 60;
+        var hours = minutes * 60;
+        var days = hours * 24;
+        var years = days * 365;
+        var today = new Date();
+        var todayYear = today.getFullYear();
+        var todayMonth = today.getMonth() + 1;
+        var todayDate = today.getDate();
+        var todayHour = today.getHours();
+        var todayMinute = today.getMinutes();
+        var todaySecond = today.getSeconds();
+        /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+        year - 作为date对象的年份，为4位年份值
+        month - 0-11之间的整数，做为date对象的月份
+        day - 1-31之间的整数，做为date对象的天数
+        hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+        minutes - 0-59之间的整数，做为date对象的分钟数
+        seconds - 0-59之间的整数，做为date对象的秒数
+        microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+        var t1 = Date.UTC(2018, 01, 01, 00, 00, 00); //北京时间2018-2-13 00:00:00
+        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+        var diff = t2 - t1;
+        var diffYears = Math.floor(diff / years);
+        var diffDays = Math.floor((diff / days) - diffYears * 365);
+        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
+        document.getElementById("sitetime").innerHTML = "本站已运行 " + diffYears + " 年 " + diffDays + " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+    }/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+    siteTime();
+</script>
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9PRXGJ8X9Z"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'G-9PRXGJ8X9Z');
+</script>
+
+
+
+    
+
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+    <!-- 雪花特效 -->
+    
+
+</body>
+
+</html>

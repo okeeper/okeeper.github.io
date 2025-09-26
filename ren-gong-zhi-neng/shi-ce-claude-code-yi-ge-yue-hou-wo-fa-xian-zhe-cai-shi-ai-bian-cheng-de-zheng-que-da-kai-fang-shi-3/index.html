@@ -1,0 +1,990 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="实测Claude Code一个月后，我发现这才是AI编程的正确打开方式, 张跃 zhangyue okeeper Java Alibaba 软件工程 架构师 软件笔记 技术分享 观点 随笔">
+    <meta name="baidu-site-verification" content="MWAMkewsPN">
+    <meta name="google-site-verification" content>
+    <meta name="360-site-verification" content>
+    <meta name="description" content="作为一个写了十几年代码的老程序员，最近被Claude Code彻底颠覆了认知——这玩意儿真不是简单的代码生成工具，而是能独立完成整个系统的AI开发伙伴。
+上周我让它从零开始写一个用户行为分析系统，原本以为需要三天时间手动调试，结果它直接生成">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>实测Claude Code一个月后，我发现这才是AI编程的正确打开方式 | 神笔君|Okeeper</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <!--数学公式-->
+    <link rel="stylesheet" href="https://lib.baomitu.com/KaTeX/latest/katex.min.css">
+
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?46e79e71af0709a5b9106bf20cecc493";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+<link rel="stylesheet" href="/css/prism-okaidia.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><script src="/js/prism.js"></script>
+<script src="/js/prism-line-numbers.min.js"></script></head>
+
+<body>
+
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/favicon.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">神笔君|Okeeper</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    <li class="hide-on-med-and-down">
+        <a href="http://model-bridge.okeeper.com" target="_blank" class="waves-effect waves-light">
+            <i class="fa fa-book"></i>
+            <span>ModelBridge/魔桥</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/contact" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>留言板</span>
+        </a>
+    </li>
+    
+
+
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/favicon.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">神笔君|Okeeper</div>
+        <div class="logo-desc">
+            
+            张跃 | 软件工程 | 架构师 | 软件笔记 | 技术分享 | 观点 | 随笔
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/contact" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                留言板
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/okeeper" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/okeeper" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        实测Claude Code一个月后，我发现这才是AI编程的正确打开方式
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                        <a href="/tags/人工智能/" target="_blank">
+                            <span class="chip bg-color">人工智能</span>
+                        </a>
+                        
+                        <a href="/tags/AI/" target="_blank">
+                            <span class="chip bg-color">AI</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                        <a href="/categories/人工智能/" class="post-category" target="_blank">
+                            人工智能
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2025-07-29
+                </div>
+
+                <div class="post-author info-break-policy">
+                    <i class="fa fa-user-o fa-fw"></i>作者:&nbsp;&nbsp;
+                    
+                    okeeper
+                    
+                </div>
+
+                
+                
+                <div class="info-break-policy">
+                    <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    2k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    7 分
+                </div>
+                
+                
+
+                
+                <div id="busuanzi_container_page_pv" class="info-break-policy">
+                    <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                    <span id="busuanzi_value_page_pv"></span>
+                </div>
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>作为一个写了十几年代码的老程序员，最近被Claude Code彻底颠覆了认知——这玩意儿真不是简单的代码生成工具，而是能独立完成整个系统的AI开发伙伴。</p>
+<p>上周我让它从零开始写一个用户行为分析系统，原本以为需要三天时间手动调试，结果它直接生成了完整代码库，包含数据采集、清洗、可视化全流程，甚至还自带单元测试。最让我惊讶的是，它居然主动引入了Context7工具来管理项目上下文，避免了传统AI编程&quot;失忆&quot;的问题。</p>
+<p>今天就来分享下我这一个月的深度使用经验，从基础安装到进阶技巧，帮你真正把Claude Code用出生产力。</p>
+<h2 id="一-官方原版体验为什么说这才是性能天花板"><a class="markdownIt-Anchor" href="#一-官方原版体验为什么说这才是性能天花板"></a> 一、官方原版体验：为什么说这才是&quot;性能天花板&quot;</h2>
+<p>第一次用Claude Code时，我是抱着怀疑态度的——毕竟市面上吹上天的AI编程工具太多了。但当我用Max订阅+Opus模型跑通第一个微服务时，不得不承认：这性能确实没对手。</p>
+<h3 id="安装其实很简单"><a class="markdownIt-Anchor" href="#安装其实很简单"></a> 安装其实很简单</h3>
+<p>官方提供了npm一键安装，两条命令就能搞定：</p>
+<pre class="highlight"><code class="bash"><span class="hljs-comment"># 使用npm安装</span>
+npm install -g @anthropic-ai/claude-code 
+
+<span class="hljs-comment"># 启动Claude Code</span>
+claude 
+</code></pre>
+<p>启动后会看到这个界面，提供两种验证方式：账号验证和API验证（图1）。如果你是Claude Pro或Max订阅用户，直接用账号登录就行，记得开全局代理；有API Key的话直接填进去更稳定。</p>
+<p><img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/blog-images/202509/1f69b22773d4d9b3b1c86d29c324197f.png" alt="登录方式选择界面"></p>
+<p><strong>为什么推荐原版？</strong> 因为这是唯一能发挥Claude Code全部性能的方式。特别是Max订阅+Opus模型的组合，处理复杂逻辑时的思路清晰度远超其他方案。我测试过让它重构一个有2000行代码的遗留项目，它不仅完成了模块化拆分，还生成了完整的重构文档，这种深度理解能力目前没看到平替能做到。</p>
+<h3 id="免费额度获取技巧"><a class="markdownIt-Anchor" href="#免费额度获取技巧"></a> 免费额度获取技巧</h3>
+<p>国内用户可能觉得订阅太贵，其实AnyRouter提供了100美元免费额度（注册链接：<a href="https://anyrouter.top/register?aff=AOHF%EF%BC%89%E3%80%82%E6%B3%A8%E5%86%8C%E5%90%8E%E5%9C%A8%E6%8E%A7%E5%88%B6%E5%8F%B0%E6%B7%BB%E5%8A%A0%E4%BB%A4%E7%89%8C%EF%BC%88%E5%9B%BE2%EF%BC%89%EF%BC%8C%E7%84%B6%E5%90%8E%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%EF%BC%9A" target="_blank" rel="noopener">https://anyrouter.top/register?aff=AOHF）。注册后在控制台添加令牌（图2），然后配置环境变量：</a></p>
+<pre class="highlight"><code class="bash"><span class="hljs-built_in">export</span> ANTHROPIC_AUTH_TOKEN=你的令牌
+<span class="hljs-built_in">export</span> ANTHROPIC_BASE_URL=https://anyrouter.top 
+claude 
+</code></pre>
+<p><img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/blog-images/202509/6d8a58e4665bf975b73941f2a3d007b6.png" alt="API令牌管理界面"></p>
+<p>不过要注意，最近因为滥用问题，新用户注册需要Linux DO论坛账号（图3），而且登录后尽量不要退出，频繁切换设备容易封号。</p>
+<p><img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/blog-images/202509/1305f95056a1e0506d4c33b4adcc57c5.png" alt="注册限制公告"></p>
+<h2 id="二-国内可用方案不是所有平替都叫平替"><a class="markdownIt-Anchor" href="#二-国内可用方案不是所有平替都叫平替"></a> 二、国内可用方案：不是所有平替都叫&quot;平替&quot;</h2>
+<p>很多朋友问：“没有海外账号怎么办？” 这一个月我测试了5种国内可用方案，结论是：<strong>免费的才是最贵的</strong>——那些号称&quot;平替&quot;的方案，要么性能打折，要么隐性成本高。但如果实在没办法，这两个方案可以试试。</p>
+<h3 id="kimi-k2性价比之王"><a class="markdownIt-Anchor" href="#kimi-k2性价比之王"></a> Kimi K2：性价比之王</h3>
+<p>MoonShot的Kimi K2模型是目前最接近Claude Code体验的平替。Linux DO论坛上有开发者验证过，它能完美适配Claude Code的工具调用逻辑（图6）。</p>
+<p><img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/blog-images/202509/efbaa159c86725714670d8165d1c5823.png" alt="Kimi K2替代方案"></p>
+<p>从参数上看，Kimi K2的128K上下文长度（图7）足够处理中型项目，输入0.03元/千tokens，输出0.06元/千tokens的价格也比较亲民。</p>
+<p><img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/blog-images/202509/ac1b2d0c13e41913822cbe2ca13bd463.png" alt="Kimi K2模型参数"></p>
+<p>安装也很简单，一条命令搞定：</p>
+<pre class="highlight"><code class="bash">bash -c <span class="hljs-string">&quot;<span class="hljs-subst">$(curl -fsSL https://raw.githubusercontent.com/LLM-Red-Team/kimi-cc/refs/heads/main/install.sh)</span>&quot;</span> 
+</code></pre>
+<p>不过提醒下，建议至少充值50元，不然API并发限制会让你抓狂——我刚开始充了10元，结果调试时频繁触发限流，反而浪费了更多时间。</p>
+<h3 id="opencode开源方案的灵活选择"><a class="markdownIt-Anchor" href="#opencode开源方案的灵活选择"></a> OpenCode：开源方案的灵活选择</h3>
+<p>如果你讨厌被限制，OpenCode绝对值得一试。这个开源工具支持Groq、DeepSeek等多个平台的模型（图12），我测试用Groq跑Kimi K2时，响应速度比官方API还快10%（图13）。</p>
+<p><img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/blog-images/202509/171cbcc3c1953d697f720d7432935703.png" alt="模型提供商选择"></p>
+<p><img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/blog-images/202509/251f4ccf205c679e3b02c92dd27d8830.png" alt="Kimi K2运行界面"></p>
+<p>安装命令：</p>
+<pre class="highlight"><code class="bash">curl -fsSL https://opencode.ai/install | bash 
+</code></pre>
+<p>OpenCode的优势在于完全开源（GitHub 8.3k星，图10），你甚至可以自己魔改代码，添加国内模型支持。但缺点是需要手动配置上下文管理，对新手不太友好。</p>
+<p><img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/blog-images/202509/95fa6d4a4a563f51be00182741816ed6.png" alt="代理工具项目页"></p>
+<h2 id="三-进阶技巧从能用到用好的关键一步"><a class="markdownIt-Anchor" href="#三-进阶技巧从能用到用好的关键一步"></a> 三、进阶技巧：从&quot;能用&quot;到&quot;用好&quot;的关键一步</h2>
+<p>用了两周后，我发现很多人浪费了Claude Code 50%的潜力——不是模型不行，而是配置没到位。分享几个让效率翻倍的技巧：</p>
+<h3 id="多窗口并行时间管理大师的秘密"><a class="markdownIt-Anchor" href="#多窗口并行时间管理大师的秘密"></a> 多窗口并行：时间管理大师的秘密</h3>
+<p>Mac用户强烈推荐iTerm2终端，它支持分屏多开（图15）。我通常同时开4个窗口：一个处理API开发，一个写前端组件，一个调试数据库，一个生成文档——这样能把等待时间压缩到最低。</p>
+<p><img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/blog-images/202509/dfc9aea664faee234fd63ccfd808ac16.png" alt="多窗口并行操作"></p>
+<h3 id="github集成一键发布的快感"><a class="markdownIt-Anchor" href="#github集成一键发布的快感"></a> GitHub集成：一键发布的快感</h3>
+<p>运行<code>/install-github-app</code>命令（图16），授权后就能让Claude Code自动管理版本控制。上周我开发的工具库，从代码写完到发布GitHub，全程没手动敲一个git命令——AI自动帮我生成了CHANGELOG，提交PR，甚至回复了review意见。</p>
+<p><img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/blog-images/202509/0ee2a88dcb6c566c1571b0ae70a74604.png" alt="GitHub应用安装"></p>
+<h2 id="四-从提示工程到上下文工程ai编程的范式转移"><a class="markdownIt-Anchor" href="#四-从提示工程到上下文工程ai编程的范式转移"></a> 四、从提示工程到上下文工程：AI编程的范式转移</h2>
+<p>这可能是这篇文章最重要的部分——<strong>现在玩AI编程，早就不是靠几句提示词就能赢的时代了</strong>。</p>
+<h3 id="什么是上下文工程"><a class="markdownIt-Anchor" href="#什么是上下文工程"></a> 什么是上下文工程？</h3>
+<p>传统的提示工程，就像给AI递一张便利贴，上面写着&quot;帮我写个登录功能&quot;；而上下文工程，是给AI提供一整套项目剧本：包括架构文档、代码规范、错误案例、甚至团队协作习惯（图20）。</p>
+<p><img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/blog-images/202509/4d5cf96c29dfde6bab918491d6595678.png" alt="Context7工具介绍"></p>
+<p>举个例子：我用Claude Code开发支付模块时，先在context文件夹里放了公司的支付接口文档、历史项目的安全漏洞报告、甚至还有产品经理的需求变更记录。结果AI不仅写出了符合规范的代码，还主动添加了防重复支付的逻辑——这就是上下文的力量。</p>
+<h3 id="必用工具context7"><a class="markdownIt-Anchor" href="#必用工具context7"></a> 必用工具：Context7</h3>
+<p>这个GitHub上22.7k星的开源项目（图21）能帮你自动提取代码库的上下文信息。安装后，它会生成结构化的文档，确保AI始终&quot;记得&quot;项目细节。</p>
+<p><img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/blog-images/202509/fd80879c9da2d91a0924db7104c16f34.png" alt="Context7项目仓库"></p>
+<p>安装命令：</p>
+<pre class="highlight"><code class="bash">claude mcp add context7 -- npx -y @upstash/context7-mcp 
+</code></pre>
+<h2 id="五-写在最后ai编程的终点不是取代程序员"><a class="markdownIt-Anchor" href="#五-写在最后ai编程的终点不是取代程序员"></a> 五、写在最后：AI编程的终点不是取代程序员</h2>
+<p>这一个月用下来，最直观的感受是：<strong>AI正在把程序员从&quot;写代码&quot;解放到&quot;解决问题&quot;</strong>。以前我花80%时间写代码，20%时间思考需求；现在反过来，20%时间指导AI，80%时间做架构设计和业务理解。</p>
+<p>但这也带来一个问题：很多人开始焦虑&quot;程序员会失业吗？&quot;我的答案是：<strong>会失业的从来不是程序员，而是只会写代码的程序员</strong>。</p>
+<p>当Claude Code能在10分钟内生成一个CRUD接口时，真正值钱的不再是&quot;怎么实现&quot;，而是&quot;为什么要实现&quot;——理解业务痛点，设计合理架构，判断技术选型，这些需要人类经验的能力，短期内AI还拿不走。</p>
+<p>最后分享一个小技巧：用Claude Code时，在复杂任务前加上&quot;ultrathink&quot;指令（比&quot;think harder&quot;更强的思考模式），虽然会多消耗30%的API额度，但能让AI生成的方案质量提升一个档次。毕竟，在AI时代，<strong>真正的奢侈不是算力，而是思考的深度</strong>。</p>
+<p>如果你也在探索AI编程的边界，欢迎在评论区分享你的体验——毕竟，与AI共舞的路上，我们都还是新手。</p>
+
+            </div>
+            <hr />
+
+            <!-- 公众号图片 -->
+            
+                <img src="/gongzhonghao2.png" width="100%"/>
+            
+
+            
+
+<!--             <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script> -->
+
+            
+
+
+        </div>
+    </div>
+
+    
+    <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: 'ac537cb9fe0e733330eb',
+        clientSecret: 'b3c9fa63fd196e83158a79b40dfe97529bd09de0',
+        repo: 'okeeper.github.io',
+        owner: 'okeeper',
+        admin: "okeeper",
+        id: 'ren-gong-zhi-neng/shi-ce-claude-code-yi-ge-yue-hou-wo-fa-xian-zhe-cai-shi-ai-bian-cheng-de-zheng-que-da-kai-fang-shi-3/',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/ren-gong-zhi-neng/shi-ce-glm-4.5-guo-chan-da-mo-xing-zhe-ci-zhen-de-ba-can-shu-xiao-lu-wan-ming-bai-liao-3/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/24.jpg" class="responsive-img" alt="实测GLM-4.5：国产大模型这次真的把"参数效率"玩明白了？">
+                        
+                        <span class="card-title">实测GLM-4.5：国产大模型这次真的把"参数效率"玩明白了？</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            作为一个每天都在跟各种AI模型打交道的科技爱好者，最近试了不少新出的大模型，发现一个挺有意思的现象：很多厂商还在拼参数规模，动不动就&quot;万亿参数&quot;起步，但实际用起来却未必顺手。直到我上手体验了智谱刚发布的GLM-4.5，才
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2025-07-29
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/人工智能/" class="post-category" target="_blank">
+                                    人工智能
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/人工智能/" target="_blank">
+                        <span class="chip bg-color">人工智能</span>
+                    </a>
+                    
+                    <a href="/tags/AI/" target="_blank">
+                        <span class="chip bg-color">AI</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/ren-gong-zhi-neng/shen-zhen-di-tie-qiao-qiao-bian-shen-liao-10-ge-quan-yun-da-qia-dian-cang-zai-ni-mei-tian-lu-guo-de-di-fang-3/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="深圳地铁悄悄"变身"了？10个全运打卡点藏在你每天路过的地方">
+                        
+                        <span class="card-title">深圳地铁悄悄"变身"了？10个全运打卡点藏在你每天路过的地方</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            最近坐地铁通勤的朋友有没有发现，深圳的地铁站好像悄悄换了&quot;新皮肤&quot;？上周在岗厦北转线时，差点以为走错了地方——平时匆匆路过的换乘大厅，突然多了一片亮眼的红色元素，走近一看才反应过来：哦，原来是十五运会的主题打卡点。
+作为
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2025-07-28
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/人工智能/" class="post-category" target="_blank">
+                                    人工智能
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/人工智能/" target="_blank">
+                        <span class="chip bg-color">人工智能</span>
+                    </a>
+                    
+                    <a href="/tags/AI/" target="_blank">
+                        <span class="chip bg-color">AI</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            &copy; 2017-2024 Okeeper. All Rights Reserved. &nbsp; 粤ICP备2024178587号
+            
+            &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+            <span class="white-color">180.6k</span>
+            
+
+            <br>
+            <span id="sitetime"></span>
+
+            
+            
+            <br>
+            
+            <span id="busuanzi_container_site_pv" style='display:none'>
+                <i class="fa fa-heart-o"></i>
+                本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv" style='display:none'>
+                人次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+            </span>
+            
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/okeeper" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:zhangyue0808@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+    <a href="https://user.qzone.qq.com/610998697" class="tooltipped" target="_blank" data-tooltip="访问我的QQ空间" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+    <a href="https://weibo.com/okeeper" class="tooltipped" target="_blank" data-tooltip="关注我的微博" data-position="top" data-delay="50">
+        <i class="fa fa-weibo"></i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<script language=javascript>
+    function siteTime() {
+        window.setTimeout("siteTime()", 1000);
+        var seconds = 1000;
+        var minutes = seconds * 60;
+        var hours = minutes * 60;
+        var days = hours * 24;
+        var years = days * 365;
+        var today = new Date();
+        var todayYear = today.getFullYear();
+        var todayMonth = today.getMonth() + 1;
+        var todayDate = today.getDate();
+        var todayHour = today.getHours();
+        var todayMinute = today.getMinutes();
+        var todaySecond = today.getSeconds();
+        /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+        year - 作为date对象的年份，为4位年份值
+        month - 0-11之间的整数，做为date对象的月份
+        day - 1-31之间的整数，做为date对象的天数
+        hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+        minutes - 0-59之间的整数，做为date对象的分钟数
+        seconds - 0-59之间的整数，做为date对象的秒数
+        microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+        var t1 = Date.UTC(2018, 01, 01, 00, 00, 00); //北京时间2018-2-13 00:00:00
+        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+        var diff = t2 - t1;
+        var diffYears = Math.floor(diff / years);
+        var diffDays = Math.floor((diff / days) - diffYears * 365);
+        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
+        document.getElementById("sitetime").innerHTML = "本站已运行 " + diffYears + " 年 " + diffDays + " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+    }/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+    siteTime();
+</script>
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9PRXGJ8X9Z"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'G-9PRXGJ8X9Z');
+</script>
+
+
+
+    
+
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+    <!-- 雪花特效 -->
+    
+
+</body>
+
+</html>
