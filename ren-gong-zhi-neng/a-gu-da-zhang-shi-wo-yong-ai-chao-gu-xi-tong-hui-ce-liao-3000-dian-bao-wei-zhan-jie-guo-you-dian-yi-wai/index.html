@@ -1,0 +1,960 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="A股大涨时，我用AI炒股系统回测了3000点保卫战，结果有点意外, 张跃 zhangyue okeeper Java Alibaba 软件工程 架构师 软件笔记 技术分享 观点 随笔">
+    <meta name="baidu-site-verification" content="MWAMkewsPN">
+    <meta name="google-site-verification" content>
+    <meta name="360-site-verification" content>
+    <meta name="description" content="这几天A股突然发力，沪指一口气冲破3300点，不少人刚从&amp;quot;3000点保卫战&amp;quot;的阴影里爬出来，又开始纠结&amp;quot;现在上车还来得及吗&amp;quot;。说实话，作为一个被A股反复教育过的程序员，我对这种&amp;quot;突然的爱&amp;q">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>A股大涨时，我用AI炒股系统回测了3000点保卫战，结果有点意外 | 神笔君|Okeeper</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <!--数学公式-->
+    <link rel="stylesheet" href="https://lib.baomitu.com/KaTeX/latest/katex.min.css">
+
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?46e79e71af0709a5b9106bf20cecc493";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+<link rel="stylesheet" href="/css/prism-okaidia.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><script src="/js/prism.js"></script>
+<script src="/js/prism-line-numbers.min.js"></script></head>
+
+<body>
+
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/favicon.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">神笔君|Okeeper</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    <li class="hide-on-med-and-down">
+        <a href="http://model-bridge.okeeper.com" target="_blank" class="waves-effect waves-light">
+            <i class="fa fa-book"></i>
+            <span>ModelBridge/魔桥</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/contact" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>留言板</span>
+        </a>
+    </li>
+    
+
+
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/favicon.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">神笔君|Okeeper</div>
+        <div class="logo-desc">
+            
+            张跃 | 软件工程 | 架构师 | 软件笔记 | 技术分享 | 观点 | 随笔
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/contact" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                留言板
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/okeeper" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/okeeper" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        A股大涨时，我用AI炒股系统回测了3000点保卫战，结果有点意外
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                        <a href="/tags/人工智能/" target="_blank">
+                            <span class="chip bg-color">人工智能</span>
+                        </a>
+                        
+                        <a href="/tags/AI/" target="_blank">
+                            <span class="chip bg-color">AI</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                        <a href="/categories/人工智能/" class="post-category" target="_blank">
+                            人工智能
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2025-08-25
+                </div>
+
+                <div class="post-author info-break-policy">
+                    <i class="fa fa-user-o fa-fw"></i>作者:&nbsp;&nbsp;
+                    
+                    okeeper
+                    
+                </div>
+
+                
+                
+                <div class="info-break-policy">
+                    <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    1.9k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    6 分
+                </div>
+                
+                
+
+                
+                <div id="busuanzi_container_page_pv" class="info-break-policy">
+                    <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                    <span id="busuanzi_value_page_pv"></span>
+                </div>
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>这几天A股突然发力，沪指一口气冲破3300点，不少人刚从&quot;3000点保卫战&quot;的阴影里爬出来，又开始纠结&quot;现在上车还来得及吗&quot;。说实话，作为一个被A股反复教育过的程序员，我对这种&quot;突然的爱&quot;总是有点警惕——直到上周，我试了号称&quot;把16个分析师装进手机&quot;的FinGenius开源系统，在这轮反弹中做了次真实测试。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/EDibuUnamjKP0kjvXSibHrEAXUVDfSc1lA4Vknvxoiad7DfIwAaibf7X1cVgIDBCrLlh4I9pK8Jwia4QmcciaZ4AD5mg/640?wx_fmt=png&amp;from=appmsg" alt="FinGenius产品形象"></p>
+<h2 id="当16个虚拟分析师同时吵起来会发生什么"><a class="markdownIt-Anchor" href="#当16个虚拟分析师同时吵起来会发生什么"></a> 当16个&quot;虚拟分析师&quot;同时吵起来，会发生什么？</h2>
+<p>传统炒股软件给我的感觉，就像单线程CPU——每次只能看一个指标，要么MACD金叉，要么北向资金流入，想综合判断就得自己切换界面。但FinGenius玩了个新花样：它把投资决策拆成16个维度，每个维度配一个&quot;智能体分析师&quot;，最后汇总成一个综合结论。</p>
+<p>这架构听起来有点像把投资公司的晨会搬进了代码里。我扒了下它的GitHub源码（地址：<a href="https://github.com/HuaYaoAI/FinGenius%EF%BC%89%EF%BC%8C%E5%8F%91%E7%8E%B0%E8%BF%9916%E4%B8%AA%E6%99%BA%E8%83%BD%E4%BD%93%E5%88%86%E5%B7%A5%E8%BF%98%E6%8C%BA%E6%98%8E%E7%A1%AE%EF%BC%9A%E6%9C%89%E4%B8%93%E9%97%A8%E7%9B%AF%E7%9D%80%E9%BE%99%E8%99%8E%E6%A6%9C%E8%B5%84%E9%87%91%E6%B5%81%E5%90%91%E7%9A%84%EF%BC%8C%E6%9C%89%E5%88%B7%E8%B4%A2%E7%BB%8F%E6%96%B0%E9%97%BB%E6%90%9E%E8%88%86%E6%83%85%E5%88%86%E6%9E%90%E7%9A%84%EF%BC%8C%E7%94%9A%E8%87%B3%E8%BF%98%E6%9C%89%E4%B8%AA%22%E9%9F%AD%E8%8F%9C%E6%83%85%E7%BB%AA%E6%8C%87%E6%95%B0%22%E6%99%BA%E8%83%BD%E4%BD%93%E4%B8%93%E9%97%A8%E7%9B%91%E6%B5%8B%E6%95%A3%E6%88%B7%E8%AE%BA%E5%9D%9B%E7%83%AD%E5%BA%A6%E3%80%82" target="_blank" rel="noopener">https://github.com/HuaYaoAI/FinGenius），发现这16个智能体分工还挺明确：有专门盯着龙虎榜资金流向的，有刷财经新闻搞舆情分析的，甚至还有个&quot;韭菜情绪指数&quot;智能体专门监测散户论坛热度。</a></p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/EDibuUnamjKP0kjvXSibHrEAXUVDfSc1lAqPqqafWnSdHr9AeJuEzuFUFyCsNzu6xNwH0x9MtmmdH5PYyKvnUjZg/640?wx_fmt=png&amp;from=appmsg" alt="FinGenius系统架构"></p>
+<p>这个架构图里能清晰看到数据流向：从交易所API和新闻源获取数据后，先经过预处理层，再分发给16个专项智能体，最后由&quot;决策中枢&quot;汇总不同意见。有点像我司开会时，产品、开发、测试各说各话，最后CTO拍板——只不过这里的&quot;CTO&quot;也是个AI。</p>
+<h2 id="实测3000点时它让我小仓位试水现在收益跑赢大盘5"><a class="markdownIt-Anchor" href="#实测3000点时它让我小仓位试水现在收益跑赢大盘5"></a> 实测：3000点时它让我&quot;小仓位试水&quot;，现在收益跑赢大盘5%</h2>
+<p>上周三沪指还在3200点晃悠时，我用它分析了宁德时代。传统软件当时就一个信号：MACD金叉。但FinGenius给出的是份&quot;吵架报告&quot;：</p>
+<ul>
+<li><strong>舆情智能体</strong>：“最近新能源政策利好频出，行业新闻正面情绪占比72%”</li>
+<li><strong>资金智能体</strong>：“北向资金连续3日净流出，但机构资金开始小幅建仓”</li>
+<li><strong>技术智能体</strong>：“日线出现底背离，但周线趋势仍未扭转”</li>
+<li><strong>估值智能体</strong>：“当前PE 28倍，处于近3年30%分位，相对合理”</li>
+<li><strong>风控智能体</strong>：“综合评分65分，建议仓位不超过15%”</li>
+</ul>
+<p>说实话，当时我是半信半疑的。毕竟3000点保卫战打了那么久，谁心里不发毛？但还是按它说的，拿10%仓位试了水。结果这几天反弹，宁德时代涨了12%，而我因为严格执行了15%仓位限制，虽然没吃到满仓收益，但也跑赢了大盘平均涨幅（截至发稿沪指涨4.2%）。</p>
+<p>这让我想起以前全凭感觉炒股的日子：3000点时吓得割肉，3300点又追高，完美踏反节奏。现在至少有16个&quot;分析师&quot;帮我吵架，反而能保持理性——虽然它们偶尔也会&quot;吵翻天&quot;。比如分析某只券商股时，技术智能体喊&quot;突破压力位看涨&quot;，资金智能体却说&quot;主力在出货&quot;，最后决策中枢给了个&quot;观望&quot;的建议，结果第二天那只股果然冲高回落。</p>
+<h2 id="技术宅怎么玩github源码里藏着自定义智能体彩蛋"><a class="markdownIt-Anchor" href="#技术宅怎么玩github源码里藏着自定义智能体彩蛋"></a> 技术宅怎么玩？GitHub源码里藏着&quot;自定义智能体&quot;彩蛋</h2>
+<p>作为程序员，我肯定要折腾下开源版本。GitHub上克隆项目后，发现这系统比想象中灵活：你可以自己写智能体插件！比如我讨厌看研报，就把&quot;研报分析智能体&quot;禁用了；又加了个&quot;雪球大V观点智能体&quot;，爬取某几个靠谱博主的发言做情感分析。</p>
+<p>不过提醒下技术小白：源码版需要配置Tushare、聚宽等数据源的API，我第一次就配错了，导致宁德时代的财务数据全是空的。后来看issue区才发现，很多人都栽在API配置上——官方文档里有详细教程，建议先看三遍再动手。</p>
+<p>手机版就简单多了，各大应用商店直接搜&quot;FinGenius&quot;就行（华为和苹果还在审核，安卓机先爽）。注册后送7天高级版，能看全部16个智能体的分析；免费版少3个高级智能体，但对普通用户也够用。</p>
+<h2 id="这轮大涨后我对ai炒股的三点冷思考"><a class="markdownIt-Anchor" href="#这轮大涨后我对ai炒股的三点冷思考"></a> 这轮大涨后，我对AI炒股的三点冷思考</h2>
+<ol>
+<li>
+<p><strong>AI不是&quot;算命先生&quot;，是&quot;数据筛选器&quot;</strong><br>
+这几天大涨，后台很多人问&quot;AI能不能预测明天还涨不涨&quot;。实测下来，它最擅长的不是预测点位，而是从海量信息里抓重点。比如上周五下午突然跳水时，它0.5秒内就推送了&quot;北向资金异动流出50亿&quot;的提醒，比我刷财经APP快了整整3分钟。</p>
+</li>
+<li>
+<p><strong>开源不等于&quot;安全&quot;，数据隐私要注意</strong><br>
+源码版需要填各种API密钥，千万别直接commit到GitHub！我在项目issue区看到好几个老哥把Tushare密钥传上去，结果账号被封。官方其实提供了.env.example模板，把密钥写.env文件里才安全。</p>
+</li>
+<li>
+<p><strong>16个智能体吵架，不如你自己有主见</strong><br>
+最有用的功能其实是&quot;分歧提醒&quot;。当不同智能体观点冲突超过阈值时，系统会标红提醒&quot;当前市场分歧较大&quot;。这时候我反而会关掉软件，自己分析——工具永远是辅助，3300点时贪婪和恐惧的人性考验，AI可替不了你。</p>
+</li>
+</ol>
+<h2 id="最后说句大实话"><a class="markdownIt-Anchor" href="#最后说句大实话"></a> 最后说句大实话</h2>
+<p>这轮大涨后，各种&quot;AI炒股神器&quot;又开始冒出来。但用下来发现，FinGenius的优势不在于&quot;预测准&quot;，而在于把复杂的市场分析拆解成了可理解的维度。就像导航软件不会替你开车，但能告诉你哪里堵车、哪里有摄像头——最终方向盘还在你手里。</p>
+<p>GitHub上有个评论说得好：“与其指望AI帮你赚钱，不如借它培养自己的投资体系”。这半个月用下来，我最大的收获不是那5%的超额收益，而是学会了&quot;在别人恐慌时看数据，在别人贪婪时看风险&quot;。</p>
+<p>对了，它有个反人性设计我很喜欢：每天最多只能分析3只股票。开发者说这是为了&quot;避免过度交易&quot;——简直是手贱党福音。这几天大涨，我硬是忍住了天天换股的冲动，拿着最初那两只票吃到了大部分涨幅。</p>
+<p>最后提醒：别因为这篇文章就冲进去下载。炒股这事，适合自己的才是最好的。如果你是纯小白，先拿模拟盘玩；如果你是老股民，也别指望AI能替你扳本。工具而已，关键还是得懂点技术分析，有点风险意识。</p>
+<p>反正我今天又用它分析了一只新能源基金，16个智能体吵了半天，最后建议&quot;持仓观望&quot;。行吧，听你们的——毕竟这轮3000点保卫战，是你们帮我保住了弹药。</p>
+<p>（本文数据截至2023年11月20日，个人体验不构成投资建议，赚钱别谢我，亏钱别骂我，毕竟AI也有失手的时候）</p>
+
+            </div>
+            <hr />
+
+            <!-- 公众号图片 -->
+            <img src="/gongzhonghao.png" width="100%"/>
+
+            
+
+<!--             <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script> -->
+
+            
+
+
+        </div>
+    </div>
+
+    
+    <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: 'ac537cb9fe0e733330eb',
+        clientSecret: 'b3c9fa63fd196e83158a79b40dfe97529bd09de0',
+        repo: 'okeeper.github.io',
+        owner: 'okeeper',
+        admin: "okeeper",
+        id: 'ren-gong-zhi-neng/a-gu-da-zhang-shi-wo-yong-ai-chao-gu-xi-tong-hui-ce-liao-3000-dian-bao-wei-zhan-jie-guo-you-dian-yi-wai/',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/ren-gong-zhi-neng/100-mei-yuan-dao-131-mei-yuan-17-sui-shao-nian-yong-chatgpt-chao-gu-8-zhou-shou-yi-lu-31-pao-ying-biao-pu-6-bei-de-shi-yan-quan-jie-xi/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="100美元到131美元：17岁少年用ChatGPT炒股，8周收益率31%，跑赢标普6倍的实验全解析">
+                        
+                        <span class="card-title">100美元到131美元：17岁少年用ChatGPT炒股，8周收益率31%，跑赢标普6倍的实验全解析</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            最近看到个挺有意思的实验，一个17岁的美国高中生拿100美元零花钱，让ChatGPT帮他炒股，结果两个月不到赚了31%。这收益率什么概念？同期标普500指数才涨了4.8%，相当于跑赢了市场6倍多。作为程序员兼科技博主，我对这种AI实战案例总
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2025-08-25
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/人工智能/" class="post-category" target="_blank">
+                                    人工智能
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/人工智能/" target="_blank">
+                        <span class="chip bg-color">人工智能</span>
+                    </a>
+                    
+                    <a href="/tags/AI/" target="_blank">
+                        <span class="chip bg-color">AI</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/ren-gong-zhi-neng/ai-chao-gu-kao-pu-ma-shi-ce-fingenius-16-ge-ai-fen-xi-shi-chao-jia-hou-gei-wo-tui-jian-gu-piao/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="AI炒股靠谱吗？实测FinGenius：16个AI分析师吵架后给我推荐股票">
+                        
+                        <span class="card-title">AI炒股靠谱吗？实测FinGenius：16个AI分析师吵架后给我推荐股票</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            作为一个在A股摸爬滚打多年的程序员，我最近发现了个有意思的东西——FinGenius，号称&quot;全球首个AI金融博弈多智能体应用&quot;。听着挺玄乎，实际用下来发现这玩意儿把投资分析的过程给数字化了，有点意思。
+ 先说说这到底是个
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2025-08-25
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/人工智能/" class="post-category" target="_blank">
+                                    人工智能
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/人工智能/" target="_blank">
+                        <span class="chip bg-color">人工智能</span>
+                    </a>
+                    
+                    <a href="/tags/AI/" target="_blank">
+                        <span class="chip bg-color">AI</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            &copy; 2017-2024 Okeeper. All Rights Reserved. &nbsp; 粤ICP备2024178587号
+            
+            &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+            <span class="white-color">209.2k</span>
+            
+
+            <br>
+            <span id="sitetime"></span>
+
+            
+            
+            <br>
+            
+            <span id="busuanzi_container_site_pv" style='display:none'>
+                <i class="fa fa-heart-o"></i>
+                本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv" style='display:none'>
+                人次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+            </span>
+            
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/okeeper" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:zhangyue0808@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+    <a href="https://user.qzone.qq.com/610998697" class="tooltipped" target="_blank" data-tooltip="访问我的QQ空间" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+    <a href="https://weibo.com/okeeper" class="tooltipped" target="_blank" data-tooltip="关注我的微博" data-position="top" data-delay="50">
+        <i class="fa fa-weibo"></i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<script language=javascript>
+    function siteTime() {
+        window.setTimeout("siteTime()", 1000);
+        var seconds = 1000;
+        var minutes = seconds * 60;
+        var hours = minutes * 60;
+        var days = hours * 24;
+        var years = days * 365;
+        var today = new Date();
+        var todayYear = today.getFullYear();
+        var todayMonth = today.getMonth() + 1;
+        var todayDate = today.getDate();
+        var todayHour = today.getHours();
+        var todayMinute = today.getMinutes();
+        var todaySecond = today.getSeconds();
+        /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+        year - 作为date对象的年份，为4位年份值
+        month - 0-11之间的整数，做为date对象的月份
+        day - 1-31之间的整数，做为date对象的天数
+        hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+        minutes - 0-59之间的整数，做为date对象的分钟数
+        seconds - 0-59之间的整数，做为date对象的秒数
+        microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+        var t1 = Date.UTC(2018, 01, 01, 00, 00, 00); //北京时间2018-2-13 00:00:00
+        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+        var diff = t2 - t1;
+        var diffYears = Math.floor(diff / years);
+        var diffDays = Math.floor((diff / days) - diffYears * 365);
+        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
+        document.getElementById("sitetime").innerHTML = "本站已运行 " + diffYears + " 年 " + diffDays + " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+    }/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+    siteTime();
+</script>
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9PRXGJ8X9Z"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'G-9PRXGJ8X9Z');
+</script>
+
+
+
+    
+
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+    <!-- 雪花特效 -->
+    
+
+</body>
+
+</html>

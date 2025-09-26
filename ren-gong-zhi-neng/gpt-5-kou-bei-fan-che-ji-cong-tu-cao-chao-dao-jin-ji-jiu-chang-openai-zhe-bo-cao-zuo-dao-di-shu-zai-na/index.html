@@ -1,0 +1,963 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="GPT-5口碑翻车记：从吐槽潮到紧急救场，OpenAI这波操作到底输在哪？, 张跃 zhangyue okeeper Java Alibaba 软件工程 架构师 软件笔记 技术分享 观点 随笔">
+    <meta name="baidu-site-verification" content="MWAMkewsPN">
+    <meta name="google-site-verification" content>
+    <meta name="360-site-verification" content>
+    <meta name="description" content="GPT-5上线这几天，科技圈跟炸了锅似的。本来以为会是&amp;quot;王炸&amp;quot;登场，结果没想到评论区直接翻车——有人说它回答像白开水，有人怀念刚下架的GPT-4o，甚至还有人调侃&amp;quot;这是GPT-4.5伪装的吧&amp;quot;。
+
+眼">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>GPT-5口碑翻车记：从吐槽潮到紧急救场，OpenAI这波操作到底输在哪？ | 神笔君|Okeeper</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <!--数学公式-->
+    <link rel="stylesheet" href="https://lib.baomitu.com/KaTeX/latest/katex.min.css">
+
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?46e79e71af0709a5b9106bf20cecc493";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+<link rel="stylesheet" href="/css/prism-okaidia.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><script src="/js/prism.js"></script>
+<script src="/js/prism-line-numbers.min.js"></script></head>
+
+<body>
+
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/favicon.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">神笔君|Okeeper</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    <li class="hide-on-med-and-down">
+        <a href="http://model-bridge.okeeper.com" target="_blank" class="waves-effect waves-light">
+            <i class="fa fa-book"></i>
+            <span>ModelBridge/魔桥</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/contact" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>留言板</span>
+        </a>
+    </li>
+    
+
+
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/favicon.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">神笔君|Okeeper</div>
+        <div class="logo-desc">
+            
+            张跃 | 软件工程 | 架构师 | 软件笔记 | 技术分享 | 观点 | 随笔
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/contact" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                留言板
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/okeeper" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/okeeper" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        GPT-5口碑翻车记：从吐槽潮到紧急救场，OpenAI这波操作到底输在哪？
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                        <a href="/tags/人工智能/" target="_blank">
+                            <span class="chip bg-color">人工智能</span>
+                        </a>
+                        
+                        <a href="/tags/AI/" target="_blank">
+                            <span class="chip bg-color">AI</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                        <a href="/categories/人工智能/" class="post-category" target="_blank">
+                            人工智能
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2025-08-11
+                </div>
+
+                <div class="post-author info-break-policy">
+                    <i class="fa fa-user-o fa-fw"></i>作者:&nbsp;&nbsp;
+                    
+                    okeeper
+                    
+                </div>
+
+                
+                
+                <div class="info-break-policy">
+                    <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    2.1k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    7 分
+                </div>
+                
+                
+
+                
+                <div id="busuanzi_container_page_pv" class="info-break-policy">
+                    <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                    <span id="busuanzi_value_page_pv"></span>
+                </div>
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>GPT-5上线这几天，科技圈跟炸了锅似的。本来以为会是&quot;王炸&quot;登场，结果没想到评论区直接翻车——有人说它回答像白开水，有人怀念刚下架的GPT-4o，甚至还有人调侃&quot;这是GPT-4.5伪装的吧&quot;。</p>
+<p><img src="https://mmbiz.qpic.cn/sz_mmbiz_jpg/ePTzepwoNWMTvX7URJRLEfIzY7SlVGErGW5QLwOa1dZTSgQKQBIKJQPEBDnwuPZBMO7ZHoibiaHPUxQliaqoovEfg/640?wx_fmt=jpeg&amp;from=appmsg" alt="GPT-5负面反馈示意图"></p>
+<p>眼看舆论要失控，OpenAI CEO山姆·奥特曼连夜下场救火，连发数条动态回应。最关键的消息是：大家心心念念的GPT-4o要回来了！</p>
+<h2 id="从口碑崩塌到紧急救场openai的48小时危机公关"><a class="markdownIt-Anchor" href="#从口碑崩塌到紧急救场openai的48小时危机公关"></a> 从&quot;口碑崩塌&quot;到紧急救场：OpenAI的48小时危机公关</h2>
+<p>说实话，我混AI圈这么多年，很少见到新版本发布像GPT-5这样&quot;冰火两重天&quot;的。上线第一天服务器就被挤爆，API调用量暴涨近一倍，但与此同时，社交媒体上的吐槽声也没停过。</p>
+<p>奥特曼显然意识到了问题严重性，在社交媒体上发了长文回应。他承认团队低估了用户对GPT-4o的喜爱程度，承诺会把这个版本重新提供给Plus用户。更重要的是，OpenAI打算推出&quot;定制化选项&quot;——说白了就是让用户自己选想要的模型风格，不再搞&quot;一刀切&quot;。</p>
+<p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/ePTzepwoNWMTvX7URJRLEfIzY7SlVGErT4JP7fkkOYjpGia1kPJlE4pl2CAQlCpcLvMpRtKc8nBVnnOictqpicwjQ/640?wx_fmt=png&amp;from=appmsg" alt="奥特曼回应GPT-5吐槽"></p>
+<p>在另一篇回应中，奥特曼解释了为什么新版本会让部分用户觉得&quot;个性平淡&quot;。原来团队刻意让GPT-5默认更中性，怕之前的风格可能会&quot;过于热情&quot;。不过他也强调，用户还是可以通过指令调整风格——这点我实测了下，确实管用，你要是说&quot;用幽默的语气回答&quot;，它立马就能切换画风。</p>
+<p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/ePTzepwoNWMTvX7URJRLEfIzY7SlVGEruvXia5bRmnv6KiaZeufK3anmiaWPFxlgcTevZXnG1an471LUreR9atPxg/640?wx_fmt=png&amp;from=appmsg" alt="GPT-5定制化策略说明"></p>
+<p>这场风波甚至惊动了&quot;硅谷嘴炮王&quot;马斯克。他趁机给自己家的Grok 4 Heavy打广告，还发了条意味深长的推文：“OpenAI将吞噬微软”。这话听着就有挑事的意思，不过微软CEO纳德拉回应得挺有水平，说&quot;大家都努力了50年，该创新创新，该合作合作，该卷就卷呗&quot;，还顺便邀请Grok入驻Azure——这波格局算是打开了。</p>
+<p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/ePTzepwoNWMTvX7URJRLEfIzY7SlVGErRVpnTWN7ibUbic8hG6UBbpupPbvfRUeZLWoRlQg89OAdibMjZxejfrFDg/640?wx_fmt=png&amp;from=appmsg" alt="马斯克与纳德拉互动"></p>
+<h2 id="redditama现场用户把openai团队问破防了"><a class="markdownIt-Anchor" href="#redditama现场用户把openai团队问破防了"></a> RedditAMA现场：用户把OpenAI团队问&quot;破防&quot;了？</h2>
+<p>为了平息众怒，OpenAI在Reddit的r/ChatGPT板块搞了场AMA（有问必答）活动。Sam Altman带着十几位核心成员亲自下场，结果被网友的问题&quot;围攻&quot;了。</p>
+<p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/ePTzepwoNWMTvX7URJRLEfIzY7SlVGErDxSVPwgM1NljYRAUpaL7AAUzrAJ1GRVHf2AkPmV92QrjRxHk0N0Tcg/640?wx_fmt=png&amp;from=appmsg" alt="GPT-5团队AMA活动"></p>
+<p>我翻了翻整场AMA的问答，发现用户最关心这几个问题：</p>
+<p><strong>1. 为啥把GPT-4o删了？</strong><br>
+这是被问得最多的问题。Altman直接认错，表示会把4o重新提供给Plus用户，“感谢大家的热情反馈”——翻译一下就是&quot;我们没想到大家这么喜欢4o，是我们草率了&quot;。</p>
+<p><strong>2. 新模型为啥这么&quot;没个性&quot;？</strong><br>
+研究员Christina Kim回应说，GPT-5默认设计得更中性，但用户可以通过指令调整。她还透露团队正在准备四种默认个性选项，以后可能像选皮肤一样选AI性格。</p>
+<p><img src="https://mmbiz.qpic.cn/sz_mmbiz_jpg/ePTzepwoNWMTvX7URJRLEfIzY7SlVGErPCibSkQexkTbrmswESJGwEPALfBCJgkJrjUBmbHdQx4nKqHTcGsEiaDw/640?wx_fmt=jpeg" alt="GPT-5个性设置回应"></p>
+<p><strong>3. 编程能力真的比4.1强吗？</strong><br>
+研究员Michelle Pokrass很肯定地说&quot;GPT-5 &gt; GPT-4&quot;，尤其GPT-5-thinking版本是目前最佳编程模型。不过有开发者实测发现，在处理复杂算法时，GPT-5有时会&quot;想当然&quot;，反而不如4o严谨——看来这个&quot;最佳&quot;还得打个问号。</p>
+<p><strong>4. 说好的100万token上下文呢？</strong><br>
+这点OpenAI倒是坦诚，说因为计算成本太高，暂时实现不了。现在最大上下文还是128k，不过团队正在优化，未来会逐步放开。</p>
+<p>AMA里还有个有意思的细节：有用户问聊天气泡颜色是不是只有专业版能用，产品负责人Daniel Levine回复&quot;所有用户都能改&quot;。我赶紧去看了下设置，还真有——这功能藏得够深的，估计90%用户都不知道。</p>
+<h2 id="奥特曼深度访谈gpt-5只是开始2027年ai将做出重大科学发现"><a class="markdownIt-Anchor" href="#奥特曼深度访谈gpt-5只是开始2027年ai将做出重大科学发现"></a> 奥特曼深度访谈：GPT-5只是开始，2027年AI将做出重大科学发现？</h2>
+<p>风波过后，奥特曼接受了科技博主的专访，聊了很多GPT-5背后的技术细节和未来规划。这哥们一聊起AI眼睛就放光，说GPT-5是&quot;首个能回答几乎任何艰深科学问题的模型&quot;。</p>
+<p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/ePTzepwoNWMTvX7URJRLEfIzY7SlVGEr0ynibqOkPetBwbfcDK0g9K4anBeVqbbzhy8ORwqF4QxqplcG2LPaEkQ/640?wx_fmt=png&amp;from=appmsg" alt="奥特曼专访现场"></p>
+<p>他举了个例子：让GPT-5用Ti-83计算器语言写贪吃蛇游戏，7秒钟就搞定了——这可是他初中时花了好几天才完成的项目。更厉害的是，如果你提新需求，比如&quot;增加难度递增功能&quot;，GPT-5能实时修改代码，跟现场编程一样。</p>
+<p>不过奥特曼也承认，GPT-5还有三个硬伤：</p>
+<p><strong>能源瓶颈</strong>：运行这种级别的模型需要千兆瓦级电力，现在数据中心的供电根本跟不上。<br>
+<strong>芯片短缺</strong>：处理器和内存芯片的产能有限，就算设计出更好的模型，没硬件也跑不起来。<br>
+<strong>数据天花板</strong>：GPT-5已经把能学的教科书都学完了，单纯增加数据量没用，得想办法让它自己&quot;发现新知识&quot;。</p>
+<p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/ePTzepwoNWMTvX7URJRLEfIzY7SlVGEr6hVaqzCv94KgHxWpN2b7G6onv2ZxoaYP2koqJmDUM8rtPHricDXdBSQ/640?wx_fmt=png&amp;from=appmsg" alt="奥特曼谈AI未来"></p>
+<p>最让我震惊的是他对AI科学发现的预测：2025到2027年之间，AI将能做出重大科学发现。他解释说，AI已经从&quot;解高中数学题&quot;进步到&quot;拿国际奥数金牌&quot;，下一步就是证明重大数学定理——这需要1000小时级别的持续工作，目前AI还做不到，但进展速度比想象中快。</p>
+<p>奥特曼对&quot;超级智能&quot;的定义也很有意思：如果一个AI能比整个OpenAI团队更懂AI研究，比他更会管理公司，比各领域专家还专业，那就是超级智能。现在AI在短时任务上已经超过人类，但长期复杂任务还不行——这倒是说到点子上了，我让GPT-5写个代码片段没问题，但让它独立开发一个完整项目，还是差点意思。</p>
+<h2 id="普通人该怎么看待这场ai翻车"><a class="markdownIt-Anchor" href="#普通人该怎么看待这场ai翻车"></a> 普通人该怎么看待这场AI&quot;翻车&quot;？</h2>
+<p>说实话，GPT-5这波口碑波动，本质上反映了用户对AI的期待已经变了。以前我们只要&quot;能用&quot;，现在还要求&quot;好用&quot;“合心意”。OpenAI想让模型更中性、更安全，结果不小心把它变得&quot;没灵魂&quot;了——这可能是技术团队和用户体验之间的脱节。</p>
+<p>不过换个角度看，这种&quot;翻车&quot;也不是坏事。至少说明用户真的在用、真的在乎，而OpenAI也愿意听反馈、快速调整。比起那些发布后就不管不问的科技产品，OpenAI这波虽然狼狈，但态度还算诚恳。</p>
+<p>对我们普通人来说，与其纠结GPT-5好不好用，不如多琢磨怎么用好这些工具。奥特曼在采访里说，现在是&quot;创办公司、发明创造门槛最低的时代&quot;，一个人用AI工具就能干以前几百人的活。我觉得这话不假——上周我用GPT-5+Midjourney，三天就做出了一个小工具的MVP，放以前至少得一个团队忙一周。</p>
+<p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/ePTzepwoNWMTvX7URJRLEfIzY7SlVGErpmiaicB4e4vr0Dh8jgldem4zJic3YmEZ3cmTLOpibofNBRY1zlYCFP08aA/640?wx_fmt=png&amp;from=appmsg" alt="奥特曼谈AI人格"></p>
+<p>最后说句掏心窝的话：AI发展太快，我们没必要苛责一个版本的好坏。GPT-5可能不是终点，但它让我们看到了AI的另一种可能——既能解方程，也能聊心事；既能写代码，也能讲故事。或许未来的AI，就该像个&quot;多面手&quot;，而不是被框死在某个角色里。</p>
+<p>哦对了，OpenAI最近还悄悄放了个大招：开源了gpt-oss模型，在笔记本上就能跑，性能接近GPT-4 mini。这意味着以后我们可能不用依赖云端，本地就能跑强大的AI模型——这或许比GPT-5那点争议更值得关注。</p>
+<p><img src="https://mmbiz.qpic.cn/sz_mmbiz_jpg/ePTzepwoNWMTvX7URJRLEfIzY7SlVGErWyPedjO5uO6yPxwSjRMQeLEx1icUTwdltnZwr10kI7x31UVvlxsxoJA/640?wx_fmt=jpeg&amp;from=appmsg" alt="gpt-oss模型标识"></p>
+<p>总之，AI这趟车跑得越来越快，偶尔颠簸一下很正常。我们能做的，就是系好安全带，享受沿途风景，顺便学会怎么让AI帮我们搬砖——毕竟，省下的时间用来摸鱼不香吗？</p>
+
+            </div>
+            <hr />
+
+            <!-- 公众号图片 -->
+            <img src="/gongzhonghao.png" width="100%"/>
+
+            
+
+<!--             <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script> -->
+
+            
+
+
+        </div>
+    </div>
+
+    
+    <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: 'ac537cb9fe0e733330eb',
+        clientSecret: 'b3c9fa63fd196e83158a79b40dfe97529bd09de0',
+        repo: 'okeeper.github.io',
+        owner: 'okeeper',
+        admin: "okeeper",
+        id: 'ren-gong-zhi-neng/gpt-5-kou-bei-fan-che-ji-cong-tu-cao-chao-dao-jin-ji-jiu-chang-openai-zhe-bo-cao-zuo-dao-di-shu-zai-na/',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/ren-gong-zhi-neng/wen-ding-bi-lang-chao-xia-yin-xing-hui-bei-dian-fu-ma-shu-ju-gao-su-ni-da-an/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="稳定币浪潮下，银行会被颠覆吗？数据告诉你答案">
+                        
+                        <span class="card-title">稳定币浪潮下，银行会被颠覆吗？数据告诉你答案</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            稳定币这东西最近火得有点离谱，从默默无闻到突然成了2025年科技圈和金融圈的顶流话题。有人说它是金融科技的未来，也有人觉得它不过是昙花一现的炒作概念。但有个问题值得所有关注金融科技的人思考：当稳定币来势汹汹，我们熟悉的商业银行还能&quot
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2025-08-12
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/人工智能/" class="post-category" target="_blank">
+                                    人工智能
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/人工智能/" target="_blank">
+                        <span class="chip bg-color">人工智能</span>
+                    </a>
+                    
+                    <a href="/tags/AI/" target="_blank">
+                        <span class="chip bg-color">AI</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/ren-gong-zhi-neng/dang-ai-kai-shi-jiang-gan-qing-gpt-4o-bao-wei-zhan-bei-hou-de-ren-ji-guan-xi-ge-ming/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="当AI开始讲"感情"：GPT-4o保卫战背后的人机关系革命">
+                        
+                        <span class="card-title">当AI开始讲"感情"：GPT-4o保卫战背后的人机关系革命</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            GPT-5发布本该是场技术狂欢，结果OpenAI却捅了马蜂窝。
+8月8日，OpenAI上架GPT-5的同时，突然下架了包括GPT-4o在内的所有旧模型，全球用户被强制&quot;升级&quot;。按CEO山姆·奥特曼的说法，新模型完成了&q
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2025-08-11
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/人工智能/" class="post-category" target="_blank">
+                                    人工智能
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/人工智能/" target="_blank">
+                        <span class="chip bg-color">人工智能</span>
+                    </a>
+                    
+                    <a href="/tags/AI/" target="_blank">
+                        <span class="chip bg-color">AI</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            &copy; 2017-2024 Okeeper. All Rights Reserved. &nbsp; 粤ICP备2024178587号
+            
+            &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+            <span class="white-color">209.2k</span>
+            
+
+            <br>
+            <span id="sitetime"></span>
+
+            
+            
+            <br>
+            
+            <span id="busuanzi_container_site_pv" style='display:none'>
+                <i class="fa fa-heart-o"></i>
+                本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv" style='display:none'>
+                人次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+            </span>
+            
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/okeeper" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:zhangyue0808@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+    <a href="https://user.qzone.qq.com/610998697" class="tooltipped" target="_blank" data-tooltip="访问我的QQ空间" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+    <a href="https://weibo.com/okeeper" class="tooltipped" target="_blank" data-tooltip="关注我的微博" data-position="top" data-delay="50">
+        <i class="fa fa-weibo"></i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<script language=javascript>
+    function siteTime() {
+        window.setTimeout("siteTime()", 1000);
+        var seconds = 1000;
+        var minutes = seconds * 60;
+        var hours = minutes * 60;
+        var days = hours * 24;
+        var years = days * 365;
+        var today = new Date();
+        var todayYear = today.getFullYear();
+        var todayMonth = today.getMonth() + 1;
+        var todayDate = today.getDate();
+        var todayHour = today.getHours();
+        var todayMinute = today.getMinutes();
+        var todaySecond = today.getSeconds();
+        /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+        year - 作为date对象的年份，为4位年份值
+        month - 0-11之间的整数，做为date对象的月份
+        day - 1-31之间的整数，做为date对象的天数
+        hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+        minutes - 0-59之间的整数，做为date对象的分钟数
+        seconds - 0-59之间的整数，做为date对象的秒数
+        microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+        var t1 = Date.UTC(2018, 01, 01, 00, 00, 00); //北京时间2018-2-13 00:00:00
+        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+        var diff = t2 - t1;
+        var diffYears = Math.floor(diff / years);
+        var diffDays = Math.floor((diff / days) - diffYears * 365);
+        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
+        document.getElementById("sitetime").innerHTML = "本站已运行 " + diffYears + " 年 " + diffDays + " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+    }/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+    siteTime();
+</script>
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9PRXGJ8X9Z"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'G-9PRXGJ8X9Z');
+</script>
+
+
+
+    
+
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+    <!-- 雪花特效 -->
+    
+
+</body>
+
+</html>

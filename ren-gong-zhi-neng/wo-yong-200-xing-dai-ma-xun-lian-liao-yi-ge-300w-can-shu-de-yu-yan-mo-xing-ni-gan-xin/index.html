@@ -1,0 +1,1661 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="张跃 zhangyue okeeper Java Alibaba 软件工程 架构师 软件笔记 技术分享 观点 随笔">
+    <meta name="baidu-site-verification" content="MWAMkewsPN">
+    <meta name="google-site-verification" content>
+    <meta name="360-site-verification" content>
+    <meta name="description" content=" 如何从0开始训练一个自己的大语言模型
+
+ 从0开始训练了一个3百万参数的小语言模型，你敢信！
+以下是进一步细化的开篇部分，以GPT的生成能力为切入点，强化技术震撼与知识悬念：
+ 开篇：AI是如何听懂并学会&amp;quot;说话&amp;quot;
+示例">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>神笔君|Okeeper</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <!--数学公式-->
+    <link rel="stylesheet" href="https://lib.baomitu.com/KaTeX/latest/katex.min.css">
+
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?46e79e71af0709a5b9106bf20cecc493";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+<link rel="stylesheet" href="/css/prism-okaidia.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><script src="/js/prism.js"></script>
+<script src="/js/prism-line-numbers.min.js"></script></head>
+
+<body>
+
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/favicon.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">神笔君|Okeeper</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    <li class="hide-on-med-and-down">
+        <a href="http://model-bridge.okeeper.com" target="_blank" class="waves-effect waves-light">
+            <i class="fa fa-book"></i>
+            <span>ModelBridge/魔桥</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/contact" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>留言板</span>
+        </a>
+    </li>
+    
+
+
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/favicon.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">神笔君|Okeeper</div>
+        <div class="logo-desc">
+            
+            张跃 | 软件工程 | 架构师 | 软件笔记 | 技术分享 | 观点 | 随笔
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/contact" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                留言板
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/okeeper" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/okeeper" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        <span class="chip bg-color">无标签</span>
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2025-03-26
+                </div>
+
+                <div class="post-author info-break-policy">
+                    <i class="fa fa-user-o fa-fw"></i>作者:&nbsp;&nbsp;
+                    
+                    Okeeper
+                    
+                </div>
+
+                
+                
+                <div class="info-break-policy">
+                    <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    7.3k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    29 分
+                </div>
+                
+                
+
+                
+                <div id="busuanzi_container_page_pv" class="info-break-policy">
+                    <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                    <span id="busuanzi_value_page_pv"></span>
+                </div>
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="如何从0开始训练一个自己的大语言模型"><a class="markdownIt-Anchor" href="#如何从0开始训练一个自己的大语言模型"></a> 如何从0开始训练一个自己的大语言模型</h1>
+<p><img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/images/20250327-120313%20(1).png" alt="20250327-120313 (1)"></p>
+<h3 id="从0开始训练了一个3百万参数的小语言模型你敢信"><a class="markdownIt-Anchor" href="#从0开始训练了一个3百万参数的小语言模型你敢信"></a> 从0开始训练了一个3百万参数的小语言模型，你敢信！</h3>
+<p>以下是进一步细化的开篇部分，以GPT的生成能力为切入点，强化技术震撼与知识悬念：</p>
+<h3 id="开篇ai是如何听懂并学会说话"><a class="markdownIt-Anchor" href="#开篇ai是如何听懂并学会说话"></a> <strong>开篇：AI是如何听懂并学会&quot;说话&quot;</strong></h3>
+<p><strong>示例场景</strong>：<br>
+2023年，GPT-4在国际数学竞赛中获得金牌，在SAT考试中取得1410分（满分1600），甚至能根据用户提供的&quot;代码风格指南&quot;生成符合要求的Python函数：</p>
+<pre class="highlight"><code class="python"><span class="hljs-comment"># 用户提示：</span>
+<span class="hljs-string">&quot;请写一个斐波那契数列生成器，要求使用迭代方式，且时间复杂度为O(n)&quot;</span>
+
+<span class="hljs-comment"># GPT-4生成的代码：</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">fibonacci</span>(<span class="hljs-params">n: <span class="hljs-built_in">int</span></span>) -&gt; <span class="hljs-built_in">list</span>[<span class="hljs-built_in">int</span>]:
+    <span class="hljs-keyword">if</span> n &lt;= <span class="hljs-number">0</span>:
+        <span class="hljs-keyword">return</span> []
+    <span class="hljs-keyword">elif</span> n == <span class="hljs-number">1</span>:
+        <span class="hljs-keyword">return</span> [<span class="hljs-number">0</span>]
+    fib_list = [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>]
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">2</span>, n):
+        fib_list.append(fib_list[i-<span class="hljs-number">1</span>] + fib_list[i-<span class="hljs-number">2</span>])
+    <span class="hljs-keyword">return</span> fib_list
+</code></pre>
+<p><strong>那你看到这个，你是否也有同样的疑问</strong>：</p>
+<p>这些魔法般的能力，究竟是如何从0开始构建的？</p>
+<p>难道OpenAI的工程师真的给模型&quot;灌输&quot;了人类所有知识？</p>
+<p>即使灌输了所有知识，它是如何组织的，为什么人类任意问题(人类说话方式的词组组合是无穷的)它都能够听懂并回答呢？</p>
+<p>我们以经典的GPT-3的三阶段训练流程为例：</p>
+<p><strong>GPT-3的训练分为三个阶段</strong></p>
+<ol>
+<li><strong>第一阶段：无监督预训练</strong><br>
+模型通过 45TB 文本数据学习语言规律，训练目标是预测下一个词，形成基础语言能力。</li>
+<li><strong>第二阶段：监督微调（SFT）</strong><br>
+使用少量标注数据（如客服对话、问题回答），将模型输出格式调整为符合人类预期的响应（如问答结构、专业话术）。</li>
+<li><strong>第三阶段：基于人类反馈的强化学习（RLHF）</strong>
+<ul>
+<li><strong>奖励模型训练</strong>：人类评估者对模型生成的多组回答进行排名，训练奖励模型学会判断回答质量。</li>
+<li><strong>策略优化</strong>：通过近端策略优化（PPO）算法，利用奖励模型的反馈迭代优化模型，使其生成更符合人类偏好（如准确性、相关性、伦理合规）的回答。</li>
+</ul>
+</li>
+</ol>
+<h1 id="训练前的准备知识"><a class="markdownIt-Anchor" href="#训练前的准备知识"></a> 训练前的准备知识</h1>
+<h4 id="模型训练三要素算力算法数据的小规模组合"><a class="markdownIt-Anchor" href="#模型训练三要素算力算法数据的小规模组合"></a> <strong>模型训练三要素：算力+算法+数据的小规模组合</strong></h4>
+<p>我们都知道，一个大语言模型是有算力资源(就是硬件gpu/cpu)，加上算法模型设计(目前是用Transformer架构)，再加上数据(你要让模型学习的内容)</p>
+<p>你的目的大概是要让机器知道“自然语言处理事什么”的一个模型，你自然就应该投喂给他大量相关描述，如下所示：</p>
+<ul>
+<li>
+<p><strong>数据准备</strong><code>train.txt</code>，可以是任意的文本数据，当然要经过清洗的有效数据，例如wiki百科，图书等</p>
+<p>大概长这样，它就是一个一个字的文本，没有经过任何标注:</p>
+<pre class="highlight"><code class>人工智能是研究如何使计算机模拟人类智能的一门科学。它的主要研究内容包括计算机视觉、自然语言处理、机器学习、知识表示与推理等。
+深度学习是机器学习的一个分支，它基于人工神经网络的结构和功能。深度学习模型通常由多层神经网络组成，每一层都从前一层提取特征。
+自然语言处理是人工智能的一个重要领域，它研究如何让计算机理解人类语言。常见的应用包括机器翻译、情感分析、文本生成等。
+计算机视觉是人工智能的另一个重要领域，它研究如何让计算机理解图像和视频。计算机视觉的应用包括图像分类、物体检测、图像生成等。
+...
+</code></pre>
+<p>这个训练数据可以特别大，gpt4据说已经将全网公开的文本数据都已经训练进去了</p>
+</li>
+<li>
+<p><strong>算力适配</strong>（配置有限，以学习为主）：</p>
+<ul>
+<li>Mac Pro M1 CPU</li>
+</ul>
+</li>
+<li>
+<p><strong>算法：Transformer架构</strong></p>
+<p>Transformer是一种用于自然语言处理（NLP）和其他序列到序列（sequence-to-sequence）任务的深度学习模型架构，它在2017年由Vaswani等人首次提出。Transformer架构引入了自注意力机制（self-attention mechanism），这是一个关键的创新，使其在处理序列数据时表现出色。</p>
+<p>相信大家对这种架构图绝对不陌生</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/heS6wRSHVMlONzE8lFWbtibogsSJLmhHZNP6JMbmRDrEGVKguKWiceCoebw5l6ibpxcnXnHfEyoEnIRsAjxhZUwGw/640?wx_fmt=png&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片"></p>
+<p>以下是Transformer的一些重要组成部分和特点：</p>
+<ul>
+<li>
+<p>自注意力机制（Self-Attention）：这是Transformer的核心概念之一，它使模型能够同时考虑输入序列中的所有位置，而不是像循环神经网络（RNN）或卷积神经网络（CNN）一样逐步处理。自注意力机制允许模型根据输入序列中的不同部分来赋予不同的注意权重，从而更好地捕捉语义关系。</p>
+</li>
+<li>
+<p>多头注意力（Multi-Head Attention）：Transformer中的自注意力机制被扩展为多个注意力头，每个头可以学习不同的注意权重，以更好地捕捉不同类型的关系。多头注意力允许模型并行处理不同的信息子空间。<br>
+堆叠层（Stacked Layers）：Transformer通常由多个相同的编码器和解码器层堆叠而成。这些堆叠的层有助于模型学习复杂的特征表示和语义。</p>
+</li>
+<li>
+<p>位置编码（Positional Encoding）：由于Transformer没有内置的序列位置信息，它需要额外的位置编码来表达输入序列中单词的位置顺序。</p>
+</li>
+<li>
+<p>残差连接和层归一化（Residual Connections and Layer Normalization）：这些技术有助于减轻训练过程中的梯度消失和爆炸问题，使模型更容易训练。</p>
+</li>
+<li>
+<p>编码器和解码器：Transformer通常包括一个编码器用于处理输入序列和一个解码器用于生成输出序列，这使其适用于序列到序列的任务，如机器翻译。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="gpt-3-的训练架构与transformer的关系"><a class="markdownIt-Anchor" href="#gpt-3-的训练架构与transformer的关系"></a> GPT-3 的训练架构与Transformer的关系</h4>
+<p>GPT-3（Generative Pre-trained Transformer 3）是OpenAI推出的基于Transformer的自回归模型，它的架构与标准Transformer解码器类似，只不过它<strong>仅使用Transformer的解码器（Decoder-Only）</strong>：只有解码器部分，不包括编码器部分，专门用于生成任务。通过<strong>自回归方式</strong>（Autoregressive）生成文本，即每一步的输出作为下一步的输入。</p>
+<p>它的架构如下：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/heS6wRSHVMlONzE8lFWbtibogsSJLmhHZdNZktoVfKLvQibUHJD9BUjZQW1QKskB7A6ZxkSyccD6nt1gfUQt1uHQ/640?wx_fmt=png&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片"></p>
+<p>作为机器学习的初学者，当我们看到这里的时候，肯定有很多人和我一样，没有体感，这些概念到底是什么，如何进行深入理解呢？</p>
+<p>别急，我们都是程序员，我们从0开始实现一个这个架构代码不就知道个大概了吗，接着在深入各个具体模块进行理解，这就是我这篇文章的重点，我试着通过以程序员熟悉的代码来一步步理解预训练的基本原理。</p>
+<h2 id="注意力机制"><a class="markdownIt-Anchor" href="#注意力机制"></a> 注意力机制</h2>
+<p><strong>注意机制力要实现的目标</strong>：</p>
+<p>输入一段句子，能够识别出句子词语中两两词汇的相关性（也称注意力），例如“猫在垫子上”这句话，能够让模型自动学会“猫”和“垫子”之间的关系。</p>
+<p>假设输入时句子为X = [‘猫’, ‘在’, ‘垫子’, ‘上’]，要实现两两词组的相关性, 可以采用两两词组的Embedding向量余弦相似度或者欧距离。</p>
+<p>例如’猫’与’垫子’都是名词，同时一般用于主客关系，在高维的Embedding空间中，通过相关性计算就能得到某些特定的关系。</p>
+<p>使用余弦相似度计算X[0] 与 X[2]之间的相关性：</p>
+<p>这里为什么采用余弦相似度这个计算方式也是因为计算简单，计算机天然对矩阵乘法更加友好。</p>
+<p>而为了快速批量计算，将X看成矩阵，两两词之间的相关性就可以看出，两两矩阵的乘法，表示为X * X^T，就得到了两两词组之间的相关性矩阵，如下：</p>
+<p>由于我们需要模型学习到泛化能力，也就是不单单是这句话本身词语之间的相关性，还需要结合全局语料进行学习并总结出更复杂的相关性，我们就设计一个线性变换 f(x)=WX, 让所有的input经过一个线性变换之后，在进行相关性的计算，这样就能让W作为习得的规律在全剧终保存下来，例如X’ = WX, 在进行X’ * X^T矩阵计算。</p>
+<p>经过大量的实验《Attention is All you need》论文得出，让input输入经过相同的线性变换f(x)，不如让其分别经过不同的f(x)在进行相似度计算来的效果好，原因是词组之间关系不止一种，词组之间有语义相关性和句法相关性，通过不同的线性变换可以从不同的维度习得词组之间的相关性。</p>
+<p>也就有了我们论文中自注意机制的  Q = Wq*X, K= Wk* X 的两个线性变换，那么它最终的词组之间的相关性(注意力)公式为：</p>
+<p>计算 Q 和 K 的点积：QKT∈Rn×n QK^T \in \mathbb{R}^{n \times n} QKT∈Rn×n。</p>
+<ul>
+<li>(QKT)i,j=Qi⋅Kj (QK^T)_{i,j} = Q_i \cdot K_j (QKT)i,j=Qi⋅Kj 表示第 i i i 个Query与第 j j j 个Key的相似性。</li>
+</ul>
+<p>缩放：QKTdk \frac{QK^T}{\sqrt{d_k}} dkQKT。</p>
+<ul>
+<li>缩放因子 dk \sqrt{d_k} dk 是为了防止点积值过大（尤其当 dk d_k dk 较大时），从而避免 softmax \text{softmax} softmax 的梯度过小。</li>
+</ul>
+<p><strong>注意力归一化权重得到注意力得分</strong></p>
+<ul>
+<li>
+<p>对每一行应用</p>
+<p>softmax \text{softmax} softmax</p>
+<p>softmax(QKTdk)i,j=exp⁡(Qi⋅Kjdk)∑k=1nexp⁡(Qi⋅Kkdk)\text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)<em>{i,j} = \frac{\exp\left(\frac{Q_i \cdot K_j}{\sqrt{d_k}}\right)}{\sum</em>{k=1}^{n} \exp\left(\frac{Q_i \cdot K_k}{\sqrt{d_k}}\right)}softmax(dkQKT)i,j=∑k=1nexp(dkQi⋅Kk)exp(dkQi⋅Kj)</p>
+<ul>
+<li>结果是一个 (n,n) (n, n) (n,n) 的矩阵，每行和为1，表示第 i i i 个位置对所有位置的注意力权重。</li>
+</ul>
+</li>
+</ul>
+<p><strong>最终对原始输入的每个词组进行加权相乘</strong></p>
+<p>有了注意力得分再与原始输入进行加权相乘就得到了每个词组在上下文中的相关性有了加强或者减弱的差异化表示，方便后续经过前馈神经网络找到更深层次的语言规律。</p>
+<p>Attention(Q,K,V)=softmax(dkQKT)V，其中V也是经过单独线性变换得来的 V = Wv * X.</p>
+<p>那么这里进行加权聚合时候为什么不使用原始的X，而是要经过Wv * x的线性变换呢，也是因为最终的注意力不能单独只考虑本次输入的内容，还需要考虑全局输入，通过设计一个线性层来找到本次输入与全局上下文的联系进而达到更好的大语言模型的泛化能力，例如不单单只考虑本次输入：“猫在垫子上”，历史输入&quot;猫在椅子上&quot;在注意力表示上可能有共性，我们训练语言模型就是要竟可能多地找到自身与全局的一些共性规律，这个过程也称之为拟合。</p>
+<p>以上是对自注意力机制中的KQV的通俗解释和理解。</p>
+<h1 id="实战预训练从0开始进行无监督预训练第一阶段"><a class="markdownIt-Anchor" href="#实战预训练从0开始进行无监督预训练第一阶段"></a> 实战预训练：从0开始进行无监督预训练（第一阶段）</h1>
+<h4 id="代码结构"><a class="markdownIt-Anchor" href="#代码结构"></a> 代码结构</h4>
+<p><img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/images/image-20250328194338007.png" alt="image-20250328194338007"></p>
+<p>**<code>attention_pretrain.py</code>：**预训练的实现脚本</p>
+<p>**<code>requirements.txt</code>：**环境类库依赖</p>
+<p>**<code>train_data_ai.txt</code>：**预训练的文本数据</p>
+<h4 id="构建模型类结构gptmodel"><a class="markdownIt-Anchor" href="#构建模型类结构gptmodel"></a> 构建模型类结构GPTModel</h4>
+<p><img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/images/image-20250328195124743.png" alt="image-20250328195124743"></p>
+<p>给定一定的输入(一句话的前缀)，让其预测下一个词，里可以理解这里的GPTModel就是一个超级复杂的output=F(input)函数，给定input，输出对应的output. 那么它具体的代码定义如下：</p>
+<pre class="highlight"><code class="python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">GPTModel</span>(nn.Module):
+    <span class="hljs-string">&quot;&quot;&quot;GPT语言模型
+    
+    自回归语言模型，预测序列中的下一个token
+    使用因果注意力确保只关注过去的token
+    &quot;&quot;&quot;</span>
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">
+        self,
+        vocab_size: <span class="hljs-built_in">int</span>,  <span class="hljs-comment"># 词汇表大小</span>
+        d_model: <span class="hljs-built_in">int</span> = <span class="hljs-number">256</span>,  <span class="hljs-comment"># 模型维度 (针对CPU训练减小)</span>
+        num_heads: <span class="hljs-built_in">int</span> = <span class="hljs-number">4</span>,  <span class="hljs-comment"># 注意力头数 (针对CPU训练减小)</span>
+        num_layers: <span class="hljs-built_in">int</span> = <span class="hljs-number">10</span>,  <span class="hljs-comment"># Transformer层数 (针对CPU训练减小)</span>
+        d_ff: <span class="hljs-built_in">int</span> = <span class="hljs-number">64</span>,  <span class="hljs-comment"># 前馈网络隐藏层维度 (针对CPU训练减小)</span>
+        max_seq_len: <span class="hljs-built_in">int</span> = <span class="hljs-number">512</span>,  <span class="hljs-comment"># 最大序列长度 (针对CPU训练减小)</span>
+        dropout: <span class="hljs-built_in">float</span> = <span class="hljs-number">0.1</span>  <span class="hljs-comment"># Dropout比率</span>
+    </span>):
+        <span class="hljs-built_in">super</span>().__init__()
+        
+        self.d_model = d_model
+        self.max_seq_len = max_seq_len
+        
+        <span class="hljs-comment"># Token嵌入层：将词ID转为向量表示</span>
+        self.token_embedding = nn.Embedding(vocab_size, d_model)
+        
+        <span class="hljs-comment"># 位置编码：添加位置信息</span>
+        self.pos_encoding = PositionalEncoding(d_model, max_seq_len)
+        
+        self.dropout = nn.Dropout(dropout)
+        
+        <span class="hljs-comment"># Transformer层：堆叠多个GPTBlock</span>
+        self.layers = nn.ModuleList([
+            GPTBlock(d_model, num_heads, d_ff, dropout)
+            <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(num_layers)
+        ])
+        
+        <span class="hljs-comment"># 输出层：将Transformer的输出映射回词汇表大小</span>
+        <span class="hljs-comment"># 这是预测下一个token的关键</span>
+        self.output_layer = nn.Linear(d_model, vocab_size)
+        
+        <span class="hljs-comment"># 应用权重初始化</span>
+        self._init_weights()
+</code></pre>
+<p>这段代码定义了GPT模型的初始化逻辑：</p>
+<ul>
+<li>
+<p>词嵌入层：将输入的词ID转换为词向量</p>
+</li>
+<li>
+<p>位置编码：添加位置信息，使模型能理解序列中词的位置</p>
+</li>
+<li>
+<p>Dropout层：用于正则化，防止过拟合</p>
+</li>
+<li>
+<p>Transformer层：核心计算单元，堆叠多个GPTBlock形成深层网络</p>
+</li>
+<li>
+<p>输出层：将最终特征映射回词汇表大小，用于预测下一个词</p>
+</li>
+</ul>
+<p>它又是如何进行预测下一个词的呢，我们继续看<code>forward</code>代码：</p>
+<pre class="highlight"><code class="python">    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, input_ids</span>):
+        <span class="hljs-string">&quot;&quot;&quot;模型前向传播
+        
+        input_ids: [batch_size, seq_len] 输入token ID
+        
+        返回：每个位置的下一个token预测
+        &quot;&quot;&quot;</span>
+        batch_size, seq_len = input_ids.size()
+        
+        <span class="hljs-comment"># 确保输入是正确的类型</span>
+        input_ids = input_ids.long()
+        
+        <span class="hljs-comment"># 步骤1: 生成因果注意力掩码</span>
+        <span class="hljs-comment"># 确保每个位置只关注其前面的位置（自回归性）</span>
+        mask = self.get_causal_mask(seq_len)
+        
+        <span class="hljs-comment"># 步骤2: 嵌入层 + 位置编码</span>
+        <span class="hljs-comment"># 乘以sqrt(d_model)可以稳定梯度</span>
+        x = self.token_embedding(input_ids) * math.sqrt(self.d_model)
+        x = self.pos_encoding(x)
+        x = self.dropout(x)
+        
+        <span class="hljs-comment"># 步骤3: 通过多层Transformer块</span>
+        <span class="hljs-keyword">for</span> layer <span class="hljs-keyword">in</span> self.layers:
+            x = layer(x, mask)
+        
+        <span class="hljs-comment"># 步骤4: 将输出映射到词汇表，得到每个位置的下一个token预测</span>
+        logits = self.output_layer(x)
+        
+        <span class="hljs-keyword">return</span> logits
+</code></pre>
+<p>看第一行代码，这里接受一个input_ids, 这是一个数字类型的二维数组（向量），行数为batch_size, 列数为seq_len</p>
+<blockquote>
+<p><strong>我们的文字是如何转成数字的呢？</strong></p>
+<pre class="highlight"><code class>  tokenizer = JiebaTokenizer(max_vocab_size=50000)  # 限制词汇表大小
+  # 将所有文中的出现过的词，给他一个id编号，就像汉字字典一样
+  vocab_size = tokenizer.fit_on_texts(all_text)
+  # 这里就是将一段文本编码成了数字，例如我是中国人，经过分词变成['我','是','中国人']，最后得到一个id数组[45,878,432]
+  input_ids = tokenizer.encode(text)
+  ...
+  # 前向传播,将数组输入到模型中
+  logits = model(input_ids)
+</code></pre>
+</blockquote>
+<blockquote>
+<p>我们的输入的文字序列先经过分词器转换成对应分词的字典id序列，再根据固定窗口大小进行切分（例如128Token）为一行</p>
+<p>每次输入多行成为一批，所以我们看到的的input_ids是一个二维向量：input_ids: [batch_size, seq_len]</p>
+</blockquote>
+<h4 id="步骤1-生成因果注意力掩码"><a class="markdownIt-Anchor" href="#步骤1-生成因果注意力掩码"></a> 步骤1: 生成因果注意力掩码</h4>
+<pre><code>    # 确保每个位置只关注其前面的位置（自回归性）
+    mask = self.get_causal_mask(seq_len)
+</code></pre>
+<p>为了确保训练时候对下一个token时候只能看到当前的位置的值及之前的值，需要对未来的需求进行遮盖，这个也成为<strong>自回归</strong>训练过程</p>
+<h4 id="步骤2-嵌入层-位置编码"><a class="markdownIt-Anchor" href="#步骤2-嵌入层-位置编码"></a> 步骤2: 嵌入层 + 位置编码</h4>
+<pre class="highlight"><code class> # 乘以sqrt(d_model)可以稳定梯度
+ x = self.token_embedding(input_ids) * math.sqrt(self.d_model)
+ x = self.pos_encoding(x)
+ x = self.dropout(x)
+</code></pre>
+<ul>
+<li>
+<p>词嵌入转换：将整数形式的词ID (input_ids) 转换为密集的向量表示，向量维度为d_model</p>
+</li>
+<li>
+<p>嵌入缩放：将嵌入向量乘以 √d_model，这种缩放可以稳定梯度，防止初始训练时由于深层网络造成的梯度消失或爆炸问题</p>
+</li>
+<li>
+<p>注入位置编码信息：由于Transformer没有循环或卷积结构，它对输入序列中词的位置天然&quot;盲目&quot;，通常使用正弦和余弦函数生成的固定模式编码，具有可预测的距离特性</p>
+</li>
+<li>
+<p>Dropout:  训练期间随机（这个随机概率就是droupout的值）关闭一部分神经元连接，防止训练数据过拟合，增加系统的鲁棒性（就是泛化能力）</p>
+</li>
+</ul>
+<h4 id="步骤3通过多层transformer块"><a class="markdownIt-Anchor" href="#步骤3通过多层transformer块"></a> 步骤3：通过多层Transformer块</h4>
+<pre class="highlight"><code class># 步骤3: 通过多层Transformer块
+for layer in self.layers:
+     x = layer(x, mask)
+</code></pre>
+<p>这里才是我们Transformer架构真正的核心实现，这里至于有多少个Transformer层根据模型的复杂情况可以设置不同的值，像GPT3的用了96个Transformer层，我们作为学习目的自然没有那么高的算力支持设置那么多层，代码中我们设置了<code>num_layers = 8</code>也就是堆叠8层，每一层都是一样的</p>
+<p><img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/images/20250327-120313%20(1).png" alt="20250327-120313 (1)"></p>
+<p>从图中可以看到，有GPTBlock[0]~GPTBlock[7]串联的8个Transformer层，我们看下每一层的<code>GPTBlock</code>实现</p>
+<p><img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/images/image-20250331121040345.png" alt="image-20250331121040345"></p>
+<p>从图可以看出，从下往上箭头方向，输入数据经过上面第二步骤的Dropout之后输入到第一层的Transformer层中，其实现代码如下：</p>
+<pre class="highlight"><code class="python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">GPTBlock</span>(nn.Module):
+    <span class="hljs-string">&quot;&quot;&quot;GPT 模型的基本构建块
+    
+    包含一个多头自注意力层和一个前馈神经网络
+    每个子层都使用残差连接和层归一化
+    &quot;&quot;&quot;</span>
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">
+        self, 
+        d_model: <span class="hljs-built_in">int</span>,  <span class="hljs-comment"># 模型维度</span>
+        num_heads: <span class="hljs-built_in">int</span>,  <span class="hljs-comment"># 注意力头数</span>
+        d_ff: <span class="hljs-built_in">int</span>,  <span class="hljs-comment"># 前馈网络隐藏层维度</span>
+        dropout: <span class="hljs-built_in">float</span> = <span class="hljs-number">0.1</span>  <span class="hljs-comment"># Dropout比率</span>
+    </span>):
+        <span class="hljs-built_in">super</span>().__init__()
+        
+        <span class="hljs-comment"># 步骤1: 多头自注意力层</span>
+        self.attn = MultiHeadAttention(d_model, num_heads, dropout)
+        self.norm1 = nn.LayerNorm(d_model)  <span class="hljs-comment"># 层归一化</span>
+        
+        <span class="hljs-comment"># 步骤2: 前馈神经网络</span>
+        <span class="hljs-comment"># 包含两个线性变换，中间有GELU激活函数</span>
+        self.ff = nn.Sequential(
+            nn.Linear(d_model, d_ff),
+            nn.GELU(),  <span class="hljs-comment"># GPT-3使用GELU而非ReLU</span>
+            nn.Linear(d_ff, d_model),
+            nn.Dropout(dropout)
+        )
+        self.norm2 = nn.LayerNorm(d_model)  <span class="hljs-comment"># 层归一化</span>
+        
+        self.dropout = nn.Dropout(dropout)
+        
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x, mask=<span class="hljs-literal">None</span></span>):
+        <span class="hljs-comment"># 多头自注意力 + 残差连接 + 层归一化</span>
+        <span class="hljs-comment"># 残差连接 (x + sublayer(x)) 有助于深层网络的训练</span>
+        attn_output = self.attn(x, x, x, mask)
+        x = self.norm1(x + self.dropout(attn_output))
+        
+        <span class="hljs-comment"># 前馈网络 + 残差连接 + 层归一化</span>
+        ff_output = self.ff(x)
+        x = self.norm2(x + self.dropout(ff_output))
+        
+        <span class="hljs-keyword">return</span> x
+</code></pre>
+<p>在**<strong>init</strong>**中：</p>
+<ul>
+<li>初始化了多头自注意力层(这是Transformer架构中的核心): MultiHeadAttention</li>
+<li>初始化了第一个层归一化<code>norm1</code></li>
+<li>构造了一个前馈神经网络<code>ff</code>,其中输入<code>d_model</code>经过第一个<code>Linear</code>得到<code>d_ff</code>, 在经过GELU激活函数(<em>GPT-3使用GELU而非ReLU</em>); 接着再经过一个线性层输入<code>d_ff</code>得到<code>d_model</code>;最后经过Dropout关闭一些神经网络节点防止过拟合。</li>
+<li>接着在初始化了一个层归一化norm2</li>
+<li>最后再来一个Dropout层</li>
+</ul>
+<p>在<strong>forward</strong>中：</p>
+<ul>
+<li>
+<p>多头自注意力计算：</p>
+<ul>
+<li>
+<p>self.attn(x, x, x, mask) 调用多头自注意力模块</p>
+</li>
+<li>
+<p>三个相同的 x 参数分别作为查询(Q)、键(K)和值(V)</p>
+</li>
+<li>
+<p>mask 参数用于屏蔽未来信息，确保模型只能看到当前及之前的词元</p>
+</li>
+</ul>
+</li>
+<li>
+<p>残差连接的应用：</p>
+<ul>
+<li>
+<p>x + self.dropout(attn_output) 实现了残差连接</p>
+</li>
+<li>
+<p>直接将原始输入 x 与注意力输出相加</p>
+</li>
+<li>
+<p>注意力输出先经过dropout进行正则化</p>
+</li>
+<li>
+<p>这种跳跃连接帮助解决深层网络中的梯度消失问题</p>
+</li>
+</ul>
+</li>
+<li>
+<p>层归一化处理：</p>
+<ul>
+<li>
+<p>self.norm1(…) 对残差连接的结果进行层归一化</p>
+</li>
+<li>
+<p>归一化稳定深层网络的训练过程</p>
+</li>
+<li>
+<p>减少内部协变量偏移，使训练更平稳高效</p>
+</li>
+</ul>
+</li>
+<li>
+<p>前馈网络处理：</p>
+<ul>
+<li>
+<p>self.ff(x) 将第一阶段的输出传入前馈神经网络</p>
+</li>
+<li>
+<p>前馈网络通常由两个线性变换和一个非线性激活函数组成</p>
+</li>
+<li>
+<p>增强模型的表达能力，处理更复杂的特征关系</p>
+</li>
+</ul>
+<p><img src="https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/images/image-20250331155805961.png" alt="image-20250331155805961"></p>
+</li>
+<li>
+<p>第二次残差连接：</p>
+<ul>
+<li>
+<p>x + self.dropout(ff_output) 实现第二次残差连接</p>
+</li>
+<li>
+<p>将第一阶段输出 x 与前馈网络输出相加</p>
+</li>
+<li>
+<p>前馈网络输出同样先经过dropout正则化</p>
+</li>
+<li>
+<p>继续保持梯度流动，便于深层网络训练</p>
+</li>
+</ul>
+</li>
+<li>
+<p>第二次层归一化：</p>
+<ul>
+<li>
+<p>self.norm2(…) 对第二次残差连接结果应用层归一化</p>
+</li>
+<li>
+<p>再次稳定特征分布，使训练更加稳定</p>
+</li>
+<li>
+<p>确保下一个块接收到规范化的输入</p>
+</li>
+</ul>
+</li>
+<li>
+<p>最后返回<code>return x</code> 继续当做下一个GPTBlock的输入</p>
+</li>
+</ul>
+<h4 id="步骤4-将输出映射到词汇表得到每个位置的下一个token预测"><a class="markdownIt-Anchor" href="#步骤4-将输出映射到词汇表得到每个位置的下一个token预测"></a> 步骤4: 将输出映射到词汇表，得到每个位置的下一个token预测</h4>
+<pre class="highlight"><code class> # 步骤4: 将输出映射到词汇表，得到每个位置的下一个token预测
+ logits = self.output_layer(x)
+        
+ return logits
+</code></pre>
+<h3 id="举例说明训练过程的变换"><a class="markdownIt-Anchor" href="#举例说明训练过程的变换"></a> 举例说明训练过程的变换</h3>
+<p>训练数据：</p>
+<pre class="highlight"><code class>人工智能是计算机科学的一个重要分支，它致力于研究如何让计算机模拟人类智能。
+深度学习是机器学习的一个分支，它基于人工神经网络的结构和功能。
+通过深度学习，计算机可以从大量数据中学习特征和模式，实现图像识别、语音识别等任务。
+</code></pre>
+<p>经过token化之后</p>
+<pre class="highlight"><code class>['人工智能', '是', '计算机', '科学', '的', '一个', '重要', '分支', '，', '它', '致力于', '研究', '如何', '让', '计算机', '模拟', '人类', '智能', '。', '深度', '学习', '是', '机器学习', '的', '一个', '分支', '，', '它', '基于', '人工神经网络', '的', '结构', '和', '功能', '。', '通过', '深度学习', '，', '计算机', '可以', '从', '大量', '数据', '中', '学习', '特征', '和', '模式', '，', '实现', '图像识别', '、', '语音识别', '等', '任务', '。']
+</code></pre>
+<p>为每个词构建词汇表（词 -&gt; ID），相当于给每个词进行数字编码，因为计算机只认识数字:</p>
+<pre class="highlight"><code class>'&lt;PAD&gt;': 0
+'&lt;UNK&gt;': 1
+'&lt;BOS&gt;': 2
+'人工智能': 3
+'是': 4
+'计算机': 5
+'科学': 6
+'的': 7
+'一个': 8
+'重要': 9
+...
+</code></pre>
+<blockquote>
+<p>注意: token ID的分配基于词频或首次出现顺序，不一定按字母顺序排列</p>
+</blockquote>
+<p>从长序列文本中通过滑动窗口策略获取一个训练数据批次，批次大小batch_size=2, 序列长度seq_len=10，滑动窗口步长=seq_len/2=5,作为一次训练的输入input</p>
+<pre class="highlight"><code class>输入形状: torch.Size([2, 10])
+
+输入批次(2个序列，每个序列10个token):
+tensor([
+# ['人工智能', '是', '计算机', '科学', '的', '一个', '重要', '分支', '，', '它']
+[3, 4,  5,  6,  7,  8,  9, 10, 11, 12], 
+# ['人工智能', '是', '计算机', '科学', '的', '一个', '重要', '分支', '，', '它']
+[8, 9, 10, 11, 12, 13, 14, 15, 16,  5]
+])
+</code></pre>
+<h3 id="多轮训练和反向传播"><a class="markdownIt-Anchor" href="#多轮训练和反向传播"></a> 多轮训练和反向传播</h3>
+<pre class="highlight"><code class>        for epoch in range(num_epochs):
+            print(f&quot;\n开始 Epoch {epoch+1}/{num_epochs}&quot;)
+            epoch_loss = 0.0
+            for step in range(steps_per_epoch):
+                # 每次获取一个固定batch_size个固定长度的序列数据
+                batch = dataset.get_batch(batch_size=batch_size)
+                # 将0到seq_len座位输入
+                input_ids = batch[&quot;input_ids&quot;]
+                target_ids = batch[&quot;target_ids&quot;]
+                
+                # 更新已处理的token计数
+                # 对于每个批次，我们处理了batch_size * seq_len个token
+                epoch_processed_tokens += batch_size * seq_len
+                
+                # 前向传播
+                logits = model(input_ids)
+                
+                # 计算损失
+                loss = F.cross_entropy(
+                    logits.reshape(-1, logits.size(-1)),
+                    target_ids.reshape(-1),
+                    ignore_index=0  # 忽略padding位置
+                )
+                
+                # 反向传播计算梯度
+                loss.backward()
+                
+                # 梯度裁剪，防止梯度爆炸
+                torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
+                
+                # 更新模型参数
+                optimizer.step()
+                scheduler.step()  # 更新学习率
+                optimizer.zero_grad()
+                
+                # 更新进度条和损失记录
+                loss_val = loss.item()
+                epoch_loss += loss_val
+                train_losses.append(loss_val)
+                
+                # 记录滑动窗口损失
+                loss_window.append(loss_val)
+                if len(loss_window) &gt; window_size:
+                    loss_window.pop(0)
+                smooth_loss = sum(loss_window) / len(loss_window)
+                
+                # 当前学习率
+                current_lr = scheduler.get_last_lr()[0]
+                
+                # 计算数据覆盖率
+                coverage_ratio = covered_positions.sum() / total_tokens * 100
+                
+                # 更新进度条
+                pbar.update(1)
+                pbar.set_description(f&quot;Loss: {loss_val:.4f}, Smooth: {smooth_loss:.4f}, LR: {current_lr:.6f}, Cov: {coverage_ratio:.1f}%&quot;)
+                
+                global_step += 1
+                
+                # 使用TensorBoard记录指标
+                if writer:
+                    writer.add_scalar('Training/Loss', loss_val, global_step)
+                    writer.add_scalar('Training/Smooth_Loss', smooth_loss, global_step)
+                    writer.add_scalar('Training/Learning_Rate', current_lr, global_step)
+                    writer.add_scalar('Training/Data_Coverage', coverage_ratio, global_step)
+                    writer.add_scalar('Training/Epoch_Progress', epoch_processed_tokens / total_tokens * 100, global_step)
+                    
+                    # 定期记录梯度直方图
+                    if global_step % 50 == 0:
+                        for name, param in model.named_parameters():
+                            if param.grad is not None:
+                                writer.add_histogram(f'Gradients/{name}', param.grad, global_step)
+                
+                # 定期生成示例文本，展示模型学习效果
+                if global_step % 50 == 0:
+                    # 使用随机温度，展示不同生成风格
+                    temperature = 0.8 if global_step % 100 == 0 else 0.6
+                    generated_text = generate_text(model, tokenizer, infer_test_begin, max_length=30, temperature=temperature)
+                    
+                    # 将生成的文本添加到TensorBoard
+                    if writer:
+                        writer.add_text('Generated_Text', f&quot;Prompt: '{infer_test_begin}', Temperature: {temperature}\n{generated_text}&quot;, global_step)
+                
+                # 主动清理内存
+                del logits
+                del loss
+                gc.collect()
+                
+                # 检查是否已完成整个数据集的处理
+                if dataset.current_position &gt;= total_tokens - seq_len and step &gt;= steps_per_epoch // 2:
+                    print(f&quot;\n已完成对整个数据集的处理，提前结束当前epoch&quot;)
+                    break
+            
+            # 每个epoch结束后的平均损失
+            num_steps_completed = step + 1  # 当前完成的步数
+            avg_epoch_loss = epoch_loss / num_steps_completed
+            print(f&quot;Epoch {epoch+1} 平均损失: {avg_epoch_loss:.4f}&quot;)
+            
+            # 记录每个epoch的平均损失
+            if writer:
+                writer.add_scalar('Training/Epoch_Loss', avg_epoch_loss, epoch+1)
+            
+            # 计算并显示当前的数据覆盖情况
+            covered_count = covered_positions.sum()
+            coverage_percent = covered_count / total_tokens * 100
+            print(f&quot;数据覆盖情况: {coverage_percent:.2f}% ({covered_count:,}/{total_tokens:,} tokens)&quot;)
+            
+            # 记录数据覆盖率
+            if writer:
+                writer.add_scalar('Training/Epoch_Coverage', coverage_percent, epoch+1)
+            
+            # 每个epoch结束后评估一次困惑度
+            if epoch &gt; 0 and epoch % 2 == 0:  # 每两个epoch评估一次
+                test_dataset = StreamingDataset(
+                    data_files=data_files,
+                    seq_len=seq_len,
+                    tokenizer=tokenizer
+                )
+                perplexity = calculate_perplexity(model, test_dataset, batch_size=batch_size)
+                print(f&quot;Epoch {epoch+1} 困惑度: {perplexity:.2f}&quot;)
+                
+                # 记录困惑度
+                if writer:
+                    writer.add_scalar('Evaluation/Perplexity', perplexity, epoch+1)
+                    
+                    # 生成注意力权重可视化
+                    if global_step % 100 == 0:
+                        visualize_attention(model, tokenizer, infer_test_begin, writer, global_step)
+            
+            # 定期保存模型
+            if global_step % save_steps == 0:
+                # 使用当前指标保存模型
+                save_metrics = {
+                    'loss': avg_epoch_loss,
+                    'coverage': coverage_percent,
+                    'epoch': epoch + 1,
+                    'global_step': global_step,
+                    'perplexity': perplexity if 'perplexity' in locals() else None
+                }
+                
+                # 保存模型和优化器状态
+                save_model_and_optimizer(model, tokenizer, optimizer, scheduler, output_dir, save_metrics)
+        
+        # 训练结束，保存最终模型
+        final_metrics = {
+            'loss': train_losses[-1] if train_losses else None,
+            'coverage': covered_positions.sum() / total_tokens * 100,
+            'global_step': global_step,
+            'epoch': num_epochs,
+            'perplexity': calculate_perplexity(model, test_dataset, batch_size=batch_size) if 'test_dataset' in locals() else None
+        }
+        
+        # 保存最终模型和优化器状态
+        save_model_and_optimizer(model, tokenizer, optimizer, scheduler, output_dir, final_metrics)
+        
+        print(f&quot;训练完成！最终模型已保存到: {output_dir}/model&quot;)
+</code></pre>
+<p><strong>2.3 预训练目标：学习语言的统计规律</strong></p>
+<ul>
+<li>
+<p><strong>目标函数推导</strong>：</p>
+<pre class="highlight"><code class="math">L = -\frac{1}{N} \sum_{i=1}^{N} \log P(x_{i+1} | x_1, ..., x_i)
+</code></pre>
+</li>
+<li>
+<p><strong>动态损失计算</strong>：</p>
+<pre class="highlight"><code class="python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">compute_loss</span>(<span class="hljs-params">logits, targets</span>):
+    <span class="hljs-comment"># logits形状: [batch_size, seq_len, vocab_size]</span>
+    <span class="hljs-comment"># targets形状: [batch_size, seq_len]</span>
+    shift_logits = logits[:, :-<span class="hljs-number">1</span>, :].contiguous()
+    shift_targets = targets[:, <span class="hljs-number">1</span>:].contiguous()
+    <span class="hljs-keyword">return</span> criterion(shift_logits.view(-<span class="hljs-number">1</span>, vocab_size), shift_targets.view(-<span class="hljs-number">1</span>))
+</code></pre>
+</li>
+</ul>
+<h4 id="24-transformer架构解析与手写实现"><a class="markdownIt-Anchor" href="#24-transformer架构解析与手写实现"></a> <strong>2.4 Transformer架构解析与手写实现</strong></h4>
+<p><strong>2.4.1 输入处理：将字符转换为向量</strong></p>
+<ul>
+<li><strong>嵌入层</strong>：<pre class="highlight"><code class="python">self.token_embedding = nn.Embedding(vocab_size, d_model)
+self.position_embedding = nn.Embedding(max_seq_len, d_model)
+</code></pre>
+</li>
+<li><strong>位置编码方案对比</strong>：
+<ul>
+<li>绝对位置编码（简单但无法外推）</li>
+<li>正弦位置编码（数学外推性强）</li>
+</ul>
+</li>
+</ul>
+<p><strong>2.4.2 核心组件：多头自注意力</strong></p>
+<ul>
+<li><strong>因果掩码实现</strong>：<pre class="highlight"><code class="python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_causal_mask</span>(<span class="hljs-params">seq_len</span>):
+    mask = torch.triu(torch.ones(seq_len, seq_len), diagonal=<span class="hljs-number">1</span>)
+    <span class="hljs-keyword">return</span> mask.<span class="hljs-built_in">bool</span>()
+</code></pre>
+</li>
+<li><strong>注意力计算可视化</strong>：<pre class="highlight"><code class="python">attn_weights = F.softmax(q @ k.transpose(-<span class="hljs-number">2</span>, -<span class="hljs-number">1</span>) / math.sqrt(d_k), dim=-<span class="hljs-number">1</span>)
+attn_output = attn_weights @ v
+</code></pre>
+</li>
+</ul>
+<p><strong>2.4.3 残差连接与层归一化</strong></p>
+<ul>
+<li><strong>子层结构</strong>：<pre class="highlight"><code class="python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">TransformerLayer</span>(nn.Module):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, d_model, nhead</span>):
+        <span class="hljs-built_in">super</span>().__init__()
+        self.self_attn = nn.MultiheadAttention(d_model, nhead)
+        self.norm1 = nn.LayerNorm(d_model)
+        self.ffn = nn.Sequential(
+            nn.Linear(d_model, <span class="hljs-number">256</span>),
+            nn.ReLU(),
+            nn.Linear(<span class="hljs-number">256</span>, d_model)
+        )
+        self.norm2 = nn.LayerNorm(d_model)
+</code></pre>
+</li>
+</ul>
+<h4 id="25-训练引擎让模型开始阅读"><a class="markdownIt-Anchor" href="#25-训练引擎让模型开始阅读"></a> <strong>2.5 训练引擎：让模型开始&quot;阅读&quot;</strong></h4>
+<p><strong>2.5.1 数据管道构建</strong></p>
+<ul>
+<li><strong>滑动窗口生成器</strong>：<pre class="highlight"><code class="python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">generate_sequences</span>(<span class="hljs-params">text, seq_len</span>):
+    sequences = []
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(text) - seq_len):
+        sequences.append(text[i:i+seq_len+<span class="hljs-number">1</span>])
+    <span class="hljs-keyword">return</span> torch.LongTensor(sequences)
+</code></pre>
+</li>
+</ul>
+<p><strong>2.5.2 训练循环实现</strong></p>
+<pre class="highlight"><code class="python">model = TinyGPT(vocab_size=<span class="hljs-number">256</span>, d_model=<span class="hljs-number">64</span>, nhead=<span class="hljs-number">4</span>)
+optimizer = torch.optim.AdamW(model.parameters(), lr=<span class="hljs-number">1e-4</span>)
+scheduler = get_linear_schedule_with_warmup(optimizer, num_warmup_steps=<span class="hljs-number">100</span>)
+
+<span class="hljs-keyword">for</span> step <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1000</span>):
+    batch = get_batch()  <span class="hljs-comment"># 形状 [batch_size, seq_len+1]</span>
+    src = batch[:, :-<span class="hljs-number">1</span>]  <span class="hljs-comment"># 输入序列</span>
+    tgt = batch[:, <span class="hljs-number">1</span>:]   <span class="hljs-comment"># 目标序列</span>
+    logits = model(src)
+    loss = compute_loss(logits, tgt)
+    
+    optimizer.zero_grad()
+    loss.backward()
+    torch.nn.utils.clip_grad_norm_(model.parameters(), <span class="hljs-number">1.0</span>)
+    optimizer.step()
+    scheduler.step()
+    
+    <span class="hljs-keyword">if</span> step % <span class="hljs-number">100</span> == <span class="hljs-number">0</span>:
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Step <span class="hljs-subst">{step}</span>, Loss: <span class="hljs-subst">{loss.item():<span class="hljs-number">.4</span>f}</span>&quot;</span>)
+</code></pre>
+<p><strong>2.5.3 训练技巧</strong></p>
+<ul>
+<li><strong>学习率预热</strong>：前100步线性增加学习率</li>
+<li><strong>梯度裁剪</strong>：防止梯度爆炸</li>
+<li><strong>混合精度训练</strong>：用FP16加速计算</li>
+</ul>
+<h4 id="26-魔法时刻见证模型的语言理解"><a class="markdownIt-Anchor" href="#26-魔法时刻见证模型的语言理解"></a> <strong>2.6 魔法时刻：见证模型的&quot;语言理解&quot;</strong></h4>
+<p><strong>2.6.1 贪心解码生成</strong></p>
+<pre class="highlight"><code class="python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">generate_text</span>(<span class="hljs-params">prompt, max_len=<span class="hljs-number">50</span></span>):
+    input_ids = tokenizer.encode(prompt)
+    <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(max_len):
+        src = torch.LongTensor([input_ids])
+        logits = model(src)
+        next_token = torch.argmax(logits[<span class="hljs-number">0</span>, -<span class="hljs-number">1</span>, :]).item()
+        input_ids.append(next_token)
+    <span class="hljs-keyword">return</span> tokenizer.decode(input_ids)
+</code></pre>
+<p><strong>2.6.2 生成效果对比</strong></p>
+<ul>
+<li><strong>训练100步</strong>：“The fox jumped over the lazy dog dog dog dog…”</li>
+<li><strong>训练500步</strong>：“It was a bright cold day in April, and the clocks were striking thirteen…”</li>
+<li><strong>训练1000步</strong>：“The little prince lived on a very small planet, no larger than a house…”</li>
+</ul>
+<p><strong>2.6.3 注意力可视化</strong></p>
+<ul>
+<li>使用TensorBoard绘制注意力热力图</li>
+<li>观察模型如何关注&quot;fox&quot;与&quot;jumped&quot;的关系</li>
+</ul>
+<h3 id="挑战任务与思考"><a class="markdownIt-Anchor" href="#挑战任务与思考"></a> <strong>挑战任务与思考</strong></h3>
+<ol>
+<li><strong>参数调整实验</strong>：尝试将nhead改为2，观察生成文本流畅度变化</li>
+<li><strong>位置编码对比</strong>：用正弦位置编码替换绝对位置编码，比较训练效果</li>
+<li><strong>长距离依赖测试</strong>：构造&quot;1234567890&quot;序列，看模型能否正确生成&quot;11&quot;</li>
+</ol>
+<p><strong>关键原理提炼</strong>：</p>
+<ul>
+<li>无监督预训练的本质是学习&quot;下一个词的概率分布&quot;</li>
+<li>Transformer通过自注意力机制捕捉长距离依赖</li>
+<li>小规模实现揭示：大模型的核心创新是<strong>工程优化</strong>而非新理论</li>
+</ul>
+<p>此大纲通过&quot;问题驱动→核心组件拆解→代码实现→效果验证&quot;的闭环，帮助读者在资源有限的条件下理解预训练原理，代码示例控制在200行以内，适合本地运行验证。</p>
+
+            </div>
+            <hr />
+
+            <!-- 公众号图片 -->
+            <img src="/gongzhonghao.png" width="100%"/>
+
+            
+
+<!--             <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script> -->
+
+            
+
+
+        </div>
+    </div>
+
+    
+    <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: 'ac537cb9fe0e733330eb',
+        clientSecret: 'b3c9fa63fd196e83158a79b40dfe97529bd09de0',
+        repo: 'okeeper.github.io',
+        owner: 'okeeper',
+        admin: "okeeper",
+        id: 'ren-gong-zhi-neng/wo-yong-200-xing-dai-ma-xun-lian-liao-yi-ge-300w-can-shu-de-yu-yan-mo-xing-ni-gan-xin/',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/ren-gong-zhi-neng/transformer-de-zi-zhu-yi-ji-zhi/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="">
+                        
+                        <span class="card-title"></span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                             Transformer注意力全解析
+在自然语言处理（NLP）的舞台上，Transformer模型的横空出世就像一场技术革命。尤其是《Attention is All You Need》中提出的自注意力机制（Self-Attention），
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2025-04-07
+                        </span>
+                        <span class="publish-author">
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/ruan-jian-bi-ji/wei-wang-zhan-shen-qing-mian-fei-de-ssl/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="为网站申请免费的ssl证书">
+                        
+                        <span class="card-title">为网站申请免费的ssl证书</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+
+打开fressssl.cn
+https://freessl.cn/
+
+
+进入控制台，点击证书自动化
+https://freessl.cn/chart
+
+
+
+点击域名授权，添加域名，如果有多个可以添加多个，重复此步骤即可
+
+
+
+添加域名后
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2024-12-27
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/软件笔记/" class="post-category" target="_blank">
+                                    软件笔记
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/软件笔记/" target="_blank">
+                        <span class="chip bg-color">软件笔记</span>
+                    </a>
+                    
+                    <a href="/tags/ssl/" target="_blank">
+                        <span class="chip bg-color">ssl</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            &copy; 2017-2024 Okeeper. All Rights Reserved. &nbsp; 粤ICP备2024178587号
+            
+            &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+            <span class="white-color">209.2k</span>
+            
+
+            <br>
+            <span id="sitetime"></span>
+
+            
+            
+            <br>
+            
+            <span id="busuanzi_container_site_pv" style='display:none'>
+                <i class="fa fa-heart-o"></i>
+                本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv" style='display:none'>
+                人次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+            </span>
+            
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/okeeper" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:zhangyue0808@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+    <a href="https://user.qzone.qq.com/610998697" class="tooltipped" target="_blank" data-tooltip="访问我的QQ空间" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+    <a href="https://weibo.com/okeeper" class="tooltipped" target="_blank" data-tooltip="关注我的微博" data-position="top" data-delay="50">
+        <i class="fa fa-weibo"></i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<script language=javascript>
+    function siteTime() {
+        window.setTimeout("siteTime()", 1000);
+        var seconds = 1000;
+        var minutes = seconds * 60;
+        var hours = minutes * 60;
+        var days = hours * 24;
+        var years = days * 365;
+        var today = new Date();
+        var todayYear = today.getFullYear();
+        var todayMonth = today.getMonth() + 1;
+        var todayDate = today.getDate();
+        var todayHour = today.getHours();
+        var todayMinute = today.getMinutes();
+        var todaySecond = today.getSeconds();
+        /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+        year - 作为date对象的年份，为4位年份值
+        month - 0-11之间的整数，做为date对象的月份
+        day - 1-31之间的整数，做为date对象的天数
+        hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+        minutes - 0-59之间的整数，做为date对象的分钟数
+        seconds - 0-59之间的整数，做为date对象的秒数
+        microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+        var t1 = Date.UTC(2018, 01, 01, 00, 00, 00); //北京时间2018-2-13 00:00:00
+        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+        var diff = t2 - t1;
+        var diffYears = Math.floor(diff / years);
+        var diffDays = Math.floor((diff / days) - diffYears * 365);
+        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
+        document.getElementById("sitetime").innerHTML = "本站已运行 " + diffYears + " 年 " + diffDays + " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+    }/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+    siteTime();
+</script>
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9PRXGJ8X9Z"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'G-9PRXGJ8X9Z');
+</script>
+
+
+
+    
+
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+    <!-- 雪花特效 -->
+    
+
+</body>
+
+</html>

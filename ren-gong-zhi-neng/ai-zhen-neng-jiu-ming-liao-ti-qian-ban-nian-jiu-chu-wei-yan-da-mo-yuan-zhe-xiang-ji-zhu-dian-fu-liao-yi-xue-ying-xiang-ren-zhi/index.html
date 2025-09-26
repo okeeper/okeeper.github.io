@@ -1,0 +1,957 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="AI真能救命了：提前半年揪出胃癌，达摩院这项技术颠覆了医学影像认知, 张跃 zhangyue okeeper Java Alibaba 软件工程 架构师 软件笔记 技术分享 观点 随笔">
+    <meta name="baidu-site-verification" content="MWAMkewsPN">
+    <meta name="google-site-verification" content>
+    <meta name="360-site-verification" content>
+    <meta name="description" content="最近看到个让我挺激动的医疗AI进展——现在做个常规CT检查，AI就能提前半年帮你发现胃癌。这不是什么PPT概念，而是实实在在发表在《自然·医学》（Nature Medicine）上的研究成果，2025年6月24日刚发表的。
+
+这个叫DAMO">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>AI真能救命了：提前半年揪出胃癌，达摩院这项技术颠覆了医学影像认知 | 神笔君|Okeeper</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <!--数学公式-->
+    <link rel="stylesheet" href="https://lib.baomitu.com/KaTeX/latest/katex.min.css">
+
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?46e79e71af0709a5b9106bf20cecc493";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+<link rel="stylesheet" href="/css/prism-okaidia.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><script src="/js/prism.js"></script>
+<script src="/js/prism-line-numbers.min.js"></script></head>
+
+<body>
+
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/favicon.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">神笔君|Okeeper</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    <li class="hide-on-med-and-down">
+        <a href="http://model-bridge.okeeper.com" target="_blank" class="waves-effect waves-light">
+            <i class="fa fa-book"></i>
+            <span>ModelBridge/魔桥</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/contact" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>留言板</span>
+        </a>
+    </li>
+    
+
+
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/favicon.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">神笔君|Okeeper</div>
+        <div class="logo-desc">
+            
+            张跃 | 软件工程 | 架构师 | 软件笔记 | 技术分享 | 观点 | 随笔
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/contact" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                留言板
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/okeeper" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/okeeper" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        AI真能救命了：提前半年揪出胃癌，达摩院这项技术颠覆了医学影像认知
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                        <a href="/tags/人工智能/" target="_blank">
+                            <span class="chip bg-color">人工智能</span>
+                        </a>
+                        
+                        <a href="/tags/AI/" target="_blank">
+                            <span class="chip bg-color">AI</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                        <a href="/categories/人工智能/" class="post-category" target="_blank">
+                            人工智能
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2025-08-29
+                </div>
+
+                <div class="post-author info-break-policy">
+                    <i class="fa fa-user-o fa-fw"></i>作者:&nbsp;&nbsp;
+                    
+                    okeeper
+                    
+                </div>
+
+                
+                
+                <div class="info-break-policy">
+                    <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    2k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    6 分
+                </div>
+                
+                
+
+                
+                <div id="busuanzi_container_page_pv" class="info-break-policy">
+                    <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                    <span id="busuanzi_value_page_pv"></span>
+                </div>
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>最近看到个让我挺激动的医疗AI进展——现在做个常规CT检查，AI就能提前半年帮你发现胃癌。这不是什么PPT概念，而是实实在在发表在《自然·医学》（Nature Medicine）上的研究成果，2025年6月24日刚发表的。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/YicUhk5aAGtCnF1w7pAlZjib9p5cibdFIRPZ5xDnmwCm6SKAHGPUAykibH2XPsxvCFOjngGnFpa2oVfbstAIXoEo2w/640?wx_fmt=png&amp;from=appmsg" alt="AI胃癌筛查论文"></p>
+<p>这个叫DAMO GRAPE的AI模型，最牛的地方在于它打破了医学界的传统认知——以前大家都觉得平扫CT（就是不打造影剂的普通CT）根本看不清胃里的早期病变，更别说用来筛查胃癌了。但现在，达摩院和浙江省肿瘤医院的团队证明这完全可行。</p>
+<h2 id="为什么这个技术这么重要"><a class="markdownIt-Anchor" href="#为什么这个技术这么重要"></a> 为什么这个技术这么重要？</h2>
+<p>先看组数据：我国每年胃癌死亡人数约26万，排在所有恶性肿瘤第三位。但如果能在早期发现并切除，5年生存率能达到95%～99%，基本等于治愈。可惜现实是，我国胃癌早期发现率长期只有20%-30%。</p>
+<p>现在主流的筛查方法是&quot;问卷+胃镜&quot;，但胃镜这东西，说真的，体验不太好。我身边不少人一听要做胃镜就打退堂鼓，导致筛查依从性很低。而且这个方法效率也不高，做100个胃镜才能发现1例确诊。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/YicUhk5aAGtCnF1w7pAlZjib9p5cibdFIRPQJibJaskGPiaL0pZoIy6wS5sUhtkLXEFbTJuAwksV9XZtayXiblJHiaD4w/640?wx_fmt=jpeg&amp;from=appmsg" alt="医生查看CT影像"></p>
+<p>而达摩院这个方案就方便多了——用你体检时可能已经做过的腹部平扫CT，加AI分析一下，就能完成初筛。不用额外花钱，不用忍受痛苦，还不耽误事。</p>
+<h2 id="ai到底有多准"><a class="markdownIt-Anchor" href="#ai到底有多准"></a> AI到底有多准？</h2>
+<p>数据说话：DAMO GRAPE的敏感性达到85.1%，特异性96.8%。可能有人不懂这俩词啥意思，我解释下：敏感性就是AI能把潜在胃癌都揪出来不遗漏的能力，特异性就是它不乱报警的能力。这俩指标比人类放射科医生分别提升了21.8%和14.0%。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/YicUhk5aAGtCnF1w7pAlZjib9p5cibdFIRPpEUjZhoib3CaJxHLdxnZMs2MVib7Xpict1BrjmY8a29ibrjqYZ4Q5OLKxw/640?wx_fmt=png&amp;from=appmsg" alt="AI胃癌检测对比"></p>
+<p>最让人惊喜的是它能提前发现。研究里有个案例，2024年4月一名患者被确诊为局部晚期胃癌。医生回头把他6个月前做过的CT影像拿给AI分析，结果AI当时就提示有早期胃癌病灶。如果当时就发现，这患者就能提前半年治疗，结局可能完全不同。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/YicUhk5aAGtCnF1w7pAlZjib9p5cibdFIRPBzWicfGhER0azZp5BxVSrTZ9oGuL6WVx8q42j6UIZzC5uUp1PmRApKg/640?wx_fmt=png&amp;from=appmsg" alt="AI提前检测案例"></p>
+<p>这不是个例，研究中总共回溯了11名患者，AI能提前2到10个月不等检测出胃癌。现在这个技术已经开始在浙江、安徽等地部署，初步数据显示&quot;平扫CT+AI&quot;模式的胃癌检出率最高达到24.5%，而且检出的患者中约40%是原本没症状的。</p>
+<h2 id="不止胃癌连癌王胰腺癌也能查"><a class="markdownIt-Anchor" href="#不止胃癌连癌王胰腺癌也能查"></a> 不止胃癌，连&quot;癌王&quot;胰腺癌也能查</h2>
+<p>说实话，看到这个胃癌AI筛查，我并不太意外。因为达摩院之前就搞定了更难的胰腺癌筛查。胰腺癌被称为&quot;癌王&quot;，主要是因为它位置深、早期没症状，70%以上患者一确诊就是晚期，五年生存率低于10%。更麻烦的是，医学界以前连个有效的筛查手段都没有。</p>
+<p>达摩院2021年就开始研究用&quot;平扫CT+AI&quot;筛查癌症。当时不少医生都觉得这不可能，有人直接说&quot;用平扫CT来看胰腺癌，完全不可能&quot;。</p>
+<p>但AI的优势就在于能看到人眼看不到的东西。CT图像其实是一串从-1024到1024的数值（HU值），对应不同密度的组织。这些细微差别医生肉眼看不出来，但AI可以通过算法找出来。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/YicUhk5aAGtCnF1w7pAlZjib9p5cibdFIRPNI7n1nCw4ow9KcI3F6PCKxYjwaKZqNziaZnIEpFH7jMTMkeCp6rOdjw/640?wx_fmt=png&amp;from=appmsg" alt="PANDA模型流程图"></p>
+<p>他们想了个聪明办法：先用增强CT让医生精确标注病灶，再用图像配准技术把标注信息映射回平扫CT，这样AI就能学会识别平扫CT上的微妙变化。花了近两年时间，终于搞出了胰腺癌筛查AI模型DAMO PANDA。</p>
+<p>测试时，这个模型从2万多例CT数据中找出了31例之前被漏诊的胰腺癌，其中2名患者因为AI预警而早期手术治愈。这个成果2023年也发在了《自然·医学》上，今年还被FDA认定为&quot;突破性医疗器械&quot;。</p>
+<h2 id="ai是怎么学会看病的"><a class="markdownIt-Anchor" href="#ai是怎么学会看病的"></a> AI是怎么学会&quot;看&quot;病的？</h2>
+<p>很多人可能好奇，医生都看不清楚的平扫CT，AI怎么就能学会识别病灶？这确实是个大难题。</p>
+<p>达摩院团队首先得解决数据问题，他们构建了全球规模最大的胃癌平扫CT影像多中心数据集，包含6720例样本。然后是算法挑战，要克服胃部形态变化大、内容物干扰多、早期病灶仅在黏膜层等困难。</p>
+<p>最终的解决方案是开发了能专门识别胃黏膜层细微变化的深度学习模型。这个模型不仅能发现明显的肿瘤，还能识别各个阶段的胃癌，从最早期的T1期到晚期的T4期都能搞定。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/YicUhk5aAGtCnF1w7pAlZjib9p5cibdFIRPPoBlns0CTE2zAy1PSnqztxN4Ljx8BT7ULQsibTjAesh2GLCwMibf6Dow/640?wx_fmt=png&amp;from=appmsg" alt="各阶段胃癌识别"></p>
+<p>现在医生怎么用这个AI呢？实际工作中，AI会先对腹部平扫CT做初筛，标记出可疑区域，然后医生再对这些高风险人群做胃镜确诊。这样既能提高效率，又不会漏诊。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/YicUhk5aAGtCnF1w7pAlZjib9p5cibdFIRPbLy4N7NqH6XHEytNlU9GQlBnt5XrlNh832KVbg6jd9uicwC4UlIHtZA/640?wx_fmt=png&amp;from=appmsg" alt="AI辅助诊断场景"></p>
+<h2 id="这个技术到底有啥意义"><a class="markdownIt-Anchor" href="#这个技术到底有啥意义"></a> 这个技术到底有啥意义？</h2>
+<p>我觉得这个&quot;平扫CT+AI&quot;模式至少有三个重大意义：</p>
+<p>首先是对患者，等于多了一道生命防线。很多人每年体检做CT，其实可能已经有早期病变，但没人发现。现在有了AI帮忙，相当于给体检加了个&quot;火眼金睛&quot;。</p>
+<p>其次是对医生，AI成了个得力助手。医生每天要看那么多片子，难免会疲劳漏诊。AI可以把可疑的地方标出来，让医生重点关注，既提高准确率又节省时间。</p>
+<p>第三是对整个医疗系统，这能大大降低筛查成本。胃镜检查又贵又耗人力，而平扫CT+AI的模式可以利用现有的CT设备和数据，不用额外增加太多成本就能大规模筛查。</p>
+<p>从技术角度看，这也展示了AI的一个重要发展方向——不是非要用什么高大上的专用设备，而是通过智能算法挖掘日常数据中未被利用的信息，创造新的价值。</p>
+<h2 id="未来会怎样"><a class="markdownIt-Anchor" href="#未来会怎样"></a> 未来会怎样？</h2>
+<p>达摩院透露下一步想搞&quot;一扫多查&quot;，就是做一次平扫CT，AI同时筛查胃癌、胰腺癌、肝癌等多种癌症。这个想法要是实现了，那体检方式可能都要彻底改变了。</p>
+<p>想想看，以后做个腹部CT，AI顺便把好几种癌症都筛查一遍，这效率得多高。传统的&quot;一个癌种、一种检查、一套流程&quot;的模式可能就要被颠覆了。</p>
+<p>不过我觉得这还有很长的路要走。不同癌症的特征不一样，AI模型需要兼顾各种情况，还要保证每个都查得准，这技术难度不小。而且医疗AI涉及人命，必须极其谨慎，验证过程会很漫长。</p>
+<p>但不管怎么说，从胰腺癌到胃癌，达摩院这个&quot;平扫CT+AI&quot;的技术路径已经被证明是可行的。这可能只是个开始，未来我们或许会看到AI在更多疾病筛查中发挥作用。</p>
+<p>最后想说，在ChatGPT这类酷炫技术满天飞的当下，达摩院能沉下心来做医疗AI这种&quot;慢生意&quot;，挺让人佩服的。毕竟这东西不像大模型那样能迅速吸引眼球，但它实实在在能救命。我觉得这才是科技该有的温度吧。</p>
+
+            </div>
+            <hr />
+
+            <!-- 公众号图片 -->
+            <img src="/gongzhonghao.png" width="100%"/>
+
+            
+
+<!--             <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script> -->
+
+            
+
+
+        </div>
+    </div>
+
+    
+    <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: 'ac537cb9fe0e733330eb',
+        clientSecret: 'b3c9fa63fd196e83158a79b40dfe97529bd09de0',
+        repo: 'okeeper.github.io',
+        owner: 'okeeper',
+        admin: "okeeper",
+        id: 'ren-gong-zhi-neng/ai-zhen-neng-jiu-ming-liao-ti-qian-ban-nian-jiu-chu-wei-yan-da-mo-yuan-zhe-xiang-ji-zhu-dian-fu-liao-yi-xue-ying-xiang-ren-zhi/',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/ren-gong-zhi-neng/gao-bie-ps-nano-banana-rang-pu-tong-ren-ye-neng-wan-zhuan-zhuan-ye-ji-tu-xiang-bian-ji/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="告别PS！Nano Banana让普通人也能玩转专业级图像编辑">
+                        
+                        <span class="card-title">告别PS！Nano Banana让普通人也能玩转专业级图像编辑</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            这两天AI圈最火的工具非Nano Banana莫属了。作为Google Gemini 2.5 Flash背后的图像引擎，它把&quot;用嘴改图&quot;变成了现实，让普通人也能轻松实现以前只有专业设计师才能完成的效果。说实话，玩了两天后
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2025-09-01
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/人工智能/" class="post-category" target="_blank">
+                                    人工智能
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/人工智能/" target="_blank">
+                        <span class="chip bg-color">人工智能</span>
+                    </a>
+                    
+                    <a href="/tags/AI/" target="_blank">
+                        <span class="chip bg-color">AI</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/ren-gong-zhi-neng/xing-jian-shi-fei-zhong-cheng-cong-si-lian-zha-dao-wan-mei-shi-fei-ma-si-ke-zhe-ci-zhen-mei-fang-yan-hua/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="星舰十飞终成！从"四连炸"到完美试飞，马斯克这次真没放烟花？">
+                        
+                        <span class="card-title">星舰十飞终成！从"四连炸"到完美试飞，马斯克这次真没放烟花？</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            说实话，蹲守星舰直播这事儿，心脏不好还真扛不住。前四次不是空中解体就是原地爆炸，网友都调侃马斯克在&quot;太空放烟花&quot;。但这次，SpaceX星舰第十次试飞算是给所有围观群众吃了颗定心丸——关键任务全完成，连马斯克都忍不住发推：
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2025-08-28
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/人工智能/" class="post-category" target="_blank">
+                                    人工智能
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/人工智能/" target="_blank">
+                        <span class="chip bg-color">人工智能</span>
+                    </a>
+                    
+                    <a href="/tags/AI/" target="_blank">
+                        <span class="chip bg-color">AI</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            &copy; 2017-2024 Okeeper. All Rights Reserved. &nbsp; 粤ICP备2024178587号
+            
+            &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+            <span class="white-color">209.2k</span>
+            
+
+            <br>
+            <span id="sitetime"></span>
+
+            
+            
+            <br>
+            
+            <span id="busuanzi_container_site_pv" style='display:none'>
+                <i class="fa fa-heart-o"></i>
+                本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv" style='display:none'>
+                人次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+            </span>
+            
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/okeeper" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:zhangyue0808@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+    <a href="https://user.qzone.qq.com/610998697" class="tooltipped" target="_blank" data-tooltip="访问我的QQ空间" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+    <a href="https://weibo.com/okeeper" class="tooltipped" target="_blank" data-tooltip="关注我的微博" data-position="top" data-delay="50">
+        <i class="fa fa-weibo"></i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<script language=javascript>
+    function siteTime() {
+        window.setTimeout("siteTime()", 1000);
+        var seconds = 1000;
+        var minutes = seconds * 60;
+        var hours = minutes * 60;
+        var days = hours * 24;
+        var years = days * 365;
+        var today = new Date();
+        var todayYear = today.getFullYear();
+        var todayMonth = today.getMonth() + 1;
+        var todayDate = today.getDate();
+        var todayHour = today.getHours();
+        var todayMinute = today.getMinutes();
+        var todaySecond = today.getSeconds();
+        /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+        year - 作为date对象的年份，为4位年份值
+        month - 0-11之间的整数，做为date对象的月份
+        day - 1-31之间的整数，做为date对象的天数
+        hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+        minutes - 0-59之间的整数，做为date对象的分钟数
+        seconds - 0-59之间的整数，做为date对象的秒数
+        microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+        var t1 = Date.UTC(2018, 01, 01, 00, 00, 00); //北京时间2018-2-13 00:00:00
+        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+        var diff = t2 - t1;
+        var diffYears = Math.floor(diff / years);
+        var diffDays = Math.floor((diff / days) - diffYears * 365);
+        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
+        document.getElementById("sitetime").innerHTML = "本站已运行 " + diffYears + " 年 " + diffDays + " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+    }/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+    siteTime();
+</script>
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9PRXGJ8X9Z"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'G-9PRXGJ8X9Z');
+</script>
+
+
+
+    
+
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+    <!-- 雪花特效 -->
+    
+
+</body>
+
+</html>
