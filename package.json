@@ -1,0 +1,16 @@
+{
+  "name": "okeeper-blog",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "node scripts/build.mjs"
+  },
+  "dependencies": {
+    "@vscode/markdown-it-katex": "1.1.2",
+    "js-yaml": "4.3.2",
+    "markdown-it": "14.2.0",
+    "parse5": "7.3.0"
+  }
+}

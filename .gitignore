@@ -1,0 +1,4 @@
+/node_modules/
+/dist/
+/.blog-build-*/
+.DS_Store
