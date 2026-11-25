@@ -22,6 +22,7 @@
 
 ## 个人品牌与关于页
 
+- 导航和浏览器标签页共用[猫头鹰标志](site/assets/owl.png)。[标签页图标](public/favicon.png)沿用导航的墨绿色底，将原图等比居中导出为方形 PNG。
 - 张跃（Zhang Yue）是作者，Okeeper 是网名，「神笔君」是博客与微信公众号的名称。署名链接到 `/about/`。个人介绍以已确认的履历为依据，代表作用已发布文章的固定路径引用。
 - 首页作者区和关于页提供「个人简历」外链，目标为 <https://okeeper.com/resume/>。沿用外链标识，并向辅助技术说明新标签页打开。
 - 关于页分别标明个人微信与公众号「神笔君」。[个人微信原图](public/images/profile/wechat-personal.jpg)用于添加好友，[公众号原图](public/images/profile/wechat-shenbijun.jpg)用于关注文章。保留方形比例、白色留边和点击查看原图的入口，手机上也要能清楚辨认两者。

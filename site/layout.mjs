@@ -151,7 +151,7 @@ export function layout({site, title, description = identity.description, path = 
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${esc(fullTitle)}</title><meta name="description" content="${esc(description)}"><meta name="author" content="${esc(identity.name)}"><meta name="theme-color" content="#f7f8f4"><meta name="robots" content="${noindex ? 'noindex,follow' : 'max-image-preview:large'}">
 <link rel="canonical" href="${esc(canonical)}">${social.join('')}
-<link rel="icon" href="/favicon.png"><link rel="alternate" type="application/atom+xml" title="神笔君 RSS" href="/atom.xml"><link rel="describedby" type="text/plain" href="/llms.txt">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon.png?v=owl"><link rel="alternate" type="application/atom+xml" title="神笔君 RSS" href="/atom.xml"><link rel="describedby" type="text/plain" href="/llms.txt">
 ${post?.markdownUrl ? `<link rel="alternate" type="text/markdown" href="${esc(new URL(post.markdownUrl,site.url).href)}">` : ''}
 ${graph ? `<script type="application/ld+json">${graph}</script>` : ''}
 <link rel="stylesheet" href="/assets/journal.css">${math ? '<link rel="stylesheet" href="/assets/katex/katex.min.css">' : ''}<script defer src="/assets/journal.js"></script></head><body>
