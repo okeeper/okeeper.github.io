@@ -8,6 +8,9 @@ function countTerms(posts, field) {
 function textLink(label, url, glyph = 'arrow') {
   return `<a class="text-link" href="${esc(url)}">${esc(label)} ${icon(glyph,16)}</a>`;
 }
+function resumeLink() {
+  return `<a class="text-link resume-link" href="https://okeeper.com/resume/" target="_blank" rel="noopener" aria-label="个人简历（在新标签页打开）">个人简历 ${icon('diagonal',15)}</a>`;
+}
 function topicIcon(topic) {
   return ({'人工智能':'stack','软件笔记':'book','后端&架构':'graph','操作系统原理':'code'})[topic] || 'tag';
 }
@@ -15,7 +18,7 @@ function authorBox() {
   return `<section class="author-box"><div class="small-heading">关于作者</div>
   <div class="author-line"><img width="54" height="54" src="/assets/author.webp" alt="张跃"><div><strong>张跃 <span lang="en">Okeeper</span></strong><p>程序员 · 架构师</p></div></div>
   <p class="bio">记录人工智能的新进展，也写软件工程和系统架构中的实践。</p>
-  ${textLink('更多关于我','/about/')}</section>`;
+  <div class="author-links">${textLink('更多关于我','/about/')}${resumeLink()}</div></section>`;
 }
 function topicBox(posts, site) {
   return `<section class="topic-box"><div class="section-line"><h2>主题索引</h2>${textLink('全部','/categories/')}</div>
@@ -103,14 +106,33 @@ const links = {
 function linkList(items) {
   return `<ul class="profile-links">${items.map(([label,url,value]) => `<li><a href="${esc(url)}"><span>${esc(label)}</span><strong>${esc(value)}</strong>${icon('diagonal',16)}</a></li>`).join('')}</ul>`;
 }
+function wechatPanel() {
+  const accounts = [
+    { name: '个人微信', action: '添加张跃为好友', file: 'wechat-personal.jpg' },
+    { name: '公众号「神笔君」', action: '关注技术文章', file: 'wechat-shenbijun.jpg' },
+  ];
+  return `<section class="wechat-panel" aria-labelledby="wechat-heading"><h2 id="wechat-heading">在微信上找到我</h2>
+    <p>用微信扫一扫，或点开二维码查看原图。</p>
+    <div class="wechat-codes">${accounts.map(({name, action, file}) => {
+      const src = '/images/profile/' + file;
+      return `<figure><a class="qr-image" href="${src}" target="_blank" rel="noopener" aria-label="查看${name}二维码原图（在新标签页打开）">
+        <img src="${src}" width="192" height="192" alt="${name}二维码"></a>
+        <figcaption><strong>${name}</strong><span>${action}</span></figcaption></figure>`;
+    }).join('')}</div></section>`;
+}
 export function renderPage({site,posts,kind,title,path}) {
   let content;
   if (kind === 'about') {
-    content = `<header class="profile-hero"><img src="/assets/author.webp" alt="张跃" width="96" height="96"><div><h1>张跃 <em>Okeeper</em></h1><p>程序员 · 架构师</p></div></header>
-    <div class="profile-copy"><p>我是张跃，网名 Okeeper。这里是我的个人博客，记录人工智能、软件工程和系统架构，也写平时用到的工具与读书笔记。</p>
-    <h2>工作与学习</h2><p>毕业于 JVTC 软件技术专业。曾在百倍网络负责交易系统的核心开发与架构，后来在菜鸟网络参与国际仓储 WMS 系统研发。</p>
-    <p>曾获蓝桥杯 Java 组全国二等奖、江西省一等奖，以及大三学年一等奖学金。</p><h2>项目</h2>${linkList(links.work)}${textLink('联系我','/contact/')}</div>`;
-  } else if (kind === 'contact') {
+    return layout({site,title,path,active:'about',body:`<div class="profile-page">
+      <div class="crumb"><a href="/">首页</a> / 关于</div><div class="about-grid">
+      <section class="about-intro"><header class="profile-hero"><img src="/assets/author.webp" alt="张跃" width="96" height="96"><div><h1>张跃 <em>Okeeper</em></h1><p>程序员 · 架构师</p></div></header>
+      <div class="profile-copy"><p>我是张跃，网名 Okeeper。这里是我的个人博客，记录人工智能、软件工程和系统架构，也写平时用到的工具与读书笔记。</p></div>${resumeLink()}</section>
+      ${wechatPanel()}
+      <section class="profile-copy about-details"><h2>工作与学习</h2><p>毕业于 JVTC 软件技术专业。曾在百倍网络负责交易系统的核心开发与架构，后来在菜鸟网络参与国际仓储 WMS 系统研发。</p>
+      <p>曾获蓝桥杯 Java 组全国二等奖、江西省一等奖，以及大三学年一等奖学金。</p><h2>项目</h2>${linkList(links.work)}${textLink('联系我','/contact/')}</section>
+      </div></div>`});
+  }
+  if (kind === 'contact') {
     content = `<h1>联系与留言</h1><div class="profile-copy"><p>关于文章、技术交流或友链交换，可以通过以下方式找到我。</p>${linkList(links.contact)}<p>微信 <code>zhangyue0808</code>　QQ <code>610998697</code></p><h2>交换友链</h2><p>来信请附上博客名称、地址、一句话简介和头像链接。</p></div>`;
   } else if (kind === 'friends') {
     content = `<h1>友情链接</h1><div class="profile-copy">${linkList(links.friends)}</div>`;
