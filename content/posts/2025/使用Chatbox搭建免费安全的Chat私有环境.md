@@ -1,11 +1,14 @@
 ---
-title: "手把手教你：免费拥有自己的智能聊天客户端，手机也能用DeepSeek、ChatGPT！"
+title: "用 Chatbox 配置桌面和手机聊天客户端：魔桥接入记录"
 date: "2025-08-08T17:43:22+08:00"
-updated: "2025-09-26T08:25:26.816Z"
+updated: "2026-11-25T11:04:05+08:00"
 url: "/ruan-jian-bi-ji/shi-yong-chatbox-da-jian-mian-fei-an-quan-de-chat-si-you-huan-jing/"
 categories: ["软件笔记"]
 tags: ["软件笔记"]
+summary: "记录 Chatbox 桌面版、网页版和手机版配置 API 地址、密钥与模型名称的过程。示例使用的 ModelBridge（魔桥）已下线。"
 ---
+
+> 本文使用的 ModelBridge（魔桥）已下线，原服务地址和密钥已无法用于接入。以下保留当时的 Chatbox 配置和界面截图。
 
 你是否在使用DeepSeek官网时，总是遇到“服务器繁忙，请稍后重试”的提示？
 
@@ -13,7 +16,7 @@ tags: ["软件笔记"]
 
 又是否为在国内无法使用OPENAI的`ChatGPT`而烦恼？毕竟这个网站：https://chatgpt.com/ 根本打不开。
 
-别担心，解决方案来啦！答案就是`Chatbox AI客户端` + `ModelBridge API KEY`。利用ModelBridge对OPENAI API的无缝兼容，搭配强大的AI客户端应用，让你拥有专属于你的智能体！
+我当时使用 Chatbox AI 客户端，配合 ModelBridge 提供的兼容 OpenAI 的接口，在桌面和手机上访问模型。
 
 **什么是Chatbox AI**
 
@@ -36,23 +39,14 @@ Chatbox AI可是一款超强大的AI客户端应用和智能助手哦，下面�
 
 **认识ModelBridge**
 
-魔桥`ModelBridge`，是专业的大模型API接口服务商。
-
-它能为企业和开发者提供优质稳定的大模型相关API调用接口。
-
-其接口能力超强大：支持百度文心一言、阿里、讯飞、智谱ChatGLM、百川、GPT3.5、GPT4、GPT4o、Embedding、Whisper、Fine - tuning、assistant、batch、google gemini、claude、deepseek等众多大模型。
-
-而且能用标准的OpenAI接口格式访问所有大模型，真正做到一次对接，模型任意切换。
-
-**接下来，就手把手教你快速搭建自己的智能聊天客户端。**！！！
+魔桥曾为企业和开发者提供大模型 API。它兼容 OpenAI 的接口格式，当时可以用同一个客户端调用文心一言、智谱 ChatGLM、GPT、Gemini、Claude、DeepSeek 等模型。
 
 ## 准备工作很简单
 
 - **Chatbox AI客户端**
     - 直接在线网页版：https://web.chatboxai.app/
     - 也可进入官网：https://chatboxai.app/zh#download 下载对应客户端，目前支持IOS、Android及Mac、Windows系统。
-- **ModelBridge API KEY**
-    - 进入官网：https://model-bridge.okeeper.com/ ，用邮箱注册就能获得免费使用的API KEY。
+- 演示使用的是魔桥当时签发的 API 密钥。
 
 ## Chatbox桌面版或网页版自定义设置
 
@@ -62,9 +56,7 @@ Chatbox AI可是一款超强大的AI客户端应用和智能助手哦，下面�
 ![image-20250214170517597](https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/images/image-20250214170517597.png)
 
 ### 第二步：填入关键信息
-填入ModelBridge的`域名`和`API Key`。
-- API秘钥：就是你的ModelBridge的api key，查看文档可了解获取方法：https://modelbridge-doc.okeeper.com/doc-5203747
-- API域名：https://model-bridge.okeeper.com
+当时我在 `API Key` 一栏填入魔桥签发的密钥，在 API 域名一栏填入服务地址。下图记录了当时的设置。
 
 ![image-20250214170820789](https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/images/image-20250214170820789.png)
 
@@ -75,7 +67,7 @@ Chatbox AI可是一款超强大的AI客户端应用和智能助手哦，下面�
 
 ![image-20250214171506350](https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/images/image-20250214171506350.png)
 
-到此，桌面版或网页版的设置就完成啦，可以开始使用了！
+以上是当时桌面版和网页版的配置。
 
 ## Chatbox手机版配置
 
@@ -89,7 +81,7 @@ Chatbox AI可是一款超强大的AI客户端应用和智能助手哦，下面�
 
 ![image-20250214180023836](https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/images/image-20250214180023836.png)
 
-然后就大功告成，可以愉快使用啦！
+下图是当时手机端的对话界面。
 
 ![image-20250214180051790](https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/images/image-20250214180051790.png)
 

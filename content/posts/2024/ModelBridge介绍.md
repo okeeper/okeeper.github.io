@@ -1,16 +1,18 @@
 ---
-title: "无OpenAI API KEY? 试试这个 - ModelBridge(魔桥)"
+title: "ModelBridge（魔桥）项目回顾：用兼容 OpenAI 的接口调用不同模型"
 date: "2024-09-29T11:25:00+08:00"
-updated: "2025-09-26T09:27:28.807Z"
+updated: "2026-11-25T11:04:05+08:00"
 url: "/ren-gong-zhi-neng/modelbridge-jie-shao/"
 categories: ["人工智能"]
 tags: ["AI", "OpenAI", "Baidu", "API 代理"]
-summary: "ModelBridge(魔桥) - 国内免费的OpenAI api代理，无需魔法免费使用, 支持国内外主流大模型，免费使用。"
+summary: "ModelBridge（魔桥）已下线。本文保留项目运行时的接口设计，以及 Python、Java 和 curl 的调用示例。"
 ---
 
 
 
-# 国内无法访问OpenAI API? 试试这个 - ModelBridge(魔桥)
+> ModelBridge（魔桥）已下线，注册和 API 服务均已停止。下文保留项目运行时的界面与接入示例。
+
+## 项目背景
 
 > 凌晨，OpenAI突然发出一封告知信：
 >
@@ -23,8 +25,8 @@ summary: "ModelBridge(魔桥) - 国内免费的OpenAI api代理，无需魔法�
 > 自7月9日起，OpenAI将开始阻止来自非支持国家和地区的API流量。
 >
 > 受影响组织若希望继续使用OpenAl的服务，必须在其支持的国家或地区内访问。
->
-> 那么想访问OpenAI的API，该怎么办？即使不封禁，想要获取官方的openai api账号，你需要境外银行卡进行订阅，同时还需要梯子才能访问。不过，今天我要介绍一个不需要任何魔法，免费可用的OpenAI API——[ModelBridge](https://model-bridge.okeeper.com/home/index.html)。
+
+当时，ModelBridge 尝试用一套兼容 OpenAI 的 API 接入不同模型。
 
 
 
@@ -51,47 +53,42 @@ summary: "ModelBridge(魔桥) - 国内免费的OpenAI api代理，无需魔法�
 
 ## ModelBridge是什么？
 
-想象一下，有一个平台，它能够让你轻松访问国内外的主流大语言模型，而且免费体验。这就是ModelBridge——一个国内免费的OpenAI API代理，它让人工智能的魔法触手可及。
-
-ModelBridge官网：[ModelBridge](https://model-bridge.okeeper.com/home/index.html)
+ModelBridge 是一个曾提供免费体验的大模型 API 代理。下图是项目运行时的官网。
 
 ![image-20241210170317716](https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/images/image-20241210170317716.png)
 
 ### 1. 标准的OpenAI接口格式
 
-ModelBridge遵循OpenAI的接口格式，这意味着如果你已经熟悉OpenAI的API，那么ModelBridge对你来说就像是老朋友一样亲切。你可以直接参照OpenAI的接口文档，轻松上手。
+ModelBridge 当时采用 OpenAI 的接口格式，熟悉这套 API 的开发者可以沿用原来的客户端。
 
 ### 2. 一次对接，模型任意切换
 
-ModelBridge的另一个神奇之处在于它的灵活性。你只需要进行一次API对接，就可以在不同的大模型之间自由切换，就像在魔法世界中随意变换魔杖一样简单。
+当时只需对接一次 API，更改请求中的 `model` 参数就能切换平台支持的模型。
 
-### 3. 无需魔法，免费使用
+### 3. 当时的免费体验
 
-对于国内用户来说，访问某些国外的API可能需要一些“魔法”。但ModelBridge打破了这一限制，让你无需任何特殊配置，就能免费使用这个平台。
+项目运营期间，用户可以免费体验接口。
 
 ### 4. 支持国内外主流大模型
 
-无论你需要的是百度文心一言、阿里、讯飞、智谱ChatGLM，还是GPT系列等，ModelBridge都能满足你的需求。它就像一个魔法宝库，里面装满了各种强大的模型。
+项目曾接入百度文心一言、阿里、讯飞、智谱 ChatGLM 和 GPT 系列等模型。
 
-## 如何开始使用[ModelBridge](https://model-bridge.okeeper.com/home/index.html)？只需两步
+## 当时的接入流程
 
-首先，访问[ModelBridge](https://model-bridge.okeeper.com/home/index.html)的官网进行注册和登录。然后，参照官方文档进行API对接。由于接口请求规范完全和OpenAI一样，你可以直接以OpenAI的接口文档为参考。如果是国内模型，只需要将模型参数`model`修改为国内的模型名字即可。
+### 通过邮箱登录并获取 API 密钥
 
-### 第1步：用邮箱登录ModelBridge，获取API_SECRET_KEY，
-
-注册地址：https://model-bridge.okeeper.com/home/register
+下图记录了当时使用的界面。
 
 ![image-20240926155117726](https://okeeper-blog-images.oss-cn-hangzhou.aliyuncs.com/images/image-20240926155117726.png)
 
-### 第2步：编写代码。配置的base_url是：https://model-bridge.okeeper.com/v1
+### 配置客户端的 API 地址
 
-使用openai的sdk(python/java/go)或标准的openai的http接口进行访问，修改base_url为https://model-bridge.okeeper.com/v1
-下面是常见客户端访问的代码：
+当时可以用 OpenAI SDK 或直接发送 HTTP 请求。以下代码保留原来的调用方式，已下线的服务地址统一用 `api.example.invalid` 占位。
 
 #### 方式1：python中使用openai的官方包（新版）：
 
 > 注意：如果是python，注意openai包的版本要对，它升级了！！
-> 要注意，关键是base_url要设置成ModelBridge的，如果这个不正确，其它肯定都不行。
+> 当时接入魔桥时，需要把 SDK 默认的请求地址改成魔桥的 API 地址。
 > 所以一定要注意他在不同的包中base_url的设置方式，
 > 目前已知的是：在老版本中的设置方式是：openai.api_base = BASE_URL，
 > 而在新版本中的设置方式是：client = OpenAI(api_key=API_SECRET_KEY, base_url=BASE_URL)，
@@ -109,7 +106,7 @@ import json
 import time
 
 API_SECRET_KEY = "YOURR_API_SECRECT_KEY";
-BASE_URL = "https://model-bridge.okeeper.com/v1/"
+BASE_URL = "https://api.example.invalid/v1/"
 
 # chat
 def chat_completions3(query):
@@ -147,7 +144,7 @@ import openai
  
 #openai.api_type = "open_ai"
 openai.api_key = "YOURR_API_SECRECT_KEY"
-openai.api_base = "https://model-bridge.okeeper.com/v1"
+openai.api_base = "https://api.example.invalid/v1"
  
 # 定义对话函数
 def openai_chat(prompt):
@@ -197,7 +194,7 @@ import time
 import json
 
 def chat_completions():
-    url="https://model-bridge.okeeper.com/v1/chat/completions"
+    url="https://api.example.invalid/v1/chat/completions"
     api_secret_key = 'xxxxxxxxx';  # 你的api_secret_key
     headers = {'Content-Type': 'application/json', 'Accept':'application/json',
                'Authorization': "Bearer "+api_secret_key}
@@ -245,7 +242,7 @@ if __name__ == '__main__':
       public void streamChatCompletion() {
           OpenAiStreamClient client = OpenAiStreamClient.builder()
                   .apiKey(Arrays.asList("ModelBridege的API_SECRECT_KEY"))
-                  .apiHost("https://model-bridge.okeeper.com/")
+                  .apiHost("https://api.example.invalid/")
                   .build();
            
           ConsoleEventSourceListener eventSourceListener = new ConsoleEventSourceListener();
@@ -268,7 +265,7 @@ if __name__ == '__main__':
 ####  方式5：使用curl命令访问
 
 ```
-curl --location --request POST 'https://model-bridge.okeeper.com//v1/chat/completions' \
+curl --location --request POST 'https://api.example.invalid/v1/chat/completions' \
 --header 'Authorization: Bearer ModelBridege的API_SECRECT_KEY' \
 --header 'Content-Type: application/json' \
 --data-raw '{

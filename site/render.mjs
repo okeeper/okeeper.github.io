@@ -117,14 +117,14 @@ export function renderPost({site,posts,post}) {
 const links = {
   contact: [['电子邮箱','mailto:zhangyue0808@qq.com','zhangyue0808@qq.com'],['备用邮箱','mailto:okeeper.com@gmail.com','okeeper.com@gmail.com'],['GitHub 留言','https://github.com/okeeper/okeeper.github.io/issues','博客讨论区']],
   friends: [['知乎专栏','https://zhuanlan.zhihu.com/okeeper','自然语言处理与深度学习'],['友链交换','/contact/','联系张跃']],
-  work: [['开源项目',identity.github,'GitHub · okeeper'],['个人项目','http://model-bridge.okeeper.com','ModelBridge / 魔桥']],
+  work: [['开源项目',identity.github,'GitHub · okeeper']],
 };
 function linkList(items) {
   return `<ul class="profile-links">${items.map(([label,url,value]) => `<li><a href="${esc(url)}"><span>${esc(label)}</span><strong>${esc(value)}</strong>${icon('diagonal',16)}</a></li>`).join('')}</ul>`;
 }
 function wechatPanel() {
   const accounts = [
-    { name: '个人微信', action: '添加张跃为好友', file: 'wechat-personal.jpg' },
+    { name: '个人微信', action: `微信号 ${identity.wechatId}`, file: 'wechat-personal.jpg' },
     { name: '公众号「神笔君」', action: '关注技术文章', file: 'wechat-shenbijun.jpg' },
   ];
   return `<section class="wechat-panel" aria-labelledby="wechat-heading"><h2 id="wechat-heading">在微信上找到我</h2>
@@ -133,7 +133,7 @@ function wechatPanel() {
       const src = '/images/profile/' + file;
       return `<figure><a class="qr-image" href="${src}" target="_blank" rel="noopener" aria-label="查看${name}二维码原图（在新标签页打开）">
         <img src="${src}" width="192" height="192" alt="${name}二维码"></a>
-        <figcaption><strong>${name}</strong><span>${action}</span></figcaption></figure>`;
+        <figcaption><strong>${name}</strong><span>${esc(action)}</span></figcaption></figure>`;
     }).join('')}</div></section>`;
 }
 export function renderPage({site,posts,kind,title,path}) {
@@ -153,7 +153,7 @@ export function renderPage({site,posts,kind,title,path}) {
       </div></div>`});
   }
   if (kind === 'contact') {
-    content = `<h1>联系与留言</h1><div class="profile-copy"><p>关于文章、技术交流或友链交换，可以通过以下方式找到我。</p>${linkList(links.contact)}<p>微信 <code>zhangyue0808</code>　QQ <code>610998697</code></p><h2>交换友链</h2><p>来信请附上博客名称、地址、一句话简介和头像链接。</p></div>`;
+    content = `<h1>联系与留言</h1><div class="profile-copy"><p>关于文章、技术交流或友链交换，可以通过以下方式找到我。</p>${linkList(links.contact)}<p>微信号 <code>${esc(identity.wechatId)}</code>　QQ <code>610998697</code></p><h2>交换友链</h2><p>来信请附上博客名称、地址、一句话简介和头像链接。</p></div>`;
   } else if (kind === 'friends') {
     content = `<h1>友情链接</h1><div class="profile-copy">${linkList(links.friends)}</div>`;
   } else {

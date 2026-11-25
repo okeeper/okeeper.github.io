@@ -6,6 +6,7 @@ export const identity = {
   brand: '神笔君',
   journal: 'Okeeper’s Journal',
   profilePath: '/about/',
+  wechatId: 'okeeperyue',
   resume: 'https://okeeper.com/resume/',
   github: 'https://github.com/okeeper',
   portrait: '/assets/author.webp',
