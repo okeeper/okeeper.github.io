@@ -1,4 +1,6 @@
-import { day, dateTag, esc, icon, layout, typeset } from './layout.mjs';
+import { day, dateTag, esc, icon, layout, localDate, modificationDate, typeset } from './layout.mjs';
+import { identity } from './identity.mjs';
+import { selectedWriting } from './selected-writing.mjs';
 
 function countTerms(posts, field) {
   const counts = new Map();
@@ -9,16 +11,16 @@ function textLink(label, url, glyph = 'arrow') {
   return `<a class="text-link" href="${esc(url)}">${esc(label)} ${icon(glyph,16)}</a>`;
 }
 function resumeLink() {
-  return `<a class="text-link resume-link" href="https://okeeper.com/resume/" target="_blank" rel="noopener" aria-label="个人简历（在新标签页打开）">个人简历 ${icon('diagonal',15)}</a>`;
+  return `<a class="text-link resume-link" href="${esc(identity.resume)}" target="_blank" rel="me noopener" aria-label="个人简历（在新标签页打开）">个人简历 ${icon('diagonal',15)}</a>`;
 }
 function topicIcon(topic) {
   return ({'人工智能':'stack','软件笔记':'book','后端&架构':'graph','操作系统原理':'code'})[topic] || 'tag';
 }
 function authorBox() {
   return `<section class="author-box"><div class="small-heading">关于作者</div>
-  <div class="author-line"><img width="54" height="54" src="/assets/author.webp" alt="张跃"><div><strong>张跃 <span lang="en">Okeeper</span></strong><p>程序员 · 架构师</p></div></div>
-  <p class="bio">记录人工智能的新进展，也写软件工程和系统架构中的实践。</p>
-  <div class="author-links">${textLink('更多关于我','/about/')}${resumeLink()}</div></section>`;
+  <div class="author-line"><img width="54" height="54" src="${esc(identity.portrait)}" alt="${esc(identity.name)}"><div><strong>${esc(identity.name)} <span lang="en">${esc(identity.handle)}</span></strong><p>${esc(identity.roles.join(' · '))}</p></div></div>
+  <p class="bio">我在「${esc(identity.brand)}」记录人工智能的新进展，也写软件工程和系统架构中的实践。</p>
+  <div class="author-links">${textLink('更多关于我',identity.profilePath)}${resumeLink()}</div></section>`;
 }
 function topicBox(posts, site) {
   return `<section class="topic-box"><div class="section-line"><h2>主题索引</h2>${textLink('全部','/categories/')}</div>
@@ -47,7 +49,7 @@ function topicTabs(posts,site,filter = '') {
 }
 export function renderHome({posts,site}) {
   const [lead,...rest] = posts;
-  return layout({site,active:'home',body:`${lead ? feature(lead) : ''}
+  return layout({site,active:'home',pageType:'CollectionPage',socialImage:{src:identity.portrait,alt:identity.name},body:`${lead ? feature(lead) : ''}
   <div class="columns home-columns"><section id="articles" class="feed"><div class="section-line feed-title"><h2>文章手记</h2>${textLink('时间归档','/archives/')}</div>
   ${topicTabs(posts,site)}${rest.slice(0,11).map(postRow).join('') || '<p class="empty">更多文章将在这里更新。</p>'}
   ${posts.length > 12 ? `<div class="paging">${textLink('更早的文章','/page/2/')}</div>` : ''}</section>
@@ -74,7 +76,14 @@ export function renderListing({posts,allPosts,site,title,kind,filter,path,pagina
   const eyebrow = `<div class="crumb"><a href="/">首页</a> / ${esc(pageLabel)}</div>`;
   const content = directory ? taxonomyPage(countTerms(allPosts,kind),kind === 'tags' ? site.tagUrls : site.categoryUrls) :
     kind === 'archives' ? archiveRows(posts) : posts.map(postRow).join('');
-  return layout({site,title,path,active:'archives',body:`<div class="page-intro">${eyebrow}<h1>${esc(title)}${directory ? '' : `<span class="title-count">${count} 篇</span>`}</h1></div>
+  const scope = kind === 'category' ? `分类「${title}」` : kind === 'tag' ? `标签「${title}」` : title;
+  const pageNumber = pagination.page > 1 ? ` · 第 ${pagination.page} 页` : '';
+  const names = directory ? countTerms(allPosts,kind).slice(0,4).map(([name]) => name) : [];
+  const excerpts = posts.slice(0,2).map(p => '《' + p.title + '》').join('、');
+  const description = directory
+    ? `${identity.name}（${identity.handle}）博客的${scope}。按${kind === 'tags' ? '标签' : '主题'}浏览${names.join('、')}等内容。`
+    : `${identity.name}（${identity.handle}）的${scope}${pageNumber}。本页收录 ${posts.length} 篇文章。${excerpts ? '可阅读' + excerpts + '等。' : ''}`;
+  return layout({site,title:scope + pageNumber,description,path,active:'archives',pageType:'CollectionPage',body:`<div class="page-intro">${eyebrow}<h1>${esc(title)}${directory ? '' : `<span class="title-count">${count} 篇</span>`}</h1></div>
   <div class="columns inner-columns"><section>${kind === 'category' ? topicTabs(allPosts,site,filter) : ''}${content}${fullArchive ? '' : paginationBar(pagination)}</section>
   <aside class="rail">${fullArchive ? yearLinks : ''}${topicBox(allPosts,site)}</aside></div>`});
 }
@@ -89,9 +98,16 @@ export function renderPost({site,posts,post}) {
   const i = posts.indexOf(post);
   const neighbors = [[posts[i-1],'较新一篇'],[posts[i+1],'较早一篇']].filter(([p]) => p);
   const tags = post.tags.map(t => `<a href="${esc(site.tagUrls[t])}"># ${esc(t)}</a>`).join('');
-  return layout({site,title:post.title,description:post.summary,path:post.url,article:true,math:post.hasMath,body:`
+  const empty = !post.html.trim();
+  const repeatedTitle = posts.some(p => p.title === post.title && p.canonicalUrl !== post.canonicalUrl);
+  const pageTitle = repeatedTitle ? `${post.title}（${day(post)}）` : post.title;
+  const description = post.summary || (empty ? `《${post.title}》的历史文章页面，原稿未收录正文。` : post.title);
+  const modified = modificationDate(post);
+  const updatedDay = modified && localDate(modified);
+  const changed = updatedDay && updatedDay !== localDate(post.date);
+  return layout({site,title:pageTitle,description,path:post.url,post,noindex:empty,math:post.hasMath,body:`
   <div class="reading-grid"><article class="reader"><header class="article-head"><div class="crumb"><a href="/">首页</a> / ${post.categories.length ? `<a href="${esc(site.categoryUrls[post.categories[0]])}">${esc(post.categories[0])}</a>` : '文章'}</div>
-  <h1>${typeset(post.title,true)}</h1><div class="byline"><a href="/about/"><img src="/assets/author.webp" width="31" height="31" alt="">张跃</a><i></i>${dateTag(post)}<i></i><span>${icon('clock',14)} ${post.minutes} 分钟阅读</span></div></header>
+  <h1>${typeset(post.title,true)}</h1><div class="byline"><a rel="author" href="${esc(identity.profilePath)}"><img src="${esc(identity.portrait)}" width="31" height="31" alt="">${esc(identity.name)}</a><i></i><span>发布 ${dateTag(post)}</span>${changed ? `<i></i><span>更新 <time datetime="${esc(modified)}">${esc(updatedDay.replaceAll('-','.'))}</time></span>` : ''}<i></i><span>${icon('clock',14)} ${post.minutes} 分钟阅读</span></div></header>
   ${tocFor(post,true)}<div class="prose">${post.html || '<p>此篇原稿未收录正文。</p>'}</div>
   <div class="article-end"><div class="tag-links">${tags}</div>${textLink('讨论这篇文章','https://github.com/okeeper/okeeper.github.io/issues?q=' + encodeURIComponent(post.title),'diagonal')}</div>
   <nav class="neighbor-list" aria-label="相邻文章">${neighbors.map(([p,label]) => `<a href="${esc(p.url)}"><small>${label}</small><strong>${typeset(p.title)}</strong>${icon('arrow')}</a>`).join('')}</nav></article>
@@ -101,7 +117,7 @@ export function renderPost({site,posts,post}) {
 const links = {
   contact: [['电子邮箱','mailto:zhangyue0808@qq.com','zhangyue0808@qq.com'],['备用邮箱','mailto:okeeper.com@gmail.com','okeeper.com@gmail.com'],['GitHub 留言','https://github.com/okeeper/okeeper.github.io/issues','博客讨论区']],
   friends: [['知乎专栏','https://zhuanlan.zhihu.com/okeeper','自然语言处理与深度学习'],['友链交换','/contact/','联系张跃']],
-  work: [['开源项目','https://github.com/okeeper','GitHub · okeeper'],['个人项目','http://model-bridge.okeeper.com','ModelBridge / 魔桥']],
+  work: [['开源项目',identity.github,'GitHub · okeeper'],['个人项目','http://model-bridge.okeeper.com','ModelBridge / 魔桥']],
 };
 function linkList(items) {
   return `<ul class="profile-links">${items.map(([label,url,value]) => `<li><a href="${esc(url)}"><span>${esc(label)}</span><strong>${esc(value)}</strong>${icon('diagonal',16)}</a></li>`).join('')}</ul>`;
@@ -123,13 +139,17 @@ function wechatPanel() {
 export function renderPage({site,posts,kind,title,path}) {
   let content;
   if (kind === 'about') {
-    return layout({site,title,path,active:'about',body:`<div class="profile-page">
+    const writing = selectedWriting(posts);
+    const profileTitle = `关于${identity.name}（${identity.handle}）`;
+    const description = `${identity.name}（${identity.handle}）是${identity.roles.join('、')}，也是「${identity.brand}」博客和公众号的作者。查看个人简历、项目和技术文章。`;
+    return layout({site,title:profileTitle,description,path,active:'about',pageType:'ProfilePage',socialImage:{src:identity.portrait,alt:identity.name},body:`<div class="profile-page">
       <div class="crumb"><a href="/">首页</a> / 关于</div><div class="about-grid">
-      <section class="about-intro"><header class="profile-hero"><img src="/assets/author.webp" alt="张跃" width="96" height="96"><div><h1>张跃 <em>Okeeper</em></h1><p>程序员 · 架构师</p></div></header>
-      <div class="profile-copy"><p>我是张跃，网名 Okeeper。这里是我的个人博客，记录人工智能、软件工程和系统架构，也写平时用到的工具与读书笔记。</p></div>${resumeLink()}</section>
+      <section class="about-intro" id="person"><header class="profile-hero"><img src="${esc(identity.portrait)}" alt="${esc(identity.name)}" width="96" height="96"><div><h1>${esc(identity.name)} <em>${esc(identity.handle)}</em></h1><p>${esc(identity.roles.join(' · '))}</p></div></header>
+      <div class="profile-copy"><p>我是${esc(identity.name)}（${esc(identity.romanizedName)}），网名 ${esc(identity.handle)}。<span class="title-word">「${esc(identity.brand)}」</span>是我的个人技术博客，也是我的微信公众号名称。我写人工智能、软件工程和系统架构，也记录平时用到的工具与读书笔记。</p></div>${resumeLink()}</section>
       ${wechatPanel()}
       <section class="profile-copy about-details"><h2>工作与学习</h2><p>毕业于 JVTC 软件技术专业。曾在百倍网络负责交易系统的核心开发与架构，后来在菜鸟网络参与国际仓储 WMS 系统研发。</p>
-      <p>曾获蓝桥杯 Java 组全国二等奖、江西省一等奖，以及大三学年一等奖学金。</p><h2>项目</h2>${linkList(links.work)}${textLink('联系我','/contact/')}</section>
+      <p>曾获蓝桥杯 Java 组全国二等奖、江西省一等奖，以及大三学年一等奖学金。</p><h2>项目</h2>${linkList(links.work)}${textLink('联系我','/contact/')}
+      ${writing.length ? `<h2>代表文章</h2><ul class="profile-links">${writing.map(p => `<li><a href="${esc(p.url)}"><strong>${typeset(p.title)}</strong>${icon('arrow',16)}</a></li>`).join('')}</ul>` : ''}</section>
       </div></div>`});
   }
   if (kind === 'contact') {
@@ -139,6 +159,11 @@ export function renderPage({site,posts,kind,title,path}) {
   } else {
     content = `<h1>页面未找到</h1><div class="profile-copy"><p>这个地址暂时没有文章。你可以到归档中查找标题或主题。</p>${textLink('浏览文章归档','/archives/')}</div>`;
   }
-  return layout({site,title,path,active:kind === 'about' ? 'about' : '',body:`
+  const descriptions = {
+    contact: `通过邮箱或 GitHub 联系${identity.name}（${identity.handle}），交流技术问题、文章反馈或博客友链。`,
+    friends: `${identity.name}（${identity.handle}）的友情链接，包括「自然语言处理与深度学习」知乎专栏和友链交换入口。`,
+    404: '此地址没有可浏览的页面，可通过文章归档按标题或主题查找原文。',
+  };
+  return layout({site,title,description:descriptions[kind],path,noindex:kind === '404',pageType:kind === 'contact' ? 'ContactPage' : 'WebPage',body:`
   <div class="columns profile-page"><section><div class="crumb"><a href="/">首页</a> / ${esc(title)}</div>${content}</section><aside class="rail">${topicBox(posts,site)}</aside></div>`});
 }

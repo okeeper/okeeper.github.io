@@ -3,6 +3,7 @@ title: "13款宝藏App实测：免费还好用，这波真挖到宝了"
 date: "2025-08-08T17:43:22+08:00"
 updated: "2025-09-26T08:25:06.931Z"
 url: "/ruan-jian-bi-ji/13-kuan-bao-cang-app-shi-ce-mian-fei-huan-hao-yong-zhe-bo-zhen-wa-dao-bao-liao/"
+canonical: "/ren-gong-zhi-neng/13-kuan-bao-cang-app-shi-ce-mian-fei-huan-hao-yong-zhe-bo-zhen-wa-dao-bao-liao-3/"
 categories: ["软件笔记"]
 tags: ["软件笔记"]
 ---

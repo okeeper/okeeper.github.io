@@ -3,6 +3,8 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadPosts } from './content.mjs';
 import { writeFeeds } from './feeds.mjs';
+import { writeReadingGuide } from './reading-guide.mjs';
+import { identity } from '../site/identity.mjs';
 import { renderHome, renderPost, renderListing, renderPage } from '../site/render.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
@@ -35,8 +37,8 @@ function taxonomyUrls(groups, prefix) {
 const categories = groupBy(posts, post => post.categories);
 const tags = groupBy(posts, post => post.tags);
 const site = {
-  title: '神笔君 | Okeeper', author: 'Okeeper', url: 'https://' + domain,
-  description: '神笔君的个人博客，记录人工智能、软件工程与技术实践。',
+  title: identity.brand + ' | ' + identity.handle, author: identity.name, url: 'https://' + domain,
+  description: identity.description,
   categoryUrls: taxonomyUrls(categories, 'categories'), tagUrls: taxonomyUrls(tags, 'tags'),
 };
 
@@ -83,6 +85,9 @@ try {
   }
   write('/CNAME', domain + '\n');
   write('/.nojekyll', '');
+  if (!existsSync(join(staticFiles, 'robots.txt'))) {
+    write('/robots.txt', 'User-agent: *\nAllow: /\n\nSitemap: ' + site.url + '/sitemap.xml\n');
+  }
   page('/', renderHome({ site, posts }));
   for (const post of posts) page(post.url, renderPost({ site, post, posts }));
 
@@ -106,6 +111,7 @@ try {
     page(path, renderPage({ site, posts, title, kind, path }));
   }
   writeFeeds(write, { site, posts, pages });
+  writeReadingGuide(write, { site, posts: posts.filter(post => post.markdownUrl) });
   const previous = join(staging, 'previous');
   if (existsSync(dist)) renameSync(dist, previous);
   try {

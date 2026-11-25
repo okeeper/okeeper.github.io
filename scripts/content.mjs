@@ -20,6 +20,7 @@ function renderBody(body, math) {
   const toc = [];
   const ids = new Set();
   const paragraphs = [];
+  let leadImage = null;
 
   function visit(node) {
     if (/^h[1-6]$/.test(node.tagName)) {
@@ -40,6 +41,15 @@ function renderBody(body, math) {
       const text = plainText(node).trim();
       if (text) paragraphs.push(text);
     }
+    if (node.tagName === 'img' && !leadImage) {
+      const src = node.attrs.find(attr => attr.name === 'src')?.value;
+      const alt = node.attrs.find(attr => attr.name === 'alt')?.value.trim();
+      const hasCaption = alt && !/^(?:img|image|photo|截图|图|图片)[\s\d_.-]*$/i.test(alt);
+      const decorative = /二维码|头像|图标|qrcode|qr-code|avatar|favicon/i.test(alt + ' ' + src);
+      if (src && hasCaption && !decorative && !/^(?!https?:)[a-z][a-z\d+.-]*:/i.test(src)) {
+        leadImage = { src, alt };
+      }
+    }
     for (const child of node.childNodes || []) visit(child);
   }
   visit(document);
@@ -57,7 +67,7 @@ function renderBody(body, math) {
   const words = text.match(/[\p{Script=Latin}\p{N}]+/gu)?.length ?? 0;
   const intro = paragraphs.find(p => p.length >= 12) || paragraphs[0] || text;
   return {
-    html: serialize(document), toc, text,
+    html: serialize(document), toc, text, leadImage,
     minutes: Math.max(1, Math.ceil(han / 400 + words / 225)),
     summary: intro.length > 110 ? intro.slice(0, 109) + '…' : intro,
   };
@@ -95,11 +105,16 @@ function readPost(file) {
   if (!parts) throw new Error('缺少 YAML 文章头部。');
   const meta = load(parts[1], { schema: JSON_SCHEMA });
   if (!meta || typeof meta.title !== 'string' || !meta.title.trim()) throw new Error('缺少文章标题。');
-  const result = renderBody(raw.slice(parts[0].length), meta.math === true);
+  const body = raw.slice(parts[0].length);
+  const result = renderBody(body, meta.math === true);
+  const url = validateUrl(meta.url);
+  const canonicalUrl = meta.canonical === undefined ? url : validateUrl(meta.canonical);
   const date = dateString(meta.date, 'date');
+  const updated = dateString(meta.updated ?? date, 'updated');
   return {
-    ...result, title: meta.title.trim(), url: validateUrl(meta.url), date,
-    updated: dateString(meta.updated ?? date, 'updated'),
+    ...result, title: meta.title.trim(), url, canonicalUrl, date,
+    updated: Date.parse(updated) < Date.parse(date) ? date : updated,
+    body, markdownUrl: result.html.trim() && canonicalUrl === url ? url + 'index.md' : null,
     categories: labels(meta.categories, 'categories'), tags: labels(meta.tags, 'tags'),
     summary: meta.summary?.trim() || result.summary, cover: meta.cover || '',
     hasMath: result.html.includes('class="katex"'),
@@ -115,6 +130,14 @@ export function loadPosts(folder) {
       posts.push(readPost(file));
     } catch (error) {
       throw new Error(file + ': ' + error.message, { cause: error });
+    }
+  }
+  const byUrl = new Map(posts.map(post => [post.url, post]));
+  for (const post of posts) {
+    if (post.url === post.canonicalUrl) continue;
+    const primary = byUrl.get(post.canonicalUrl);
+    if (!primary || !primary.markdownUrl) {
+      throw new Error(post.url + ' 的 canonical 须指向已有正文的主文章：' + post.canonicalUrl);
     }
   }
   return posts.sort((a, b) => Date.parse(b.date) - Date.parse(a.date) || a.url.localeCompare(b.url));

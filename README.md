@@ -42,6 +42,16 @@ npm run dev
 
 首次接入工作流时，在仓库 **Settings → Pages → Build and deployment → Source** 选择 **GitHub Actions**。把文章或主题改动合入 `master` 后，**Actions → Publish blog** 会安装锁定的依赖、生成站点并部署。也可从该工作流手动重新发布。自定义域名沿用 `CNAME` 中的 `okeeper.com`，同步核对 Pages 设置中的域名。[GitHub Pages 发布说明](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages)
 
+## 搜索与 AI 阅读入口
+
+作者身份、品牌名、简历及 GitHub 地址统一维护在 `site/identity.mjs`。首页标明博客和作者的关系，关于页作为作者的公开主页，文章署名和结构化数据均指向该页。关于页的代表文章由 `site/selected-writing.mjs` 选择，标题和链接随原稿生成。
+
+每篇有正文的主版本都会生成带作者、日期和网页原文链接的 `index.md`。读者或 Agent 可从 [阅读指南](https://okeeper.com/llms.txt) 进入[完整 Markdown 目录](https://okeeper.com/articles.md)。发布重复文章时可在副本头部设置 `canonical`，填写站内主版本的固定路径。搜索引擎地图和 Markdown 目录只列主版本。实质修订正文后填写真实的 `updated`，`summary` 适合用一两句概括本篇讨论的问题和结论。
+
+爬虫可从 [robots.txt](https://okeeper.com/robots.txt) 发现[站点地图](https://okeeper.com/sitemap.xml)。Google Search Console、Bing Webmaster Tools 可使用这个地图；百度另有[文章地图](https://okeeper.com/baidusitemap.xml)。在已验证的站长后台，可用网址检查或收录报告观察搜索表现，用 Bing 的 AI Performance 查看可用的引用数据。[Google 站点地图说明](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap) · [Bing AI Performance](https://blogs.bing.com/webmaster/2026/2/Introducing-AI-Performance-in-Bing-Webmaster-Tools-Public-Preview/)
+
+Pages 发布时比较前后两次规范网页的内容摘要，并在部署成功后通过 IndexNow 提交新增、变化和移除的网址。首次建立基线时会提交当前地图中的网址。`public/indexnow-key.txt` 是该协议要求公开托管的站点校验文件。通知结果在 **Publish blog → notify-search**，该步骤可单独重试。HTTP 200 或 202 表示服务已收到提交，实际收录及 AI 引用须另行观察。[IndexNow 协议](https://www.indexnow.org/documentation) · [Google AI 搜索说明](https://developers.google.com/search/docs/appearance/ai-features)
+
 ## 文件位置
 
 | 要修改的内容 | 位置 |

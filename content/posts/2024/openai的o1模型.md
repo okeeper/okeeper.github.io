@@ -5,7 +5,7 @@ updated: "2025-09-26T09:27:28.802Z"
 url: "/ren-gong-zhi-neng/openai-de-o1-mo-xing/"
 categories: ["人工智能"]
 tags: ["AI", "OpenAI", "Baidu", "API 代理"]
-summary: "ModelBridge(魔桥) - 国内免费的OpenAI api代理，无需魔法免费使用, 支持国内外主流大模型，免费使用。"
+summary: "介绍 OpenAI o1 的推理方式，并结合数学竞赛、编程竞赛和 GPQA 测试，讨论 o1、o1-preview 与 GPT-4o 的表现。"
 ---
 
 # OpenAI O1模型：技术巅峰与国内访问的解决方案
